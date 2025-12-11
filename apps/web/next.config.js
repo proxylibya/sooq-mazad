@@ -63,6 +63,7 @@ const nextConfig = {
     '@sooq-mazad/utils',
     '@sooq-mazad/config',
     '@sooq-mazad/types',
+    'nanoid',
   ],
 
   // إعادة توجيه مسارات Admin إلى تطبيق Admin المنفصل
