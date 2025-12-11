@@ -1,19 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "apps/web/package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "apps/web/pages/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "apps/web/$1"
-    }
-  ]
+  "buildCommand": "npx prisma generate && next build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next"
 }
