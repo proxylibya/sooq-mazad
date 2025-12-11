@@ -60,7 +60,7 @@
     "fix:permissions": "chmod +x .husky/pre-commit && chmod +x .husky/commit-msg && chmod +x .husky/pre-push",
     "test:build": "npm run build && echo 'Build test completed successfully'",
     "deploy:check": "npm run quality:full && npm run test:build && echo 'Ready for deployment'",
-    "postinstall": "prisma generate",
+    "postinstall": "npx prisma generate",
     "reinstall": "npm run clean:all && npm install",
     "check:types": "tsc --noEmit",
     "check:lint": "next lint",
