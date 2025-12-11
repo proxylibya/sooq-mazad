@@ -1,6 +1,5 @@
 import React from 'react';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
+import { ClockIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import { formatCityRegion } from '../utils/formatters';
 
 interface DateLocationInfoProps {

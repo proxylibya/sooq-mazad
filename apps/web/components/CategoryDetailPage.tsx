@@ -1,12 +1,14 @@
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  CalendarIcon,
+  CheckCircleIcon,
+  EyeIcon,
+  HeartIcon,
+  InformationCircleIcon,
+  MapPinIcon,
+  PhoneIcon,
+  ShareIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolid } from '@heroicons/react/24/solid';
 import Head from 'next/head';
 import Link from 'next/link';

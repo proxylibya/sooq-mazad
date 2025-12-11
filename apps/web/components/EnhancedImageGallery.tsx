@@ -1,9 +1,11 @@
-import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon';
-import ChevronRightIcon from '@heroicons/react/24/outline/ChevronRightIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  HeartIcon,
+  MagnifyingGlassIcon,
+  ShareIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolid } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';

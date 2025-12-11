@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon';
-import ChevronRightIcon from '@heroicons/react/24/outline/ChevronRightIcon';
-import CameraIcon from '@heroicons/react/24/outline/CameraIcon';
-import FireIcon from '@heroicons/react/24/outline/FireIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
+import {
+  BuildingStorefrontIcon,
+  CheckCircleIcon,
+  HeartIcon,
+  MapPinIcon,
+  PhoneIcon,
+  StarIcon,
+  ChatBubbleLeftRightIcon,
+  ShareIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CameraIcon,
+  FireIcon,
+  ClockIcon,
+} from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolid, StarIcon as StarSolid } from '@heroicons/react/24/solid';
 
 interface CompactShowroomCard110Props {

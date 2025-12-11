@@ -1,21 +1,19 @@
-// removed unused CheckIcon import
-
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import HandRaisedIcon from '@heroicons/react/24/outline/HandRaisedIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
 import React, { useMemo, useState } from 'react';
-// removed unused XCircleIcon import
-import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon';
-import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon';
-import CalendarDaysIcon from '@heroicons/react/24/outline/CalendarDaysIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import EyeSlashIcon from '@heroicons/react/24/outline/EyeSlashIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-// removed unused CurrencyDollarIcon and FunnelIcon imports
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
+import {
+  CheckCircleIcon,
+  ClockIcon,
+  HandRaisedIcon,
+  TrophyIcon,
+  UserIcon,
+  ArrowDownIcon,
+  ArrowUpIcon,
+  CalendarDaysIcon,
+  EyeIcon,
+  EyeSlashIcon,
+  PhoneIcon,
+  StarIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/24/outline';
 import {
   CheckCircleIcon as CheckCircleSolid,
   TrophyIcon as TrophySolid,

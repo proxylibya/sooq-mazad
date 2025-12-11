@@ -1,9 +1,11 @@
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
+import {
+  ArrowRightIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  MapPinIcon,
+  TruckIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

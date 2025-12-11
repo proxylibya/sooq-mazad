@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import LightBulbIcon from '@heroicons/react/24/outline/LightBulbIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
+import {
+  SparklesIcon,
+  XMarkIcon,
+  CurrencyDollarIcon,
+  ChartBarIcon,
+  LightBulbIcon,
+  ExclamationTriangleIcon,
+  CheckCircleIcon,
+} from '@heroicons/react/24/outline';
 
 interface AIAssistantProps {
   isOpen: boolean;

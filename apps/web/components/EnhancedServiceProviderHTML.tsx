@@ -1,9 +1,11 @@
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
 import React, { useState } from 'react';
+import {
+  CalendarIcon,
+  ChatBubbleLeftRightIcon,
+  MapPinIcon,
+  PhoneIcon,
+  StarIcon,
+} from '@heroicons/react/24/outline';
 
 interface EnhancedServiceProviderHTMLProps {
   provider?: {

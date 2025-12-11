@@ -1,5 +1,5 @@
 import React from 'react';
-import GlobeAltIcon from '@heroicons/react/24/outline/GlobeAltIcon';
+import { GlobeAltIcon } from '@heroicons/react/24/outline';
 import { useLocalization } from '../contexts/SimpleLocalizationContext';
 import Flag from './Flag';
 

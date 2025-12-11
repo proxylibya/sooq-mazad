@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import UserGroupIcon from '@heroicons/react/24/outline/UserGroupIcon';
-import DevicePhoneMobileIcon from '@heroicons/react/24/outline/DevicePhoneMobileIcon';
-import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon';
+import {
+  ChartBarIcon,
+  EyeIcon,
+  UserGroupIcon,
+  DevicePhoneMobileIcon,
+  ComputerDesktopIcon,
+} from '@heroicons/react/24/outline';
 
 interface DetailedStats {
   // الأساسيات

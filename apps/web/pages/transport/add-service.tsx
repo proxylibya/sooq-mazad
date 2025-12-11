@@ -1,12 +1,14 @@
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  ArrowRightIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  PhoneIcon,
+  PhotoIcon,
+  PlusIcon,
+  StarIcon,
+  TruckIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';

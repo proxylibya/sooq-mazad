@@ -1,24 +1,26 @@
-import AdjustmentsHorizontalIcon from '@heroicons/react/24/outline/AdjustmentsHorizontalIcon';
-import CameraIcon from '@heroicons/react/24/outline/CameraIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon';
-import ChevronRightIcon from '@heroicons/react/24/outline/ChevronRightIcon';
-import ChevronUpIcon from '@heroicons/react/24/outline/ChevronUpIcon';
-import ClipboardDocumentListIcon from '@heroicons/react/24/outline/ClipboardDocumentListIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import CheckBadgeIcon from '@heroicons/react/24/solid/CheckBadgeIcon';
+import {
+  AdjustmentsHorizontalIcon,
+  CameraIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+  ClipboardDocumentListIcon,
+  CurrencyDollarIcon,
+  EyeIcon,
+  FunnelIcon,
+  HeartIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  PlusCircleIcon,
+  ShieldCheckIcon,
+  StarIcon,
+  TruckIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
+import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Image from 'next/image';

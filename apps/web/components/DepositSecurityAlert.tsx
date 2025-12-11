@@ -1,10 +1,12 @@
 import React from 'react';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import LockClosedIcon from '@heroicons/react/24/outline/LockClosedIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
+import {
+  ExclamationTriangleIcon,
+  ShieldCheckIcon,
+  LockClosedIcon,
+  UserIcon,
+  CreditCardIcon,
+  CheckCircleIcon,
+} from '@heroicons/react/24/outline';
 
 interface SecurityLevel {
   level: 'basic' | 'verified' | 'premium';

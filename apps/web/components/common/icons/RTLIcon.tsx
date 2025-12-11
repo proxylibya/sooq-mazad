@@ -1,10 +1,12 @@
 import React from 'react';
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon';
-import ChevronRightIcon from '@heroicons/react/24/outline/ChevronRightIcon';
-import ArrowUturnLeftIcon from '@heroicons/react/24/outline/ArrowUturnLeftIcon';
-import ArrowUturnRightIcon from '@heroicons/react/24/outline/ArrowUturnRightIcon';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ArrowUturnLeftIcon,
+  ArrowUturnRightIcon,
+} from '@heroicons/react/24/outline';
 
 // خريطة الأيقونات التي تحتاج إلى عكس في البيئة العربية
 const RTL_ICON_MAP = {

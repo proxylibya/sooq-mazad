@@ -1,9 +1,11 @@
 import React from 'react';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon';
+import {
+  CheckCircleIcon,
+  CogIcon,
+  SparklesIcon,
+  TruckIcon,
+  ComputerDesktopIcon,
+} from '@heroicons/react/24/outline';
 
 interface CategorizedFeaturesDisplayProps {
   features: string[];

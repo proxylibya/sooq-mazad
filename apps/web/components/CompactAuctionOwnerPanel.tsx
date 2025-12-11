@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import PlayIcon from '@heroicons/react/24/outline/PlayIcon';
-import PauseIcon from '@heroicons/react/24/outline/PauseIcon';
-import StopIcon from '@heroicons/react/24/outline/StopIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import ChevronUpIcon from '@heroicons/react/24/outline/ChevronUpIcon';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
+import {
+  CogIcon,
+  PlayIcon,
+  PauseIcon,
+  StopIcon,
+  XMarkIcon,
+  PencilIcon,
+  ShareIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+} from '@heroicons/react/24/outline';
 
 interface AuctionStats {
   totalViews: number;
