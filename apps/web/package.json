@@ -23,12 +23,11 @@
     "@prisma/client": "^6.16.2",
     "nanoid": "^5.0.4",
     "sharp": "^0.33.0",
-    "zod": "^3.25.76"
-  },
-  "devDependencies": {
+    "zod": "^3.25.76",
     "@types/node": "^20.12.2",
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.24",
     "typescript": "^5.4.3"
-  }
+  },
+  "devDependencies": {}
 }
