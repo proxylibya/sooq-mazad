@@ -5,13 +5,15 @@ import {
   UserVerificationStatus,
   VerificationLevel,
 } from '../types/verification';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import DocumentCheckIcon from '@heroicons/react/24/outline/DocumentCheckIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
+import {
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  ClockIcon,
+  XCircleIcon,
+  DocumentCheckIcon,
+  ShieldCheckIcon,
+  StarIcon,
+} from '@heroicons/react/24/outline';
 
 interface VerificationStatusProps {
   userId: string;

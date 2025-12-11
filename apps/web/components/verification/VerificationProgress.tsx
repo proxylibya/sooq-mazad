@@ -1,13 +1,15 @@
 import React from 'react';
 import { VerificationLevel, VerificationStatus } from '../../types/verification';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import DocumentCheckIcon from '@heroicons/react/24/outline/DocumentCheckIcon';
+import {
+  CheckCircleIcon,
+  ClockIcon,
+  XCircleIcon,
+  ExclamationTriangleIcon,
+  ShieldCheckIcon,
+  StarIcon,
+  TrophyIcon,
+  DocumentCheckIcon,
+} from '@heroicons/react/24/outline';
 
 interface VerificationProgressProps {
   currentLevel: VerificationLevel;

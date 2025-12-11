@@ -4,19 +4,21 @@ import Link from 'next/link';
 import { OpensooqNavbar } from '../components/common';
 import PhoneDisplay from '../components/PhoneDisplay';
 import SafetyTips from '../components/SafetyTips';
-import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import ChevronUpIcon from '@heroicons/react/24/outline/ChevronUpIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
+import {
+  QuestionMarkCircleIcon,
+  ChatBubbleLeftRightIcon,
+  PhoneIcon,
+  EnvelopeIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  MagnifyingGlassIcon,
+  TrophyIcon,
+  BuildingStorefrontIcon,
+  ShieldCheckIcon,
+  CurrencyDollarIcon,
+  UserIcon,
+  DocumentTextIcon,
+} from '@heroicons/react/24/outline';
 
 // صفحة المساعدة والأسئلة الشائعة
 const HelpPage = () => {

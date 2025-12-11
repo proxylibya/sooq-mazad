@@ -1,8 +1,10 @@
-import BuildingOfficeIcon from '@heroicons/react/24/outline/BuildingOfficeIcon';
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
+import {
+  BuildingOfficeIcon,
+  BuildingStorefrontIcon,
+  ChevronDownIcon,
+  TruckIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import React from 'react';
 import AccountTypeBadgeNavbar from './AccountTypeBadgeNavbar';

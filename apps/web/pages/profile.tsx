@@ -1,16 +1,18 @@
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
-import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  CalendarIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  EyeIcon,
+  HeartIcon,
+  MapPinIcon,
+  PencilIcon,
+  PhotoIcon,
+  StarIcon,
+  TrophyIcon,
+  TruckIcon,
+  XCircleIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

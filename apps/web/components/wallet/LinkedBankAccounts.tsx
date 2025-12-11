@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 // // import { useSession } from 'next-auth/react'; // تم تعطيل نظام المصادقة مؤقتاً // تم تعطيل نظام المصادقة مؤقتاً
 import Link from 'next/link';
-import BanknotesIcon from '@heroicons/react/24/outline/BanknotesIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
-import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
+import {
+  BanknotesIcon,
+  CheckCircleIcon,
+  PlusIcon,
+  TrashIcon,
+  PencilIcon,
+  ExclamationTriangleIcon,
+} from '@heroicons/react/24/outline';
 import BankCard from '../features/wallet/deposit/BankCard';
 
 interface LinkedAccount {

@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import MicrophoneIcon from '@heroicons/react/24/outline/MicrophoneIcon';
-import StopIcon from '@heroicons/react/24/outline/StopIcon';
-import PlayIcon from '@heroicons/react/24/outline/PlayIcon';
-import PauseIcon from '@heroicons/react/24/outline/PauseIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
-import PaperAirplaneIcon from '@heroicons/react/24/outline/PaperAirplaneIcon';
-import SpeakerWaveIcon from '@heroicons/react/24/outline/SpeakerWaveIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
+import {
+  MicrophoneIcon,
+  StopIcon,
+  PlayIcon,
+  PauseIcon,
+  TrashIcon,
+  PaperAirplaneIcon,
+  SpeakerWaveIcon,
+  CheckCircleIcon,
+} from '@heroicons/react/24/outline';
 import { MicrophoneIcon as MicrophoneSolid } from '@heroicons/react/24/solid';
 
 interface VoiceRecorderProps {

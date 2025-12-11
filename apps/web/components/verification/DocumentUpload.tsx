@@ -1,15 +1,17 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { DocumentType } from '../../types/verification';
-import CameraIcon from '@heroicons/react/24/outline/CameraIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import IdentificationIcon from '@heroicons/react/24/outline/IdentificationIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import CloudArrowUpIcon from '@heroicons/react/24/outline/CloudArrowUpIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
+import {
+  CameraIcon,
+  DocumentTextIcon,
+  IdentificationIcon,
+  UserIcon,
+  MapPinIcon,
+  CheckCircleIcon,
+  XCircleIcon,
+  ExclamationTriangleIcon,
+  CloudArrowUpIcon,
+  EyeIcon,
+} from '@heroicons/react/24/outline';
 
 interface DocumentUploadProps {
   documentType: DocumentType;

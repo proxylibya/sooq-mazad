@@ -1,8 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import BuildingLibraryIcon from '@heroicons/react/24/outline/BuildingLibraryIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
+import {
+  BuildingLibraryIcon,
+  PlusIcon,
+  ArrowRightIcon,
+} from '@heroicons/react/24/outline';
 import BankCard from '../features/wallet/deposit/BankCard';
 
 // بيانات البنوك الليبية

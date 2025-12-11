@@ -1,10 +1,12 @@
 import React from 'react';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import CameraIcon from '@heroicons/react/24/outline/CameraIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
+import {
+  CheckCircleIcon,
+  ClockIcon,
+  DocumentTextIcon,
+  CameraIcon,
+  ShieldCheckIcon,
+  ExclamationTriangleIcon,
+} from '@heroicons/react/24/outline';
 
 interface Step {
   id: number;

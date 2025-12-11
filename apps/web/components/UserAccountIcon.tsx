@@ -1,8 +1,10 @@
 import React from 'react';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import BuildingOfficeIcon from '@heroicons/react/24/outline/BuildingOfficeIcon';
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
+import {
+  UserIcon,
+  TruckIcon,
+  BuildingOfficeIcon,
+  BuildingStorefrontIcon,
+} from '@heroicons/react/24/outline';
 
 interface UserAccountIconProps {
   accountType: string;

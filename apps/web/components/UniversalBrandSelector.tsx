@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+  XMarkIcon,
+  StarIcon,
+} from '@heroicons/react/24/outline';
 import { StarIcon as StarSolidIcon } from '@heroicons/react/24/solid';
 import {
   getSortedBrands,
