@@ -2,6 +2,6 @@
   "version": 2,
   "framework": "nextjs",
   "installCommand": "npm install",
-  "buildCommand": "npm install && npx prisma@6.16.2 generate --schema=../../prisma/schema.prisma && npx next build",
+  "buildCommand": "npm install && ls -la node_modules && npx prisma@6.16.2 generate --schema=../../prisma/schema.prisma && npx next build",
   "outputDirectory": ".next"
 }
