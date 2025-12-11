@@ -48,7 +48,6 @@
     "build:test": "NODE_ENV=test next build",
     "clean:cache": "rm -rf .next/cache",
     "clean:all": "rimraf .next node_modules package-lock.json",
-    "prepare": "husky install",
     "pm2:start": "pm2 start ecosystem.config.js --env production",
     "pm2:stop": "pm2 stop sooq-mazad-app",
     "pm2:restart": "pm2 restart sooq-mazad-app",
