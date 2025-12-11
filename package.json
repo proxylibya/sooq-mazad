@@ -17,6 +17,7 @@
     "dev:concurrent": "concurrently --kill-others-on-fail --names \"WEB,ADMIN,API\" -c \"cyan,green,yellow\" \"npm run dev:web\" \"npm run dev:admin\" \"npm run dev:api\"",
     "build": "turbo run build",
     "build:web": "cd apps/web && npm run build",
+    "vercel-build": "prisma generate --schema=./prisma/schema.prisma && cd apps/web && next build",
     "build:admin": "cd apps/admin && npm run build",
     "build:prod": "npm run fix && npm run build",
     "build:docker": "docker-compose build --parallel",
