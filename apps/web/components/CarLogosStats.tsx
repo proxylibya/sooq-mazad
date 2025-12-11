@@ -1,7 +1,8 @@
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-
+import {
+  ChartBarIcon,
+  SparklesIcon,
+  ExclamationTriangleIcon,
+} from '@heroicons/react/24/outline';
 import React from 'react';
 import { useCarBrandLogos } from '../hooks/useCarBrandLogos';
 

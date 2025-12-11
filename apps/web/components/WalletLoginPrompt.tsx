@@ -1,14 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
-import WalletIcon from '@heroicons/react/24/outline/WalletIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon';
-import BanknotesIcon from '@heroicons/react/24/outline/BanknotesIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import GlobeAltIcon from '@heroicons/react/24/outline/GlobeAltIcon';
-import UserPlusIcon from '@heroicons/react/24/outline/UserPlusIcon';
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
+import {
+  WalletIcon,
+  PhoneIcon,
+  CreditCardIcon,
+  BanknotesIcon,
+  ShieldCheckIcon,
+  ClockIcon,
+  GlobeAltIcon,
+  UserPlusIcon,
+  ArrowRightIcon,
+} from '@heroicons/react/24/outline';
 
 const WalletLoginPrompt: React.FC = () => {
   return (

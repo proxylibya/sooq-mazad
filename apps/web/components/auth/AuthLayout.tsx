@@ -1,4 +1,4 @@
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
+import { UserIcon } from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import React from 'react';
 

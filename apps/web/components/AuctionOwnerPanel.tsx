@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import HandRaisedIcon from '@heroicons/react/24/outline/HandRaisedIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import PauseIcon from '@heroicons/react/24/outline/PauseIcon';
-import PlayIcon from '@heroicons/react/24/outline/PlayIcon';
-import StopIcon from '@heroicons/react/24/outline/StopIcon';
-import BellIcon from '@heroicons/react/24/outline/BellIcon';
-import UserGroupIcon from '@heroicons/react/24/outline/UserGroupIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
-import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import ChartPieIcon from '@heroicons/react/24/outline/ChartPieIcon';
+import {
+  CogIcon,
+  ChartBarIcon,
+  ChartPieIcon,
+  EyeIcon,
+  HandRaisedIcon,
+  ClockIcon,
+  CheckCircleIcon,
+  XMarkIcon,
+  PauseIcon,
+  PlayIcon,
+  StopIcon,
+  BellIcon,
+  UserGroupIcon,
+  CurrencyDollarIcon,
+  TrophyIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  PencilIcon,
+  ShareIcon,
+  DocumentTextIcon,
+} from '@heroicons/react/24/outline';
 import { ProfessionalIcons, ProfessionalBadges } from './ui/ProfessionalIcons';
 import {
   CheckCircleIcon as CheckCircleSolid,

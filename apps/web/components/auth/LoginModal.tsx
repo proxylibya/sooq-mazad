@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
+import {
+  XMarkIcon,
+  CheckCircleIcon,
+  ArrowLeftIcon,
+} from '@heroicons/react/24/outline';
 import { processPhoneNumber } from '../../utils/phoneUtils';
 // import { login, logout } from '../../utils/authUtils'; // تعطيل مؤقت
 import PhoneInputField from '../PhoneInputField';

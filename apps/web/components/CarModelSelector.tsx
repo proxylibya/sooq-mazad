@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+  XMarkIcon,
+  CogIcon,
+} from '@heroicons/react/24/outline';
 import { findBrand } from '../data/car-brands-logos';
 
 interface CarModelSelectorProps {

@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import VideoCameraIcon from '@heroicons/react/24/outline/VideoCameraIcon';
-import MicrophoneIcon from '@heroicons/react/24/outline/MicrophoneIcon';
-import SpeakerWaveIcon from '@heroicons/react/24/outline/SpeakerWaveIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import PhoneXMarkIcon from '@heroicons/react/24/outline/PhoneXMarkIcon';
-import CameraIcon from '@heroicons/react/24/outline/CameraIcon';
-import SpeakerXMarkIcon from '@heroicons/react/24/outline/SpeakerXMarkIcon';
+import {
+  PhoneIcon,
+  VideoCameraIcon,
+  MicrophoneIcon,
+  SpeakerWaveIcon,
+  XMarkIcon,
+  PhoneXMarkIcon,
+  CameraIcon,
+  SpeakerXMarkIcon,
+} from '@heroicons/react/24/outline';
 import {
   PhoneIcon as PhoneSolid,
   VideoCameraIcon as VideoCameraSolid,

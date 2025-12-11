@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import GlobeAltIcon from '@heroicons/react/24/outline/GlobeAltIcon';
-import ArrowTopRightOnSquareIcon from '@heroicons/react/24/outline/ArrowTopRightOnSquareIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import ChevronUpIcon from '@heroicons/react/24/outline/ChevronUpIcon';
+import {
+  MapPinIcon,
+  GlobeAltIcon,
+  ArrowTopRightOnSquareIcon,
+  EyeIcon,
+  ShareIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@heroicons/react/24/outline';
 
 interface LocationData {
   lat?: number;

@@ -1,6 +1,7 @@
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-
+import {
+  XCircleIcon,
+  ExclamationTriangleIcon,
+} from '@heroicons/react/24/outline';
 import React, { useEffect } from 'react';
 import { initWebsiteNumberConverter } from '../utils/numberUtils';
 

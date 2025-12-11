@@ -1,15 +1,17 @@
 import SelectField from '../ui/SelectField';
 import React, { useState, useEffect } from 'react';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
+import {
+  MapPinIcon,
+  BuildingStorefrontIcon,
+  CalendarIcon,
+  CurrencyDollarIcon,
+  MagnifyingGlassIcon,
+  XMarkIcon,
+  TrophyIcon,
+  ClockIcon,
+  StarIcon,
+  ChevronDownIcon,
+} from '@heroicons/react/24/outline';
 import { cityNames } from '../../data/libyan-cities';
 import {
   carBrands,

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 interface BodyTypeSelectorProps {
   selectedBodyType: string;

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import BellIcon from '@heroicons/react/24/outline/BellIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import HandRaisedIcon from '@heroicons/react/24/outline/HandRaisedIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
+import {
+  BellIcon,
+  XMarkIcon,
+  HandRaisedIcon,
+  CurrencyDollarIcon,
+  UserIcon,
+  ClockIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+} from '@heroicons/react/24/outline';
 import {
   BellIcon as BellSolid,
   CheckCircleIcon as CheckCircleSolid,

@@ -1,10 +1,12 @@
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import FireIcon from '@heroicons/react/24/outline/FireIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import WrenchScrewdriverIcon from '@heroicons/react/24/outline/WrenchScrewdriverIcon';
+import {
+  CheckCircleIcon,
+  CogIcon,
+  FireIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  StarIcon,
+  WrenchScrewdriverIcon,
+} from '@heroicons/react/24/outline';
 import React from 'react';
 
 interface CarFeaturesDisplayProps {
