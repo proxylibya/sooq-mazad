@@ -1,0 +1,146 @@
+/**
+ * أنماط عرض أرقام الهواتف
+ * يضمن الاتجاه الصحيح لأرقام الهواتف في جميع أنحاء التطبيق
+ */
+
+/* فئة أساسية لعرض أرقام الهواتف */
+.phone-display {
+  direction: ltr;
+  text-align: left;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum';
+  white-space: nowrap; /* منع كسر السطر */
+  display: inline-block; /* ضمان العرض في سطر واحد */
+}
+
+/* ضمان أن رمز البلد يظهر دائماً على اليسار */
+.phone-display .country-code {
+  direction: ltr;
+  display: inline-block;
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+/* تنسيق رقم الهاتف الأساسي */
+.phone-display .phone-number {
+  direction: ltr;
+  display: inline-block;
+  font-weight: 500;
+}
+
+/* أحجام مختلفة لأرقام الهواتف */
+.phone-display.phone-sm {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+}
+
+.phone-display.phone-md {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+
+.phone-display.phone-lg {
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+}
+
+/* تنسيق خاص للجداول */
+.table-phone-display {
+  direction: ltr;
+  text-align: left;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum';
+  white-space: nowrap;
+}
+
+/* تنسيق للأيقونات مع أرقام الهواتف */
+.phone-with-icon {
+  display: flex;
+  align-items: center;
+  direction: ltr;
+  white-space: nowrap; /* منع كسر السطر */
+  flex-wrap: nowrap; /* منع التفاف العناصر */
+}
+
+.phone-with-icon .phone-icon {
+  margin-left: 0;
+  margin-right: 0.25rem; /* 4px - المسافة بين الأيقونة والنص */
+  flex-shrink: 0;
+  order: -1; /* ضمان أن الأيقونة تظهر أولاً (على اليسار) */
+}
+
+.phone-with-icon .phone-text {
+  direction: ltr;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum';
+  white-space: nowrap; /* منع كسر السطر */
+  overflow: hidden; /* إخفاء النص الزائد */
+  text-overflow: ellipsis; /* إضافة نقاط عند القطع */
+}
+
+/* تنسيق للروابط القابلة للنقر */
+.phone-clickable {
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+
+.phone-clickable:hover {
+  color: #2563eb; /* blue-600 */
+  text-decoration: none;
+}
+
+/* إصلاح مشاكل RTL في أرقام الهواتف */
+.rtl-safe-phone {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: embed;
+}
+
+/* ضمان أن رمز + يظهر دائماً على اليسار */
+.phone-with-icon .phone-text,
+.phone-display {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: bidi-override;
+}
+
+/* ضمان أن الأرقام تظهر بالتنسيق الإنجليزي */
+.english-numbers {
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum';
+}
+
+/* فئة إضافية لضمان عدم كسر السطر */
+.phone-no-wrap {
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+
+/* تنسيق للشاشات الصغيرة */
+@media (max-width: 640px) {
+  .phone-display {
+    font-size: 0.75rem; /* 12px */
+  }
+
+  .table-phone-display {
+    font-size: 0.75rem; /* 12px */
+  }
+}
+
+/* تنسيق للطباعة */
+@media print {
+  .phone-display,
+  .table-phone-display {
+    color: black !important;
+    font-size: 10pt;
+  }
+}

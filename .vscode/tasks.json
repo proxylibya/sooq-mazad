@@ -1,0 +1,133 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🚀 تشغيل بدون Redis",
+      "type": "shell",
+      "command": ".\\start-without-redis.ps1",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔧 إصلاح سريع",
+      "type": "shell",
+      "command": "npm run fix:quick",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "📦 بناء المشروع",
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🗄️ Prisma Studio",
+      "type": "shell",
+      "command": "npx prisma studio",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new"
+      }
+    },
+    {
+      "label": "🔍 فحص صحة المشروع",
+      "type": "shell",
+      "command": "node PROJECT_HEALTH_CHECK.js",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🧹 تنظيف المشروع",
+      "type": "npm",
+      "script": "fix:clean",
+      "group": "none",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🔄 توليد Prisma Client",
+      "type": "shell",
+      "command": "npx prisma generate",
+      "group": "none",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🌐 فتح الموقع",
+      "type": "shell",
+      "command": "start http://localhost:3021",
+      "windows": {
+        "command": "start http://localhost:3021"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "never"
+      }
+    },
+    {
+      "label": "🛠️ فتح لوحة التحكم",
+      "type": "shell",
+      "command": "start http://localhost:3022",
+      "windows": {
+        "command": "start http://localhost:3022"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "never"
+      }
+    },
+    {
+      "label": "⏹️ إيقاف جميع الخدمات",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-Command",
+        "$ports = @(3021, 3022, 3023, 3024); foreach ($port in $ports) { $process = Get-NetTCPConnection -LocalPort $port -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if ($process) { Stop-Process -Id $process -Force -ErrorAction SilentlyContinue } }"
+      ],
+      "group": "none",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    }
+  ]
+}

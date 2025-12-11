@@ -1,0 +1,507 @@
+/* ===================================
+   تنسيقات بطاقة عرض السيارة المحسّنة
+   =================================== */
+
+/* الخطوط - الطريقة الأصلية */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+
+:root {
+  /* الألوان الأساسية */
+  --primary-blue: #2563eb;
+  --primary-blue-dark: #1d4ed8;
+  --primary-green: #059669;
+  --primary-green-dark: #047857;
+
+  /* ألوان الخلفية */
+  --bg-gray-light: #f9fafb;
+  --bg-gray-medium: #f3f4f6;
+
+  /* ألوان النص */
+  --text-dark: #111827;
+  --text-medium: #374151;
+  --text-light: #6b7280;
+
+  /* الظلال */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  /* الانتقالات */
+  --transition-fast: 200ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+}
+
+/* إعادة تعيين أساسي */
+.improved-car-card * {
+  font-family:
+    'Cairo',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+
+/* الحاوية الرئيسية */
+.improved-car-card {
+  max-width: 1024px;
+  margin: 0 auto;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  background: white;
+  box-shadow: var(--shadow-lg);
+  transition: box-shadow var(--transition-normal);
+  overflow: hidden;
+}
+
+.improved-car-card:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+/* العنوان الرئيسي */
+.improved-car-card__header {
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #6366f1 100%);
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.improved-car-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.improved-car-card__id {
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+}
+
+/* المحتوى الرئيسي */
+.improved-car-card__body {
+  padding: 1.5rem;
+}
+
+/* شبكة المعلومات */
+.improved-car-card__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .improved-car-card__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* قسم المعلومات */
+.improved-car-card__section {
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.improved-car-card__section--car-info {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+}
+
+.improved-car-card__section--sale-info {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+}
+
+/* عنوان القسم */
+.improved-car-card__section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 1rem 0;
+}
+
+.improved-car-card__section-title::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+}
+
+/* صفوف المعلومات */
+.improved-car-card__info-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.improved-car-card__info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.improved-car-card__info-row:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.improved-car-card__info-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-medium);
+}
+
+.improved-car-card__info-value {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* عرض السعر */
+.improved-car-card__price-box {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: linear-gradient(90deg, #059669 0%, #10b981 100%);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast);
+}
+
+.improved-car-card__price-box:hover {
+  transform: scale(1.05);
+}
+
+.improved-car-card__price-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.25rem;
+}
+
+.improved-car-card__price-value {
+  display: block;
+  font-size: 1.875rem;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* قسم الموقع */
+.improved-car-card__location {
+  margin-top: 1.5rem;
+  border: 2px solid #86efac;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);
+  box-shadow: var(--shadow-md);
+}
+
+.improved-car-card__location-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #065f46;
+  margin: 0 0 0.75rem 0;
+}
+
+.improved-car-card__location-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .improved-car-card__location-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.improved-car-card__location-item {
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 0.5rem;
+  transition: background var(--transition-fast);
+}
+
+.improved-car-card__location-item:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.improved-car-card__location-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #047857;
+  margin-bottom: 0.25rem;
+}
+
+.improved-car-card__location-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #065f46;
+}
+
+/* قسم الوصف */
+.improved-car-card__description {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: var(--bg-gray-light);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.improved-car-card__description-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 0.75rem 0;
+}
+
+.improved-car-card__description-title::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-medium);
+}
+
+.improved-car-card__description-text {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-medium);
+  margin: 0;
+}
+
+/* الإحصائيات */
+.improved-car-card__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.improved-car-card__stat {
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.improved-car-card__stat:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.improved-car-card__stat--views {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 2px solid #93c5fd;
+}
+
+.improved-car-card__stat--favorites {
+  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+  border: 2px solid #f9a8d4;
+}
+
+.improved-car-card__stat--date {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border: 2px solid #e5e7eb;
+}
+
+.improved-car-card__stat-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 auto 0.5rem;
+  transition: transform var(--transition-normal);
+}
+
+.improved-car-card__stat:hover .improved-car-card__stat-icon {
+  transform: scale(1.1);
+}
+
+.improved-car-card__stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.improved-car-card__stat--views .improved-car-card__stat-value {
+  color: #1e40af;
+}
+
+.improved-car-card__stat--favorites .improved-car-card__stat-value {
+  color: #9f1239;
+}
+
+.improved-car-card__stat--date .improved-car-card__stat-value {
+  color: #111827;
+  font-size: 0.875rem;
+}
+
+.improved-car-card__stat-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.improved-car-card__stat--views .improved-car-card__stat-label {
+  color: #1e40af;
+}
+
+.improved-car-card__stat--favorites .improved-car-card__stat-label {
+  color: #9f1239;
+}
+
+.improved-car-card__stat--date .improved-car-card__stat-label {
+  color: #374151;
+}
+
+/* زر الاتصال */
+.improved-car-card__cta {
+  margin-top: 1.5rem;
+}
+
+.improved-car-card__cta-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(90deg, #2563eb 0%, #4f46e5 100%);
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+}
+
+.improved-car-card__cta-button:hover {
+  background: linear-gradient(90deg, #1d4ed8 0%, #4338ca 100%);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.improved-car-card__cta-button:active {
+  transform: scale(0.98);
+}
+
+/* أيقونات */
+.improved-car-card__icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+}
+
+.improved-car-card__icon--phone {
+  color: #059669;
+}
+
+.improved-car-card__icon--map {
+  color: #047857;
+}
+
+/* دعم RTL */
+[dir='rtl'] .improved-car-card__section-title::before {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* الاستجابة للشاشات الصغيرة */
+@media (max-width: 640px) {
+  .improved-car-card__body {
+    padding: 1rem;
+  }
+
+  .improved-car-card__header {
+    padding: 1rem;
+  }
+
+  .improved-car-card__title {
+    font-size: 1.25rem;
+  }
+
+  .improved-car-card__stats {
+    gap: 0.5rem;
+  }
+
+  .improved-car-card__stat {
+    padding: 0.75rem;
+  }
+
+  .improved-car-card__price-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* الرسوم المتحركة */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.improved-car-card {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* تأثير النبض للسعر */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.improved-car-card__price-box:hover {
+  animation: pulse 2s infinite;
+}
+
+/* طباعة */
+@media print {
+  .improved-car-card {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .improved-car-card__cta {
+    display: none;
+  }
+
+  .improved-car-card__stat:hover {
+    transform: none;
+  }
+}

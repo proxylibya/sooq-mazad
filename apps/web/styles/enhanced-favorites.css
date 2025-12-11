@@ -1,0 +1,434 @@
+/* تحسينات متقدمة لصفحة المفضلة - Enhanced Favorites */
+
+/* ===== أنماط التبويبات المحسنة ===== */
+.enhanced-tabs-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.enhanced-tab-button {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  margin: 4px;
+}
+
+.enhanced-tab-button:hover {
+  background: rgba(59, 130, 246, 0.05);
+  transform: translateY(-1px);
+}
+
+.enhanced-tab-button.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.enhanced-tab-button.active::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  border-radius: 2px;
+}
+
+.enhanced-tab-count {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+.enhanced-tab-button.active .enhanced-tab-count {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* ===== شريط الأدوات المحسن ===== */
+.enhanced-toolbar {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-top: 1px solid #e2e8f0;
+  backdrop-filter: blur(10px);
+}
+
+.enhanced-search-input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.enhanced-search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: rgba(255, 255, 255, 1);
+}
+
+.enhanced-filter-button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.enhanced-filter-button:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.enhanced-filter-button.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-color: #1d4ed8;
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.enhanced-view-mode-button {
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+}
+
+.enhanced-view-mode-button:hover {
+  background: rgba(59, 130, 246, 0.1);
+  transform: scale(1.05);
+}
+
+.enhanced-view-mode-button.active {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+/* ===== بطاقات المفضلة المحسنة ===== */
+.enhanced-favorite-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.enhanced-favorite-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.enhanced-favorite-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+}
+
+.enhanced-favorite-card:hover::before {
+  opacity: 1;
+}
+
+.enhanced-card-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.enhanced-card-image img {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  object-fit: cover;
+}
+
+.enhanced-favorite-card:hover .enhanced-card-image img {
+  transform: scale(1.1);
+  filter: brightness(1.1) contrast(1.05);
+}
+
+.enhanced-card-badge {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.enhanced-card-badge.auction {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.enhanced-card-badge.marketplace {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.enhanced-card-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.enhanced-delete-button {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.enhanced-delete-button:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #ef4444;
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.enhanced-card-content {
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+}
+
+.enhanced-card-title {
+  color: #1f2937;
+  transition: color 0.2s ease;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.enhanced-favorite-card:hover .enhanced-card-title {
+  color: #3b82f6;
+}
+
+.enhanced-card-price {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 1.125rem;
+}
+
+.enhanced-card-meta {
+  color: #6b7280;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.enhanced-card-meta svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+/* ===== عرض القائمة ===== */
+.enhanced-list-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.enhanced-list-card:hover {
+  transform: translateX(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+.enhanced-list-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.enhanced-list-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ===== تأثيرات الحركة ===== */
+@keyframes enhanced-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.enhanced-live-badge {
+  animation: enhanced-pulse 2s infinite;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+/* ===== تحسينات الاستجابة ===== */
+@media (max-width: 480px) {
+  .enhanced-tabs-container {
+    margin: 0 -16px;
+    border-radius: 0;
+  }
+
+  .enhanced-tab-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .enhanced-tab-count {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+
+  .enhanced-toolbar {
+    padding: 12px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .enhanced-search-input {
+    width: 100%;
+  }
+
+  .enhanced-favorite-card:hover {
+    transform: translateY(-2px) scale(1.005);
+  }
+}
+
+@media (max-width: 640px) {
+  .enhanced-favorite-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .enhanced-toolbar {
+    padding: 12px;
+  }
+
+  .enhanced-card-content {
+    padding: 12px;
+  }
+
+  .enhanced-list-card {
+    margin: 0 -8px;
+  }
+
+  .enhanced-list-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .enhanced-favorite-card:hover {
+    transform: translateY(-6px) scale(1.02);
+  }
+}
+
+@media (min-width: 1024px) {
+  .enhanced-favorite-card:hover {
+    transform: translateY(-12px) scale(1.03);
+  }
+
+  .enhanced-tabs-container {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (min-width: 1280px) {
+  .enhanced-favorite-card:hover {
+    transform: translateY(-16px) scale(1.04);
+  }
+}
+
+/* تحسينات للشاشات عالية الدقة */
+@media (min-resolution: 2dppx) {
+  .enhanced-card-image img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* تحسينات للوضع الأفقي على الهواتف */
+@media (max-height: 500px) and (orientation: landscape) {
+  .enhanced-tabs-container {
+    margin-bottom: 16px;
+  }
+
+  .enhanced-tab-button {
+    padding: 6px 12px;
+  }
+
+  .enhanced-toolbar {
+    padding: 8px 12px;
+  }
+}
+
+/* ===== تحسينات الأداء ===== */
+.enhanced-favorite-card,
+.enhanced-favorite-card * {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* ===== تأثيرات التحميل ===== */
+.enhanced-loading-shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: enhanced-shimmer 1.5s infinite;
+}
+
+@keyframes enhanced-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ===== إمكانية الوصول ===== */
+.enhanced-favorite-card:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.enhanced-favorite-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ===== الطباعة ===== */
+@media print {
+  .enhanced-favorite-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+    transform: none !important;
+  }
+
+  .enhanced-favorite-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}

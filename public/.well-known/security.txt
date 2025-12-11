@@ -1,0 +1,18 @@
+Contact: mailto:security@sooq-mazad.ly
+Contact: https://sooq-mazad.ly/security
+Expires: 2026-12-31T23:59:59.000Z
+Encryption: https://sooq-mazad.ly/pgp-key.txt
+Preferred-Languages: ar, en
+Canonical: https://sooq-mazad.ly/.well-known/security.txt
+Policy: https://sooq-mazad.ly/security-policy
+Hiring: https://sooq-mazad.ly/careers
+
+# شكراً لاهتمامك بأمن منصتنا
+# Thank you for your interest in our platform's security
+
+# يرجى الإبلاغ عن أي ثغرات أمنية إلى:
+# Please report any security vulnerabilities to:
+# security@sooq-mazad.ly
+
+# نحن نلتزم بالتعامل مع جميع التقارير الأمنية بسرية تامة
+# We are committed to handling all security reports with complete confidentiality

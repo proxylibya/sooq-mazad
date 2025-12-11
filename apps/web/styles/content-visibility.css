@@ -1,0 +1,192 @@
+/**
+ * Content Visibility CSS - منع وميض المحتوى (FOUC Prevention)
+ * ============================================================
+ * 
+ * يمنع ظهور المحتوى المخفي أثناء تحميل إعدادات الرؤية من API
+ * 
+ * @version 1.0.0
+ */
+
+/* ============================================
+ * الإخفاء الافتراضي للمحتوى الديناميكي
+ * ============================================ */
+
+/* العناصر التي تنتظر تحميل البيانات */
+[data-content-loading='true'] {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.15s ease-out,
+    visibility 0.15s ease-out;
+}
+
+/* العناصر الجاهزة */
+[data-content-loading='false'],
+.content-visibility-ready {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.15s ease-in;
+}
+
+/* ============================================
+ * Skeleton Loading Animations
+ * ============================================ */
+
+/* Skeleton أساسي للتنقل */
+.nav-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(229, 231, 235, 0.3) 25%,
+    rgba(229, 231, 235, 0.5) 50%,
+    rgba(229, 231, 235, 0.3) 75%
+  );
+  background-size: 200% 100%;
+  animation: nav-shimmer 1.5s infinite ease-in-out;
+  border-radius: 0.5rem;
+}
+
+@keyframes nav-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================
+ * FOUC Prevention - Critical
+ * ============================================ */
+
+/* إخفاء المحتوى قبل تحميل JavaScript */
+.js-loading .dynamic-content {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* بمجرد تحميل JavaScript */
+.js-ready .dynamic-content {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease-in;
+}
+
+/* ============================================
+ * Navbar Specific Styles
+ * ============================================ */
+
+/* منع قفز الـ navbar */
+.navbar-container {
+  min-height: 64px; /* ثابت لمنع CLS */
+  contain: layout style;
+}
+
+/* روابط الـ navbar */
+.navbar-links {
+  contain: content;
+  will-change: opacity;
+}
+
+/* حالة التحميل للـ navbar */
+.navbar-links-loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ============================================
+ * Mobile Menu Styles
+ * ============================================ */
+
+/* منع قفز القائمة الجانبية */
+.mobile-menu-content {
+  min-height: 300px;
+}
+
+/* ============================================
+ * Footer Styles
+ * ============================================ */
+
+/* منع وميض الـ footer */
+.footer-links-container {
+  min-height: 100px;
+  contain: layout;
+}
+
+/* ============================================
+ * Homepage Sections
+ * ============================================ */
+
+/* منع وميض أقسام الصفحة الرئيسية */
+.homepage-section {
+  contain: content;
+  content-visibility: auto;
+}
+
+.homepage-section-loading {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.homepage-section-ready {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+ * Performance Optimizations
+ * ============================================ */
+
+/* تحسين الأداء للعناصر الديناميكية */
+.dynamic-nav-item {
+  contain: layout style;
+  will-change: opacity, visibility;
+}
+
+/* تقليل layout thrashing */
+.visibility-controlled {
+  contain: strict;
+}
+
+/* ============================================
+ * Reduced Motion Support
+ * ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-content-loading='true'],
+  [data-content-loading='false'],
+  .content-visibility-ready,
+  .nav-skeleton,
+  .homepage-section-loading,
+  .homepage-section-ready {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ============================================
+ * Dark Mode Support
+ * ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .nav-skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(55, 65, 81, 0.3) 25%,
+      rgba(55, 65, 81, 0.5) 50%,
+      rgba(55, 65, 81, 0.3) 75%
+    );
+  }
+}
+
+/* Class-based dark mode */
+.dark .nav-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(55, 65, 81, 0.3) 25%,
+    rgba(55, 65, 81, 0.5) 50%,
+    rgba(55, 65, 81, 0.3) 75%
+  );
+}

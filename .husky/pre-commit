@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🛡️ تشغيل فحص الجودة قبل الـ Commit..."
+
+# 1. تشغيل فحص الجودة المخصص
+node scripts/quality-assurance/pre-commit-quality-check.js
+
+# 2. تشغيل lint-staged للفحص التلقائي
+npx lint-staged
+
+echo "✅ تم اجتياز جميع فحوصات الجودة!"

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      .hyundai-blue { fill: #002c5f; }
+      .hyundai-silver { fill: #c0c0c0; }
+    </style>
+  </defs>
+  
+  <!-- Hyundai Logo Background -->
+  <ellipse cx="50" cy="50" rx="45" ry="35" fill="white" stroke="#002c5f" stroke-width="2"/>
+  
+  <!-- Hyundai H Letter (stylized) -->
+  <g fill="#002c5f">
+    <!-- Left person -->
+    <ellipse cx="35" cy="50" rx="8" ry="20" transform="rotate(-15 35 50)"/>
+    
+    <!-- Right person -->
+    <ellipse cx="65" cy="50" rx="8" ry="20" transform="rotate(15 65 50)"/>
+    
+    <!-- Handshake connection -->
+    <ellipse cx="50" cy="50" rx="15" ry="5"/>
+  </g>
+  
+  <!-- Hyundai Text -->
+  <g fill="#002c5f" font-family="Arial, sans-serif" font-weight="bold" font-size="6" text-anchor="middle">
+    <text x="50" y="90">HYUNDAI</text>
+  </g>
+</svg>

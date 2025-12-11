@@ -1,0 +1,512 @@
+/* CSS Conflicts Resolver - حل تعارضات CSS */
+
+/* ===== إعادة تعيين الأولويات ===== */
+
+/* حل تعارضات الألوان */
+.bg-blue-600.text-blue-600,
+.bg-blue-700.text-blue-700,
+.bg-slate-700.text-slate-700 {
+  color: white !important;
+}
+
+/* حل تعارضات الخلفيات المتدرجة */
+.bg-gradient-to-r.bg-blue-600,
+.bg-gradient-to-br.bg-blue-600 {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+}
+
+/* حل تعارضات الظلال */
+.shadow-lg.shadow-xl {
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* حل تعارضات الحدود */
+.border.border-2 {
+  border-width: 2px !important;
+}
+
+.border-gray-200.border-gray-300 {
+  border-color: #e5e7eb !important;
+}
+
+/* ===== تحسينات الأداء ===== */
+
+/* تحسين الانتقالات المتعارضة - محدّث للنظام السلس */
+.transition-all.transition-colors {
+  transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.transition-transform.transition-all {
+  transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* تحسين الحركات المتعارضة */
+.hover\:scale-105.hover\:translate-y-1:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+}
+
+/* ===== حل تعارضات التخطيط ===== */
+
+/* حل تعارضات Flexbox */
+.flex.grid {
+  display: flex !important;
+}
+
+.items-center.items-start {
+  align-items: center !important;
+}
+
+.justify-between.justify-center {
+  justify-content: space-between !important;
+}
+
+/* حل تعارضات Grid */
+.grid-cols-1.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.grid-cols-2.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+/* ===== حل تعارضات المسافات ===== */
+
+/* حل تعارضات Padding */
+.p-4.p-6 {
+  padding: 1.5rem !important;
+}
+
+.px-4.px-6 {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+.py-2.py-4 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+/* حل تعارضات Margin */
+.m-4.m-6 {
+  margin: 1.5rem !important;
+}
+
+.mx-auto.mx-4 {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.my-4.my-6 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* حل تعارضات Gap */
+.gap-4.gap-6 {
+  gap: 1.5rem !important;
+}
+
+.gap-2.gap-4 {
+  gap: 1rem !important;
+}
+
+/* ===== حل تعارضات النصوص ===== */
+
+/* حل تعارضات أحجام الخط */
+.text-sm.text-base {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.text-lg.text-xl {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+
+/* حل تعارضات وزن الخط */
+.font-medium.font-bold {
+  font-weight: 600 !important;
+}
+
+.font-normal.font-medium {
+  font-weight: 500 !important;
+}
+
+/* حل تعارضات ألوان النص */
+.text-gray-600.text-gray-700 {
+  color: #4b5563 !important;
+}
+
+.text-blue-600.text-blue-700 {
+  color: #2563eb !important;
+}
+
+/* ===== حل تعارضات الأبعاد ===== */
+
+/* حل تعارضات العرض */
+.w-full.w-auto {
+  width: 100% !important;
+}
+
+.w-48.w-64 {
+  width: 12rem !important;
+}
+
+/* حل تعارضات الارتفاع */
+.h-full.h-auto {
+  height: auto !important;
+}
+
+.h-48.h-64 {
+  height: 12rem !important;
+}
+
+/* حل تعارضات الحد الأدنى للعرض */
+.min-w-0.min-w-full {
+  min-width: 0px !important;
+}
+
+/* حل تعارضات الحد الأقصى للعرض */
+.max-w-sm.max-w-md {
+  max-width: 28rem !important;
+}
+
+/* ===== حل تعارضات الموضع ===== */
+
+/* حل تعارضات Position */
+.relative.absolute {
+  position: relative !important;
+}
+
+.fixed.absolute {
+  position: fixed !important;
+}
+
+/* حل تعارضات Z-index */
+.z-10.z-20 {
+  z-index: 20 !important;
+}
+
+.z-40.z-50 {
+  z-index: 50 !important;
+}
+
+/* ===== حل تعارضات التجاوب ===== */
+
+/* حل تعارضات الشاشات الصغيرة */
+@media (max-width: 640px) {
+  .sm\:block.sm\:hidden {
+    display: block !important;
+  }
+
+  .sm\:flex.sm\:grid {
+    display: flex !important;
+  }
+
+  .sm\:text-sm.sm\:text-base {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+}
+
+/* حل تعارضات الشاشات المتوسطة */
+@media (max-width: 768px) {
+  .md\:block.md\:hidden {
+    display: block !important;
+  }
+
+  .md\:flex.md\:grid {
+    display: flex !important;
+  }
+
+  .md\:grid-cols-2.md\:grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* حل تعارضات الشاشات الكبيرة */
+@media (max-width: 1024px) {
+  .lg\:block.lg\:hidden {
+    display: block !important;
+  }
+
+  .lg\:flex.lg\:grid {
+    display: flex !important;
+  }
+
+  .lg\:grid-cols-3.lg\:grid-cols-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ===== حل تعارضات مخصصة للمشروع ===== */
+
+/* حل تعارضات بطاقات المحفظة */
+.wallet-card.payment-method-card {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* حل تعارضات أزرار الإجراءات */
+.action-button.primary-button {
+  background: #2563eb !important;
+  color: white !important;
+  border: none !important;
+}
+
+.action-button.secondary-button {
+  background: transparent !important;
+  color: #2563eb !important;
+  border: 1px solid #2563eb !important;
+}
+
+/* حل تعارضات بطاقات الإحصائيات */
+.stats-card.info-card {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* حل تعارضات القوائم المنسدلة */
+.dropdown-menu.mobile-menu {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* حل تعارضات النماذج */
+.form-input.text-input {
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 0.75rem !important;
+}
+
+.form-input:focus.text-input:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  outline: none !important;
+}
+
+/* ===== حل تعارضات الحركات والانتقالات ===== */
+
+/* توحيد مدة الانتقالات - محدّث للنظام السلس */
+.transition-all,
+.transition-colors,
+.transition-transform,
+.transition-opacity {
+  transition-duration: 350ms !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* توحيد حركات التمرير */
+.hover\:scale-105:hover,
+.hover\:scale-110:hover {
+  transform: scale(1.05) !important;
+}
+
+.hover\:-translate-y-1:hover,
+.hover\:-translate-y-2:hover {
+  transform: translateY(-0.25rem) !important;
+}
+
+/* ===== حل تعارضات الألوان المخصصة ===== */
+
+/* توحيد ألوان المشروع */
+.primary-color {
+  color: #2563eb !important;
+}
+
+.primary-bg {
+  background-color: #2563eb !important;
+}
+
+.secondary-color {
+  color: #64748b !important;
+}
+
+.secondary-bg {
+  background-color: #64748b !important;
+}
+
+.success-color {
+  color: #059669 !important;
+}
+
+.success-bg {
+  background-color: #059669 !important;
+}
+
+.warning-color {
+  color: #d97706 !important;
+}
+
+.warning-bg {
+  background-color: #d97706 !important;
+}
+
+.error-color {
+  color: #dc2626 !important;
+}
+
+.error-bg {
+  background-color: #dc2626 !important;
+}
+
+/* ===== حل تعارضات خاصة بالمكونات ===== */
+
+/* حل تعارضات الشريط الجانبي */
+.sidebar-item.nav-item {
+  padding: 0.75rem 1rem !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.sidebar-item.nav-item:hover {
+  background-color: #f3f4f6 !important;
+  color: #2563eb !important;
+}
+
+.sidebar-item.nav-item.active {
+  background-color: #2563eb !important;
+  color: white !important;
+}
+
+/* حل تعارضات الجداول */
+.table-row.data-row {
+  border-bottom: 1px solid #f3f4f6 !important;
+}
+
+.table-row.data-row:hover {
+  background-color: #f9fafb !important;
+}
+
+.table-header.data-header {
+  background-color: #f9fafb !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+}
+
+/* حل تعارضات الأزرار */
+.btn.button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0.375rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.btn-primary.button-primary {
+  background-color: #2563eb !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn-primary.button-primary:hover {
+  background-color: #1d4ed8 !important;
+}
+
+.btn-secondary.button-secondary {
+  background-color: transparent !important;
+  color: #2563eb !important;
+  border: 1px solid #2563eb !important;
+}
+
+.btn-secondary.button-secondary:hover {
+  background-color: #2563eb !important;
+  color: white !important;
+}
+
+/* ===== حل تعارضات الوسائط المتعددة ===== */
+
+/* حل تعارضات الصور */
+.image-container.img-wrapper {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 0.5rem !important;
+}
+
+.image-container img.img-wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* ===== إعدادات الطباعة ===== */
+
+@media print {
+  /* إخفاء العناصر غير الضرورية في الطباعة */
+  .no-print,
+  .print-hidden {
+    display: none !important;
+  }
+
+  /* إظهار العناصر المخصصة للطباعة */
+  .print-only,
+  .print-visible {
+    display: block !important;
+  }
+
+  /* تحسين الألوان للطباعة */
+  .bg-blue-600,
+  .bg-blue-700,
+  .primary-bg {
+    background: white !important;
+    color: black !important;
+    border: 1px solid black !important;
+  }
+}
+
+/* ===== تحسينات الوصولية ===== */
+
+/* تحسين التركيز */
+.focus\:ring-2:focus,
+.focus\:ring-blue-500:focus {
+  outline: 2px solid #2563eb !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* تحسين التباين */
+.high-contrast {
+  filter: contrast(1.2) !important;
+}
+
+/* تحسين حجم النص للوصولية */
+.accessible-text {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+/* ===== تحسينات الأداء ===== */
+
+/* تحسين الرسوم المتحركة */
+@media (prefers-reduced-motion: reduce) {
+  .transition-all,
+  .transition-colors,
+  .transition-transform,
+  .transition-opacity {
+    transition: none !important;
+  }
+
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+  }
+}
+
+/* تحسين الذاكرة */
+.gpu-accelerated {
+  will-change: transform !important;
+  transform: translateZ(0) !important;
+}
+
+/* ===== نهاية الملف ===== */

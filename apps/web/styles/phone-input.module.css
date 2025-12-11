@@ -1,0 +1,77 @@
+/* تحسينات خاصة لمكون إدخال رقم الهاتف */
+
+.phoneDropdown {
+  position: fixed !important;
+  z-index: 999999 !important;
+  background: white !important;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.3),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 0.75rem !important;
+  isolation: isolate !important;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  max-height: 15rem !important;
+}
+
+.phoneDropdown:before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+  z-index: 1000000;
+}
+
+.phoneDropdownOverlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999998 !important;
+  background: transparent !important;
+  cursor: default;
+}
+
+.phoneInputContainer {
+  isolation: isolate;
+  position: relative;
+  z-index: auto;
+}
+
+/* تحسين الخطوط والنصوص */
+.phoneDropdown li button {
+  font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* تحسين التمرير */
+.phoneDropdown {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 transparent;
+}
+
+.phoneDropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.phoneDropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.phoneDropdown::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0;
+  border-radius: 3px;
+}
+
+.phoneDropdown::-webkit-scrollbar-thumb:hover {
+  background-color: #a0aec0;
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      .honda-red { fill: #cc0000; }
+      .honda-silver { fill: #c0c0c0; }
+    </style>
+  </defs>
+
+  <!-- Honda Logo Background -->
+  <rect width="100" height="100" fill="white" rx="10"/>
+
+  <!-- Honda H Letter -->
+  <g transform="translate(50,50)">
+    <!-- Outer rounded rectangle -->
+    <rect x="-40" y="-25" width="80" height="50" rx="25" fill="none" stroke="#cc0000" stroke-width="3"/>
+
+    <!-- H Letter -->
+    <g fill="#cc0000">
+      <!-- Left vertical bar -->
+      <rect x="-25" y="-20" width="6" height="40" rx="1"/>
+
+      <!-- Right vertical bar -->
+      <rect x="19" y="-20" width="6" height="40" rx="1"/>
+
+      <!-- Horizontal bar -->
+      <rect x="-19" y="-3" width="38" height="6" rx="1"/>
+    </g>
+  </g>
+</svg>

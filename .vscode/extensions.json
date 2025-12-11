@@ -1,0 +1,26 @@
+{
+  "recommendations": [
+    "ms-vscode.vscode-typescript-next",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "dsznajder.es7-react-js-snippets",
+    "formulahendry.auto-rename-tag",
+    "bradlc.vscode-tailwindcss",
+    "prisma.prisma",
+    "ckolkman.vscode-postgres",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "humao.rest-client",
+    "rangav.vscode-thunder-client",
+    "christian-kohler.path-intellisense",
+    "mikestead.dotenv",
+    "EditorConfig.EditorConfig",
+    "streetsidesoftware.code-spell-checker",
+    "davidanson.vscode-markdownlint",
+    "redhat.vscode-yaml",
+    "ms-vscode.hexeditor",
+    "ms-vscode.powershell",
+    "PKief.material-icon-theme",
+    "usernamehw.errorlens"
+  ]
+}

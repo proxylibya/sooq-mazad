@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      .toyota-red { fill: #eb0a1e; }
+      .toyota-silver { fill: #c0c0c0; }
+    </style>
+  </defs>
+
+  <!-- Toyota Logo Background -->
+  <rect width="100" height="100" fill="white" rx="10"/>
+
+  <!-- Toyota Three Ellipses -->
+  <g transform="translate(50,50)">
+    <!-- Outer horizontal ellipse -->
+    <ellipse cx="0" cy="0" rx="40" ry="18" fill="none" stroke="#eb0a1e" stroke-width="4"/>
+
+    <!-- Left vertical ellipse -->
+    <ellipse cx="-15" cy="0" rx="18" ry="30" fill="none" stroke="#eb0a1e" stroke-width="4"/>
+
+    <!-- Right vertical ellipse -->
+    <ellipse cx="15" cy="0" rx="18" ry="30" fill="none" stroke="#eb0a1e" stroke-width="4"/>
+  </g>
+</svg>

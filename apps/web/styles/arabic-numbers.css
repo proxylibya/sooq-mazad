@@ -1,0 +1,284 @@
+/* ===== إعدادات الأرقام الغربية - حل شامل وقوي ===== */
+/* فرض استخدام الأرقام الغربية (0-9) في جميع أنحاء الموقع بأقوى طريقة ممكنة */
+
+/* تطبيق قوي على جميع العناصر - أولوية عليا */
+*,
+*::before,
+*::after {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  font-variant: tabular-nums !important;
+}
+
+/* تطبيق مباشر على html و body */
+html {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'lnum' 1,
+    'tnum' 1 !important;
+}
+
+body {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'lnum' 1,
+    'tnum' 1 !important;
+  font-variant: tabular-nums !important;
+}
+
+/* تطبيق على جميع عناصر React */
+[data-reactroot] *,
+[id='__next'] *,
+[id='root'] * {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'lnum' 1,
+    'tnum' 1 !important;
+  font-variant: tabular-nums !important;
+}
+
+/* تطبيق على جميع مكونات Next.js */
+.__next *,
+.next-wrapper * {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'lnum' 1,
+    'tnum' 1 !important;
+}
+
+/* قواعد قوية للمحليات العربية - بدون :lang() لضمان توافق أدوات البناء */
+[lang='ar'],
+[lang='ar-LY'],
+[lang='ar-SA'],
+[lang='ar-EG'],
+[lang|='ar'],
+[dir='rtl'] {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'lnum' 1,
+    'tnum' 1 !important;
+  font-variant: tabular-nums !important;
+}
+
+/* تطبيق الأرقام العربية على جميع النصوص */
+body,
+html,
+div,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select,
+option,
+button,
+label,
+.price,
+.number,
+.count,
+.amount,
+.quantity,
+.stat-number,
+.price-value,
+.auction-price-live,
+.auction-price-upcoming,
+.auction-price-ended {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+}
+
+/* إعدادات خاصة للأرقام في العناصر المهمة */
+.arabic-numbers,
+.force-arabic-numbers,
+[data-arabic-numbers='true'] {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+/* تطبيق على الأسعار والأرقام المهمة */
+.price-display,
+.amount-display,
+.number-display,
+.currency-display,
+.percentage-display {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+  display: inline-block !important;
+}
+
+/* تطبيق على عناصر المزادات */
+.auction-price,
+.bid-amount,
+.reserve-price,
+.current-bid {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+/* تطبيق على الإحصائيات */
+.stats-number,
+.counter-number,
+.metric-value {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+/* تطبيق على التواريخ والأوقات */
+.date-display,
+.time-display,
+.datetime-display {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+/* تطبيق على أرقام الهواتف */
+.phone-number,
+.contact-number {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+/* تطبيق على معرفات السيارات والمزادات */
+.car-id,
+.auction-id,
+.reference-number {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+/* إعدادات خاصة للجداول */
+table td,
+table th,
+.table-cell {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+}
+
+/* إعدادات خاصة للنماذج */
+input[type='text'],
+input[type='number'],
+textarea,
+select {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+}
+
+/* إعدادات خاصة للعدادات والمؤقتات */
+.timer-display,
+.countdown-display,
+.progress-number {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+/* منع الأرقام الهندية في المتصفحات العربية */
+[lang='ar'],
+[lang|='ar'],
+[dir='rtl'] {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+}
+
+/* إعدادات خاصة لصفحة إدارة رؤية الصفحات */
+.page-visibility-management * {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+  unicode-bidi: embed;
+}
+
+/* تطبيق على المكونات الديناميكية */
+[data-testid*='number'],
+[data-testid*='price'],
+[data-testid*='amount'],
+[class*='number'],
+[class*='price'],
+[class*='amount'],
+[class*='count'] {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+}
+
+/* استهداف الأرقام داخل البطاقات الخضراء */
+[class*='bg-green-'] .arabic-numbers,
+[class*='from-green-'] .arabic-numbers,
+[class*='to-green-'] .arabic-numbers,
+[class*='bg-green-'] .stat-number,
+[class*='from-green-'] .stat-number,
+[class*='to-green-'] .stat-number,
+[class*='bg-green-'] .price-value,
+[class*='from-green-'] .price-value,
+[class*='to-green-'] .price-value,
+.number-on-green {
+  color: #ffffff !important;
+}
+
+/* تطبيق على المحتوى المُولد ديناميكياً */
+.dynamic-content,
+.react-component,
+.vue-component {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+}
+
+/* تطبيق على العناصر المخفية والمرئية */
+.hidden-element,
+.visible-element {
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings:
+    'tnum' 1,
+    'lnum' 1 !important;
+}
+

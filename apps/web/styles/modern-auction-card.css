@@ -1,0 +1,326 @@
+/* تصميم بطاقة المزاد الحديثة */
+
+/* البطاقة الرئيسية */
+.modern-auction-card {
+  @apply cursor-pointer overflow-hidden rounded-2xl border-2 bg-white shadow-lg transition-all duration-300 hover:shadow-2xl;
+  transform-origin: center;
+  will-change: transform, box-shadow;
+}
+
+.modern-auction-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* شريط الحالة العلوي */
+.status-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--status-color-start), var(--status-color-end));
+}
+
+.status-bar.live {
+  --status-color-start: #3b82f6;
+  --status-color-end: #1d4ed8;
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+.status-bar.upcoming {
+  --status-color-start: #f59e0b;
+  --status-color-end: #d97706;
+}
+
+.status-bar.ended {
+  --status-color-start: #6b7280;
+  --status-color-end: #4b5563;
+}
+
+/* أنيميشن النبض للمزادات المباشرة */
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  100% {
+    box-shadow:
+      0 0 20px rgba(59, 130, 246, 0.8),
+      0 0 30px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* قسم الصورة */
+.image-section {
+  position: relative;
+  height: 224px; /* h-56 */
+  overflow: hidden;
+}
+
+.image-section img,
+.image-section .image-carousel {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-auction-card:hover .image-section img,
+.modern-auction-card:hover .image-section .image-carousel {
+  transform: scale(1.1);
+}
+
+/* شارة الحالة */
+.status-badge {
+  @apply absolute right-4 top-4 z-20 flex items-center gap-2 rounded-full px-3 py-2 text-sm font-bold text-white shadow-lg;
+  background: linear-gradient(135deg, var(--badge-color-start), var(--badge-color-end));
+  backdrop-filter: blur(10px);
+}
+
+.status-badge.live {
+  --badge-color-start: #3b82f6;
+  --badge-color-end: #1d4ed8;
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.status-badge.upcoming {
+  --badge-color-start: #f59e0b;
+  --badge-color-end: #d97706;
+}
+
+.status-badge.ended {
+  --badge-color-start: #6b7280;
+  --badge-color-end: #4b5563;
+}
+
+@keyframes badge-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* زر المفضلة */
+.favorite-button {
+  @apply absolute left-4 top-4 z-20 rounded-full p-2 transition-all duration-200;
+  backdrop-filter: blur(10px);
+}
+
+.favorite-button.active {
+  @apply bg-red-500 text-white shadow-lg;
+  transform: scale(1.1);
+  animation: heart-beat 0.6s ease-in-out;
+}
+
+.favorite-button.inactive {
+  @apply bg-white/90 text-gray-600;
+}
+
+.favorite-button.inactive:hover {
+  @apply bg-red-50 text-red-500;
+  transform: scale(1.05);
+}
+
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* قسم المحتوى */
+.content-section {
+  @apply space-y-4 p-6;
+}
+
+/* العنوان */
+.card-title {
+  @apply line-clamp-2 text-xl font-bold leading-tight text-gray-900 transition-colors;
+}
+
+.modern-auction-card:hover .card-title {
+  @apply text-blue-600;
+}
+
+/* قسم السعر */
+.price-section {
+  @apply rounded-xl border p-4;
+  background: linear-gradient(135deg, var(--price-bg-start), var(--price-bg-end));
+  border-color: var(--price-border);
+}
+
+.price-section.live {
+  --price-bg-start: #eff6ff;
+  --price-bg-end: #dbeafe;
+  --price-border: #bfdbfe;
+}
+
+.price-section.upcoming {
+  --price-bg-start: #fffbeb;
+  --price-bg-end: #fef3c7;
+  --price-border: #fde68a;
+}
+
+.price-section.ended {
+  --price-bg-start: #f9fafb;
+  --price-bg-end: #f3f4f6;
+  --price-border: #e5e7eb;
+}
+
+/* السعر الرئيسي */
+.main-price {
+  @apply price-value text-3xl font-bold;
+  color: var(--price-color);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.main-price.live {
+  --price-color: #1d4ed8;
+}
+
+.main-price.upcoming {
+  --price-color: #d97706;
+}
+
+.main-price.ended {
+  --price-color: #4b5563;
+}
+
+/* أزرار التفاعل */
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  border-top-width: 1px;
+  /* --tw-border-opacity: 1; */
+  border-color: rgb(243 244 246 / var(--tw-border-opacity, 1));
+  padding-top: 0.25rem;
+}
+
+.action-button {
+  @apply flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200;
+  transform-origin: center;
+}
+
+.action-button:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.action-button.primary {
+  @apply bg-blue-100 text-blue-700;
+}
+
+.action-button.primary:hover {
+  @apply bg-blue-200;
+}
+
+.action-button.secondary {
+  @apply bg-gray-100 text-gray-700;
+}
+
+.action-button.secondary:hover {
+  @apply bg-gray-200;
+}
+
+.action-button.warning {
+  @apply bg-amber-100 text-amber-700;
+}
+
+.action-button.warning:hover {
+  @apply bg-amber-200;
+}
+
+.action-button:disabled {
+  @apply cursor-not-allowed bg-gray-100 text-gray-400;
+}
+
+/* تأثير الإضاءة */
+.glow-effect {
+  @apply pointer-events-none absolute inset-0 rounded-2xl;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(147, 51, 234, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modern-auction-card:hover .glow-effect {
+  opacity: 1;
+}
+
+/* تحسينات الأداء */
+.modern-auction-card * {
+  will-change: transform;
+}
+
+/* التجاوب */
+@media (max-width: 768px) {
+  .modern-auction-card {
+    @apply rounded-xl;
+  }
+
+  .content-section {
+    @apply space-y-3 p-4;
+  }
+
+  .card-title {
+    @apply text-lg;
+  }
+
+  .main-price {
+    @apply text-2xl;
+  }
+
+  .action-button {
+    @apply px-3 py-2 text-xs;
+  }
+}
+
+@media (max-width: 640px) {
+  .image-section {
+    height: 180px;
+  }
+
+  .status-badge {
+    @apply px-2 py-1 text-xs;
+  }
+
+  .favorite-button {
+    @apply p-1.5;
+  }
+}
+
+/* تحسين الخطوط والأرقام */
+.price-value {
+  font-variant-numeric: lining-nums;
+  direction: ltr;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* تحسين الانتقالات */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* تحسين الظلال */
+.enhanced-shadow {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.enhanced-shadow:hover {
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}

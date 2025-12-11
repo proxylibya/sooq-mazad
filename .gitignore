@@ -1,0 +1,52 @@
+﻿# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Testing
+coverage/
+*.lcov
+
+# Environment
+.env
+.env.local
+.env.production
+.env*.local
+
+# Uploads
+uploads/
+public/uploads/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Security files
+.env.security
+.keys/
+
+.vercel
+.env*.local

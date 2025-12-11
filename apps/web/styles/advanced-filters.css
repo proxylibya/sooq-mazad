@@ -1,0 +1,341 @@
+/* أنماط الفلاتر المتقدمة والاحترافية */
+
+/* الفلتر الرئيسي */
+.advanced-filter {
+  @apply sticky top-4 rounded-lg border bg-white;
+}
+
+/* رأس الفلتر */
+.filter-header {
+  @apply mb-4 flex items-center justify-between border-b p-4;
+}
+
+.filter-title {
+  @apply flex items-center gap-2 text-lg font-bold text-gray-900;
+}
+
+.filter-badge {
+  @apply rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800;
+}
+
+.filter-reset-btn {
+  @apply flex items-center gap-1 text-sm text-red-600 hover:text-red-700;
+}
+
+/* القوائم المنسدلة */
+.dropdown-container {
+  @apply relative;
+}
+
+.dropdown-label {
+  @apply mb-2 block flex items-center gap-2 text-sm font-medium text-gray-700;
+}
+
+.dropdown-button {
+  @apply flex w-full items-center justify-between rounded-lg border border-gray-300 bg-white px-3 py-2 text-right hover:border-blue-500 focus:border-blue-500;
+}
+
+.dropdown-button:focus {
+  @apply outline-none;
+}
+
+.dropdown-button-text {
+  @apply truncate;
+}
+
+.dropdown-button-text.placeholder {
+  @apply text-gray-500;
+}
+
+.dropdown-button-text.selected {
+  @apply text-gray-900;
+}
+
+.dropdown-chevron {
+  @apply h-4 w-4 text-gray-400;
+}
+
+.dropdown-chevron.open {
+  @apply rotate-180;
+}
+
+/* قائمة الخيارات */
+.dropdown-menu {
+  @apply absolute z-[9999] mt-1 max-h-60 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white;
+  scrollbar-width: auto;
+  scrollbar-color: #3b82f6 #e5f3ff;
+}
+
+/* تحسين السكرول للمتصفحات الحديثة */
+.dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  background: #e5f3ff;
+  border-radius: 4px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* حقل البحث في القائمة */
+.dropdown-search {
+  @apply border-b p-2;
+}
+
+.dropdown-search-input {
+  @apply w-full rounded border border-gray-200 py-2 pl-3 pr-9 text-sm focus:border-blue-500;
+}
+
+.dropdown-search-icon {
+  @apply absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400;
+}
+
+/* خيارات القائمة */
+.dropdown-options {
+  /* إزالة السكرول المزعج */
+}
+
+.dropdown-option {
+  @apply flex w-full items-center justify-between px-3 py-2 text-right hover:bg-blue-50;
+}
+
+.dropdown-option.selected {
+  @apply bg-blue-50 text-blue-700;
+}
+
+.dropdown-option:not(.selected) {
+  @apply text-gray-700;
+}
+
+.dropdown-option-label {
+  @apply flex items-center gap-2 truncate;
+}
+
+.dropdown-option-count {
+  @apply rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-500;
+}
+
+.dropdown-no-results {
+  @apply px-3 py-2 text-center text-sm text-gray-500;
+}
+
+/* حقول النطاق */
+.range-container {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.range-input {
+  @apply rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500;
+}
+
+/* خانات الاختيار */
+.checkbox-container {
+  @apply max-h-40 space-y-2 overflow-y-auto;
+}
+
+.checkbox-item {
+  @apply flex cursor-pointer items-center gap-2;
+}
+
+.checkbox-input {
+  @apply h-4 w-4 rounded border-gray-300 text-blue-600;
+}
+
+.checkbox-label {
+  @apply flex items-center gap-2 text-sm text-gray-700;
+}
+
+.checkbox-count {
+  @apply text-xs text-gray-500;
+}
+
+/* حقل البحث النصي */
+.search-container {
+  @apply relative;
+}
+
+.search-input {
+  @apply w-full rounded-lg border border-gray-300 py-2 pl-3 pr-9 focus:border-blue-500;
+}
+
+.search-icon {
+  @apply absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400;
+}
+
+/* الإحصائيات */
+.stats-container {
+  @apply mt-4 border-t pt-4;
+}
+
+.stats-list {
+  @apply space-y-1 text-sm text-gray-600;
+}
+
+.stats-item {
+  @apply flex justify-between;
+}
+
+.stats-label {
+  @apply text-gray-600;
+}
+
+.stats-value {
+  @apply font-medium;
+}
+
+.stats-value.primary {
+  @apply text-gray-900;
+}
+
+.stats-value.success {
+  @apply text-green-600;
+}
+
+.stats-value.warning {
+  @apply text-yellow-600;
+}
+
+.stats-value.info {
+  @apply text-blue-600;
+}
+
+/* حالة التحميل */
+.loading-container {
+  @apply mt-4 flex items-center justify-center py-2;
+}
+
+.loading-spinner {
+  @apply h-5 w-5 rounded-full border-b-2 border-blue-600;
+}
+
+.loading-text {
+  @apply mr-2 text-sm text-gray-600;
+}
+
+/* الفلاتر المحفوظة */
+.saved-filters-container {
+  @apply mb-4;
+}
+
+.saved-filters-label {
+  @apply mb-2 block text-sm font-medium text-gray-700;
+}
+
+.saved-filters-list {
+  @apply flex flex-wrap gap-2;
+}
+
+.saved-filter-item {
+  @apply cursor-pointer rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700 hover:bg-gray-200;
+}
+
+/* نافذة حفظ الفلتر */
+.save-filter-modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4;
+}
+
+.save-filter-content {
+  @apply w-full max-w-sm rounded-lg bg-white p-4;
+}
+
+.save-filter-title {
+  @apply mb-3 text-lg font-bold text-gray-900;
+}
+
+.save-filter-input {
+  @apply mb-3 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-blue-500;
+}
+
+.save-filter-actions {
+  @apply flex gap-2;
+}
+
+.save-filter-cancel {
+  @apply flex-1 rounded-lg border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50;
+}
+
+.save-filter-save {
+  @apply flex-1 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-gray-300;
+}
+
+/* تحسينات الاستجابة */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    @apply max-h-48;
+  }
+
+  .range-container {
+    @apply grid-cols-1 gap-1;
+  }
+
+  .checkbox-container {
+    @apply max-h-32;
+  }
+
+  .saved-filters-list {
+    @apply gap-1;
+  }
+
+  .saved-filter-item {
+    @apply px-2 py-1 text-xs;
+  }
+}
+
+/* تحسينات إمكانية الوصول */
+.dropdown-button:focus-visible {
+  @apply outline-none;
+}
+
+.dropdown-option:focus-visible {
+  @apply bg-blue-50 outline-none;
+}
+
+.checkbox-input:focus-visible {
+  @apply outline-none;
+}
+
+.search-input:focus-visible {
+  @apply outline-none;
+}
+
+/* تأثيرات التحويم */
+.dropdown-button:hover {
+  @apply border-blue-400;
+}
+
+.dropdown-option:hover {
+  @apply bg-blue-50;
+}
+
+.checkbox-item:hover .checkbox-label {
+  @apply text-gray-900;
+}
+
+.saved-filter-item:hover {
+  @apply bg-gray-200 text-gray-900;
+}
+
+/* أنماط خاصة للفلاتر المختلفة */
+.transport-filter {
+  @apply advanced-filter;
+}
+
+.auction-filter {
+  @apply advanced-filter;
+}
+
+.marketplace-filter {
+  @apply advanced-filter;
+}
+
+.universal-filter {
+  @apply advanced-filter;
+}

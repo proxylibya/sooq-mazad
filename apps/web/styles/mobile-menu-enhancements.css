@@ -1,0 +1,216 @@
+/* تحسينات القائمة المنسدلة للموبايل */
+
+/* تحسينات عامة للقائمة المنسدلة */
+.mobile-menu-container {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 2px solid #e5e7eb;
+}
+
+/* تحسينات التمرير */
+.mobile-menu-container .max-h-screen {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #f1f5f9;
+}
+
+.mobile-menu-container .max-h-screen::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mobile-menu-container .max-h-screen::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 2px;
+}
+
+.mobile-menu-container .max-h-screen::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 2px;
+}
+
+.mobile-menu-container .max-h-screen::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* تحسينات الأنيميشن */
+.mobile-menu-container {
+  animation: slideInFromTop 0.3s ease-out;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* تحسينات الروابط والأزرار */
+.mobile-menu-container a,
+.mobile-menu-container button {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-menu-container a::before,
+.mobile-menu-container button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.mobile-menu-container a:hover::before,
+.mobile-menu-container button:hover::before {
+  left: 100%;
+}
+
+/* تحسينات العناوين */
+.mobile-menu-container h3 {
+  position: relative;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.mobile-menu-container h3::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 8px;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 1px;
+}
+
+/* تحسينات الأيقونات */
+.mobile-menu-container svg {
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-container a:hover svg,
+.mobile-menu-container button:hover svg {
+  transform: scale(1.1);
+}
+
+/* تحسينات الشبكة */
+.mobile-menu-container .grid {
+  gap: 8px;
+}
+
+.mobile-menu-container .grid-cols-2 > * {
+  min-height: 80px;
+}
+
+.mobile-menu-container .grid-cols-3 > * {
+  min-height: 70px;
+}
+
+/* تحسينات الحدود والظلال */
+.mobile-menu-container .rounded-lg {
+  border-radius: 12px;
+}
+
+.mobile-menu-container .rounded-xl {
+  border-radius: 16px;
+}
+
+/* تحسينات الألوان والتدرجات */
+.mobile-menu-container .bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* تحسينات العدادات */
+.mobile-menu-container .absolute {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* تحسينات التجاوب للشاشات الصغيرة جداً */
+@media (max-width: 360px) {
+  .mobile-menu-container .px-4 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .mobile-menu-container .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-menu-container .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mobile-menu-container .text-sm {
+    font-size: 0.75rem;
+  }
+
+  .mobile-menu-container .text-xs {
+    font-size: 0.6875rem;
+  }
+}
+
+/* تحسينات للشاشات المتوسطة */
+@media (min-width: 480px) and (max-width: 640px) {
+  .mobile-menu-container .grid-cols-2 > * {
+    min-height: 90px;
+  }
+
+  .mobile-menu-container .grid-cols-3 > * {
+    min-height: 80px;
+  }
+}
+
+/* تحسينات إضافية للأداء */
+.mobile-menu-container * {
+  will-change: transform;
+}
+
+.mobile-menu-container .transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms; /* محدّث: smooth-fast للقائمة المحمولة */
+}
+
+/* تحسينات الوصولية */
+.mobile-menu-container a:focus,
+.mobile-menu-container button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.mobile-menu-container a:focus-visible,
+.mobile-menu-container button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}

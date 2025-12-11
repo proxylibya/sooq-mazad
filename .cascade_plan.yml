@@ -1,0 +1,4 @@
+plan:
+  - survey existing admin dashboard code and API data sources
+  - design and implement enhanced stats page with advanced filters and charts
+  - validate UI state/behaviors and note follow-ups

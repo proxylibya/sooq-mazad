@@ -1,0 +1,12 @@
+# Payment Method Logos
+
+This directory contains logos for global payment methods:
+
+- paypal-logo.png
+- visa-logo.png  
+- mastercard-logo.png
+- wise-logo.png
+- payeer-logo.png
+- usdt-logo.png
+
+These images should be added to support the global topup page.

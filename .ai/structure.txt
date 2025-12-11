@@ -1,0 +1,77 @@
+sooq-mazad/
+├── .ai/                    # ملفات مساعدة AI
+│   ├── config.json         # تكوين المشروع
+│   ├── context.md          # السياق الأساسي
+│   ├── commands.json       # الأوامر السريعة
+│   ├── rules.md           # القواعد الصارمة
+│   └── structure.txt      # هذا الملف
+│
+├── apps/                  # التطبيقات الرئيسية
+│   ├── web/              # الموقع الرئيسي (3021)
+│   │   ├── pages/        # صفحات Next.js
+│   │   ├── components/   # مكونات React
+│   │   ├── lib/          # دوال مساعدة
+│   │   ├── styles/       # CSS وStyles
+│   │   ├── public/       # ملفات عامة
+│   │   └── package.json
+│   │
+│   ├── admin/            # لوحة التحكم (3022)
+│   │   ├── pages/        # صفحات الإدارة
+│   │   ├── components/   # مكونات الإدارة
+│   │   ├── styles/       # Dark Theme styles
+│   │   └── package.json
+│   │
+│   └── api/              # خادم API (3023)
+│       ├── src/
+│       │   ├── routes/   # مسارات API
+│       │   ├── services/ # خدمات الأعمال
+│       │   ├── middleware/# وسطاء Express
+│       │   └── index.ts  # نقطة الدخول
+│       └── package.json
+│
+├── services/             # خدمات إضافية
+│   └── realtime/        # WebSocket (3024)
+│       ├── src/
+│       └── package.json
+│
+├── packages/            # حزم مشتركة
+│   ├── database/       # Prisma وقاعدة البيانات
+│   ├── types/          # TypeScript types
+│   ├── ui/             # مكونات UI مشتركة
+│   ├── utils/          # دوال مساعدة
+│   └── config/         # إعدادات مشتركة
+│
+├── prisma/             # قاعدة البيانات
+│   ├── schema.prisma   # مخطط DB
+│   └── migrations/     # تاريخ التغييرات
+│
+├── docs/               # التوثيق
+│   ├── api/           # توثيق API
+│   ├── guides/        # أدلة الاستخدام
+│   └── archive/       # توثيق قديم
+│
+├── scripts/           # سكريبتات مساعدة
+├── types/             # TypeScript types عامة
+├── config/            # ملفات التكوين
+│
+├── .env               # متغيرات البيئة
+├── .env.example       # مثال للمتغيرات
+├── package.json       # التبعيات الرئيسية
+├── turbo.json        # تكوين Turborepo
+├── tsconfig.json     # تكوين TypeScript
+└── README.md         # التوثيق الرئيسي
+
+## الملفات المهمة للتشغيل:
+- start-without-redis.ps1  # تشغيل بدون Redis
+- QUICK_FIX_NOW.ps1       # إصلاح المشاكل
+- PROJECT_HEALTH_CHECK.js # فحص الصحة
+
+## المنافذ:
+- 3021: Web (الموقع)
+- 3022: Admin (لوحة التحكم)
+- 3023: API (الخادم)
+- 3024: Realtime (WebSocket)
+
+## قواعد البيانات:
+- PostgreSQL: المنفذ 5432
+- KeyDB: المنفذ 6379 (معطل حالياً)

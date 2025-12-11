@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "commonjs",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@sooq-mazad/database": ["./packages/database/src"],
+      "@sooq-mazad/database/*": ["./packages/database/src/*"],
+      "@sooq-mazad/ui": ["./packages/ui/src"],
+      "@sooq-mazad/ui/*": ["./packages/ui/src/*"],
+      "@sooq-mazad/types": ["./packages/types/src"],
+      "@sooq-mazad/types/*": ["./packages/types/src/*"],
+      "@sooq-mazad/utils": ["./packages/utils/src"],
+      "@sooq-mazad/utils/*": ["./packages/utils/src/*"],
+      "@sooq-mazad/config": ["./packages/config/src"],
+      "@sooq-mazad/config/*": ["./packages/config/src/*"],
+      "@sooq-mazad/validators": ["./packages/validators/src"],
+      "@sooq-mazad/validators/*": ["./packages/validators/src/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".next",
+    ".turbo"
+  ]
+}

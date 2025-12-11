@@ -1,0 +1,85 @@
+/** @type {import('next').NextConfig} */
+
+// عنوان تطبيق Admin (يمكن تغييره في الإنتاج)
+const ADMIN_APP_URL = process.env.ADMIN_APP_URL || 'http://localhost:3022';
+
+const nextConfig = {
+  reactStrictMode: false,
+  swcMinify: true,
+  poweredByHeader: false,
+  compress: true,
+
+  // إزالة console.log في الإنتاج تلقائياً
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV === 'production'
+        ? {
+            exclude: ['error', 'warn'],
+          }
+        : false,
+  },
+
+  experimental: {
+    scrollRestoration: true,
+    // تم تعطيل optimizeCss مؤقتاً لتجنب race conditions في البناء
+    // optimizeCss: true,
+    // تقليل عدد workers لتجنب race conditions على Windows
+    workerThreads: false,
+    cpus: 1,
+  },
+
+  // تعطيل output file tracing لتجنب مشاكل filesystem
+  outputFileTracing: false,
+
+  images: {
+    remotePatterns: [
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'sooq-mazad.ly' },
+      { protocol: 'https', hostname: 'res.cloudinary.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: '*.unsplash.com' },
+      // OpenStreetMap Static Maps للساحات
+      { protocol: 'https', hostname: 'staticmap.openstreetmap.de' },
+      { protocol: 'https', hostname: 'tile.openstreetmap.org' },
+    ],
+    formats: ['image/avif', 'image/webp'],
+    // تعطيل فشل البناء عند عدم وجود صورة
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    // زيادة الحد الأقصى للصور المخزنة
+    minimumCacheTTL: 60,
+  },
+
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  transpilePackages: [
+    '@sooq-mazad/ui',
+    '@sooq-mazad/utils',
+    '@sooq-mazad/config',
+    '@sooq-mazad/types',
+  ],
+
+  // إعادة توجيه مسارات Admin إلى تطبيق Admin المنفصل
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: `${ADMIN_APP_URL}/admin`,
+        permanent: false,
+      },
+      {
+        source: '/admin/:path*',
+        destination: `${ADMIN_APP_URL}/admin/:path*`,
+        permanent: false,
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;

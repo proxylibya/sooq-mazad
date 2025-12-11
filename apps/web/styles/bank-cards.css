@@ -1,0 +1,264 @@
+/* تصميم بطاقات البنوك المحلية */
+.bank-card {
+  @apply relative transform cursor-pointer overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-6 shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
+}
+
+.bank-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-blue-500/5 opacity-0 transition-opacity duration-300;
+}
+
+.bank-card:hover::before {
+  @apply opacity-100;
+}
+
+.bank-card-icon {
+  @apply flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 transition-colors;
+}
+
+.bank-card:hover .bank-card-icon {
+  @apply bg-emerald-200;
+}
+
+.bank-card-title {
+  @apply text-lg font-bold text-gray-900 transition-colors;
+}
+
+.bank-card:hover .bank-card-title {
+  @apply text-emerald-700;
+}
+
+.bank-card-arrow {
+  @apply flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 transition-all;
+}
+
+.bank-card:hover .bank-card-arrow {
+  @apply bg-emerald-200;
+}
+
+.bank-card:hover .bank-card-arrow svg {
+  @apply translate-x-1;
+}
+
+/* تصميم شارات نوع البنك */
+.bank-type-badge {
+  @apply rounded-full px-3 py-1 text-xs font-medium;
+}
+
+.bank-type-islamic {
+  @apply bg-green-100 text-green-700;
+}
+
+.bank-type-government {
+  @apply bg-blue-100 text-blue-700;
+}
+
+.bank-type-commercial {
+  @apply bg-purple-100 text-purple-700;
+}
+
+.bank-type-investment {
+  @apply bg-orange-100 text-orange-700;
+}
+
+.bank-type-development {
+  @apply bg-gray-100 text-gray-700;
+}
+
+/* تصميم النجوم */
+.star-rating {
+  @apply flex items-center gap-1;
+}
+
+.star-filled {
+  @apply h-4 w-4 fill-current text-yellow-400;
+}
+
+.star-empty {
+  @apply h-4 w-4 text-gray-300;
+}
+
+/* تصميم خطوات العملية */
+.process-steps {
+  @apply flex items-center justify-center;
+}
+
+.step-circle {
+  @apply flex h-10 w-10 items-center justify-center rounded-full transition-colors;
+}
+
+.step-circle.active {
+  @apply bg-emerald-600 text-white;
+}
+
+.step-circle.inactive {
+  @apply bg-gray-200 text-gray-600;
+}
+
+.step-line {
+  @apply h-1 w-16 transition-colors;
+}
+
+.step-line.active {
+  @apply bg-emerald-600;
+}
+
+.step-line.inactive {
+  @apply bg-gray-200;
+}
+
+/* تصميم حقول النسخ */
+.copy-field {
+  @apply rounded-xl bg-gray-50 p-4;
+}
+
+.copy-button {
+  @apply p-2 text-gray-400 transition-colors hover:text-gray-600;
+}
+
+.copy-success {
+  @apply mt-1 text-xs text-green-600;
+}
+
+/* تصميم الإشعارات */
+.notification-info {
+  @apply rounded-xl border border-blue-200 bg-blue-50 p-4;
+}
+
+.notification-warning {
+  @apply rounded-xl border border-yellow-200 bg-yellow-50 p-4;
+}
+
+.notification-success {
+  @apply rounded-xl border border-green-200 bg-green-50 p-4;
+}
+
+.notification-error {
+  @apply rounded-xl border border-red-200 bg-red-50 p-4;
+}
+
+/* تصميم البحث والفلترة */
+.search-input {
+  @apply w-full rounded-xl border border-gray-300 py-3 pl-4 pr-10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500;
+}
+
+.filter-select {
+  @apply w-full appearance-none rounded-xl border border-gray-300 bg-white py-3 pl-4 pr-10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500;
+}
+
+/* تصميم الإحصائيات */
+.stats-card {
+  @apply text-center;
+}
+
+.stats-number {
+  @apply text-2xl font-bold;
+}
+
+.stats-label {
+  @apply text-sm text-gray-600;
+}
+
+/* تصميم الميزات */
+.feature-card {
+  @apply flex items-start gap-4 rounded-xl bg-gray-50 p-4;
+}
+
+.feature-icon {
+  @apply flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow-sm;
+}
+
+.feature-title {
+  @apply mb-1 font-semibold text-gray-900;
+}
+
+.feature-description {
+  @apply text-sm text-gray-600;
+}
+
+/* تصميم قائمة البنوك المدعومة */
+.supported-banks {
+  @apply flex flex-wrap justify-center gap-2;
+}
+
+.bank-tag {
+  @apply rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700;
+}
+
+.bank-tag.highlight {
+  @apply bg-emerald-100 font-medium text-emerald-700;
+}
+
+/* تحسينات للجوال */
+@media (max-width: 768px) {
+  .bank-card {
+    @apply p-4;
+  }
+
+  .bank-card-icon {
+    @apply h-10 w-10;
+  }
+
+  .bank-card-title {
+    @apply text-base;
+  }
+
+  .process-steps {
+    @apply flex-col space-y-4;
+  }
+
+  .step-line {
+    @apply h-8 w-1;
+  }
+}
+
+/* تأثيرات الحركة */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes pulse-emerald {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+}
+
+.animate-pulse-emerald {
+  animation: pulse-emerald 2s infinite;
+}
+
+/* تصميم الحالات الفارغة */
+.empty-state {
+  @apply py-12 text-center;
+}
+
+.empty-state-icon {
+  @apply mx-auto mb-4 h-16 w-16 text-gray-400;
+}
+
+.empty-state-title {
+  @apply mb-2 text-lg font-medium text-gray-900;
+}
+
+.empty-state-description {
+  @apply mb-6 text-gray-600;
+}
+
+.empty-state-button {
+  @apply rounded-xl bg-emerald-600 px-6 py-3 text-white transition-colors hover:bg-emerald-700;
+}

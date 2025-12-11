@@ -1,0 +1,126 @@
+{
+  "categories": {
+    "start": {
+      "description": "أوامر التشغيل",
+      "commands": {
+        "withoutRedis": {
+          "command": ".\\start-without-redis.ps1",
+          "description": "تشغيل بدون Redis/Docker (الأفضل حالياً)",
+          "platforms": ["windows"]
+        },
+        "concurrent": {
+          "command": "npm run dev:concurrent",
+          "description": "تشغيل جميع الخدمات بـ Concurrently",
+          "platforms": ["all"]
+        },
+        "turbo": {
+          "command": "npm run dev",
+          "description": "تشغيل بـ Turbo (قد لا يعمل مع Node v22)",
+          "platforms": ["all"]
+        }
+      }
+    },
+    "fix": {
+      "description": "أوامر الإصلاح",
+      "commands": {
+        "quick": {
+          "command": "npm run fix:quick",
+          "description": "إصلاح سريع شامل",
+          "platforms": ["windows"]
+        },
+        "all": {
+          "command": ".\\QUICK_FIX_NOW.ps1",
+          "description": "إصلاح جميع المشاكل المعروفة",
+          "platforms": ["windows"]
+        },
+        "typescript": {
+          "command": "npm install typescript@5.3.3 --save-dev",
+          "description": "إصلاح TypeScript corruption",
+          "platforms": ["all"]
+        }
+      }
+    },
+    "database": {
+      "description": "أوامر قاعدة البيانات",
+      "commands": {
+        "generate": {
+          "command": "npx prisma generate",
+          "description": "توليد Prisma Client",
+          "platforms": ["all"]
+        },
+        "push": {
+          "command": "npx prisma db push",
+          "description": "تطبيق التغييرات على DB",
+          "platforms": ["all"]
+        },
+        "studio": {
+          "command": "npx prisma studio",
+          "description": "فتح Prisma Studio",
+          "platforms": ["all"]
+        },
+        "migrate": {
+          "command": "npx prisma migrate dev",
+          "description": "تشغيل migrations",
+          "platforms": ["all"]
+        }
+      }
+    },
+    "test": {
+      "description": "أوامر الاختبار",
+      "commands": {
+        "health": {
+          "command": "node PROJECT_HEALTH_CHECK.js",
+          "description": "فحص صحة المشروع",
+          "platforms": ["all"]
+        },
+        "quick": {
+          "command": "node system-check.js",
+          "description": "فحص سريع للنظام",
+          "platforms": ["all"]
+        }
+      }
+    },
+    "build": {
+      "description": "أوامر البناء",
+      "commands": {
+        "all": {
+          "command": "npm run build",
+          "description": "بناء جميع التطبيقات",
+          "platforms": ["all"]
+        },
+        "web": {
+          "command": "cd apps/web && npm run build",
+          "description": "بناء الموقع فقط",
+          "platforms": ["all"]
+        },
+        "admin": {
+          "command": "cd apps/admin && npm run build",
+          "description": "بناء لوحة التحكم فقط",
+          "platforms": ["all"]
+        }
+      }
+    },
+    "clean": {
+      "description": "أوامر التنظيف",
+      "commands": {
+        "all": {
+          "command": "npm run fix:clean",
+          "description": "تنظيف شامل لجميع المجلدات المؤقتة",
+          "platforms": ["all"]
+        },
+        "cache": {
+          "command": "rimraf .next .turbo dist",
+          "description": "تنظيف الكاش والبناء",
+          "platforms": ["all"]
+        }
+      }
+    }
+  },
+  "shortcuts": {
+    "s": "npm run dev:concurrent",
+    "f": "npm run fix:quick",
+    "b": "npm run build",
+    "t": "node PROJECT_HEALTH_CHECK.js",
+    "p": "npx prisma studio"
+  }
+}

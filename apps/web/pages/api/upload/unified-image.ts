@@ -1,0 +1,257 @@
+/**
+ * 🌍 API رفع الصور الموحد العالمي
+ * 
+ * يدعم جميع أنواع الرفع: سيارات، ملفات شخصية، نقل، رسائل، معارض
+ * ضغط وتحسين تلقائي بمعايير Enterprise
+ * 
+ * @endpoint POST /api/upload/unified-image
+ */
+
+import {
+    IMAGE_CONFIG,
+    ImageCategory,
+    ImageOptimizationResult,
+    ImageSystem,
+    UploadOptions,
+} from '@/lib/image-system';
+import { File as FormidableFile, IncomingForm } from 'formidable';
+import fs from 'fs';
+import jwt from 'jsonwebtoken';
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+// تعطيل parser الافتراضي
+export const config = {
+    api: {
+        bodyParser: false,
+        responseLimit: '15mb',
+    },
+};
+
+type ApiResponse = {
+    success: boolean;
+    data?: ImageOptimizationResult;
+    error?: string;
+    code?: string;
+};
+
+/**
+ * استخراج معرف المستخدم من التوكن
+ */
+function extractUserId(req: NextApiRequest): string | null {
+    try {
+        // التحقق من header Authorization
+        const authHeader = req.headers.authorization;
+        if (authHeader?.startsWith('Bearer ')) {
+            const token = authHeader.substring(7);
+            const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
+            return decoded.userId || decoded.id || null;
+        }
+
+        // التحقق من cookie للمديرين
+        const adminSession = req.cookies['admin-session'];
+        if (adminSession) {
+            const decoded = jwt.verify(adminSession, process.env.JWT_SECRET || 'sooq-mazad-admin-secret-key-min-32-chars!') as any;
+            return decoded.adminId || decoded.id || null;
+        }
+
+        return null;
+    } catch {
+        return null;
+    }
+}
+
+/**
+ * معالجة النموذج
+ */
+async function parseForm(req: NextApiRequest): Promise<{
+    fields: Record<string, any>;
+    files: Record<string, FormidableFile | FormidableFile[]>;
+}> {
+    return new Promise((resolve, reject) => {
+        const uploadDir = `${process.cwd()}/${IMAGE_CONFIG.PATHS.temp}`;
+
+        // إنشاء مجلد مؤقت
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+
+        const form = new IncomingForm({
+            uploadDir,
+            keepExtensions: true,
+            maxFileSize: IMAGE_CONFIG.MAX_FILE_SIZE,
+            multiples: true,
+            allowEmptyFiles: false,
+            minFileSize: 1,
+        });
+
+        form.parse(req, (err, fields, files) => {
+            if (err) {
+                console.error('[UnifiedUpload] خطأ في تحليل النموذج:', err);
+                reject(new Error(err.message.includes('maxFileSize')
+                    ? `حجم الملف كبير جداً. الحد الأقصى ${IMAGE_CONFIG.MAX_FILE_SIZE / 1024 / 1024} ميجابايت`
+                    : 'خطأ في معالجة الطلب'));
+            } else {
+                // تحويل الحقول
+                const parsedFields: Record<string, any> = {};
+                for (const [key, value] of Object.entries(fields)) {
+                    parsedFields[key] = Array.isArray(value) ? value[0] : value;
+                }
+                resolve({ fields: parsedFields, files: files as any });
+            }
+        });
+    });
+}
+
+/**
+ * استخراج الملف من النتائج
+ */
+function extractFile(files: Record<string, FormidableFile | FormidableFile[]>): FormidableFile | null {
+    // البحث في المفاتيح المعروفة
+    const keys = ['image', 'file', 'photo', 'upload'];
+
+    for (const key of keys) {
+        if (files[key]) {
+            const file = files[key];
+            return Array.isArray(file) ? file[0] : file;
+        }
+    }
+
+    // أخذ أول ملف متاح
+    const allFiles = Object.values(files).flat();
+    return allFiles[0] || null;
+}
+
+/**
+ * تنظيف الملف المؤقت
+ */
+function cleanupFile(filepath: string): void {
+    try {
+        if (fs.existsSync(filepath)) {
+            fs.unlinkSync(filepath);
+        }
+    } catch (e) {
+        console.warn('[UnifiedUpload] فشل تنظيف الملف المؤقت:', e);
+    }
+}
+
+/**
+ * المعالج الرئيسي
+ */
+async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse
+): Promise<void> {
+    // التحقق من الطريقة
+    if (req.method !== 'POST') {
+        return res.status(405).json({
+            success: false,
+            error: 'طريقة غير مسموحة',
+            code: 'METHOD_NOT_ALLOWED',
+        });
+    }
+
+    let tempFilePath: string | null = null;
+
+    try {
+        // استخراج معرف المستخدم (اختياري لبعض الحالات)
+        const userId = extractUserId(req);
+
+        // تحليل النموذج
+        const { fields, files } = await parseForm(req);
+
+        // استخراج الملف
+        const file = extractFile(files);
+        if (!file) {
+            return res.status(400).json({
+                success: false,
+                error: 'لم يتم العثور على ملف الصورة',
+                code: 'NO_FILE',
+            });
+        }
+
+        tempFilePath = file.filepath;
+
+        // قراءة الملف
+        const buffer = fs.readFileSync(file.filepath);
+
+        // استخراج الخيارات
+        const category = (fields.category as ImageCategory) || 'general';
+        const entityId = fields.entityId as string;
+        const optimize = fields.optimize !== 'false';
+        const generateSizes = fields.generateSizes === 'true';
+        const generateFormats = fields.generateFormats === 'true';
+        const generatePlaceholder = fields.generatePlaceholder === 'true';
+        const quality = fields.quality ? parseInt(fields.quality as string, 10) : undefined;
+        const maxWidth = fields.maxWidth ? parseInt(fields.maxWidth as string, 10) : undefined;
+        const maxHeight = fields.maxHeight ? parseInt(fields.maxHeight as string, 10) : undefined;
+
+        // تكوين الخيارات
+        const options: UploadOptions = {
+            category,
+            userId: userId || undefined,
+            entityId,
+            optimize,
+            generateSizes,
+            generateFormats,
+            generatePlaceholder,
+            quality,
+            maxWidth,
+            maxHeight,
+        };
+
+        console.log('[UnifiedUpload] معالجة صورة:', {
+            category,
+            originalName: file.originalFilename,
+            size: buffer.length,
+            userId,
+        });
+
+        // معالجة الصورة
+        const result = await ImageSystem.processAndSaveImage(
+            buffer,
+            file.originalFilename || 'image.jpg',
+            options
+        );
+
+        // تنظيف الملف المؤقت
+        cleanupFile(file.filepath);
+        tempFilePath = null;
+
+        if (!result.success) {
+            return res.status(400).json({
+                success: false,
+                error: result.error || 'فشل معالجة الصورة',
+                code: 'PROCESSING_FAILED',
+            });
+        }
+
+        console.log('[UnifiedUpload] نجاح:', {
+            original: result.original.url,
+            optimized: result.optimized?.url,
+            savings: result.savings,
+        });
+
+        return res.status(200).json({
+            success: true,
+            data: result,
+        });
+
+    } catch (error) {
+        console.error('[UnifiedUpload] خطأ:', error);
+
+        // تنظيف في حالة الخطأ
+        if (tempFilePath) {
+            cleanupFile(tempFilePath);
+        }
+
+        const message = error instanceof Error ? error.message : 'خطأ في الخادم';
+
+        return res.status(500).json({
+            success: false,
+            error: message,
+            code: 'SERVER_ERROR',
+        });
+    }
+}
+
+export default handler;

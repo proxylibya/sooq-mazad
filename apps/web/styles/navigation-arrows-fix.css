@@ -1,0 +1,71 @@
+/* إصلاح عاجل لأزرار التمرير - ضمان ظهور الأيقونات */
+
+/* إصلاح شامل لجميع أزرار التمرير */
+button svg[data-slot="icon"],
+.absolute button svg,
+.group button svg {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* إصلاح مسارات الأسهم */
+button svg path,
+.absolute button svg path,
+.group button svg path {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.5 !important;
+}
+
+/* إصلاح خاص للـ RTL */
+[dir="rtl"] button svg[data-slot="icon"],
+[dir="rtl"] .absolute button svg,
+[dir="rtl"] .group button svg,
+html[dir="rtl"] button svg[data-slot="icon"],
+html[dir="rtl"] .absolute button svg,
+html[dir="rtl"] .group button svg {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+[dir="rtl"] button svg path,
+[dir="rtl"] .absolute button svg path,
+[dir="rtl"] .group button svg path,
+html[dir="rtl"] button svg path,
+html[dir="rtl"] .absolute button svg path,
+html[dir="rtl"] .group button svg path {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.5 !important;
+  transform: none !important;
+}
+
+/* إصلاح للأيقونات المخفية */
+.h-6.w-6 {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  display: block !important;
+}
+
+/* إصلاح للألوان */
+.text-white svg,
+.text-white svg path {
+  color: white !important;
+  stroke: white !important;
+}
+
+button.bg-black\/70 svg,
+button.bg-black\/70 svg path {
+  color: white !important;
+  stroke: white !important;
+}

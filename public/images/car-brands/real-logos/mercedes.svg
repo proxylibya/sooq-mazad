@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      .mercedes-silver { fill: #c0c0c0; }
+      .mercedes-dark { fill: #333333; }
+    </style>
+  </defs>
+
+  <!-- Mercedes Logo Background -->
+  <rect width="100" height="100" fill="white" rx="10"/>
+
+  <!-- Mercedes Three-pointed star -->
+  <g transform="translate(50,50)">
+    <!-- Outer circle -->
+    <circle cx="0" cy="0" r="40" fill="none" stroke="#333333" stroke-width="3"/>
+
+    <!-- Three-pointed star -->
+    <g fill="#333333" stroke="#333333" stroke-width="2">
+      <!-- Top point -->
+      <line x1="0" y1="-30" x2="0" y2="-8"/>
+
+      <!-- Bottom left point -->
+      <line x1="0" y1="0" x2="-26" y2="15"/>
+
+      <!-- Bottom right point -->
+      <line x1="0" y1="0" x2="26" y2="15"/>
+
+      <!-- Center circle -->
+      <circle cx="0" cy="0" r="3"/>
+    </g>
+  </g>
+</svg>

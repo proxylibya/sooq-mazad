@@ -1,0 +1,155 @@
+/**
+ * توحيد الخطوط والأحجام في صفحات تفاصيل السيارات
+ * Car Details Typography Unification
+ */
+
+/* توحيد أحجام النصوص الأساسية */
+.car-specifications-container,
+.car-features-container {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem;
+}
+
+/* توحيد نصوص المواصفات */
+.car-spec-label,
+.car-spec-value,
+.car-spec-value-large {
+  font-size: 0.875rem !important; /* 14px */
+  line-height: 1.25rem !important;
+}
+
+.car-spec-label {
+  font-weight: 500; /* font-medium */
+  color: #4b5563; /* text-gray-600 */
+}
+
+.car-spec-value,
+.car-spec-value-large {
+  font-weight: 600; /* font-semibold */
+  color: #111827; /* text-gray-900 */
+}
+
+/* توحيد نصوص المميزات */
+.car-features-section h5 {
+  font-size: 0.875rem !important; /* 14px */
+  font-weight: 500 !important; /* font-medium */
+  color: #4b5563 !important; /* text-gray-600 */
+  line-height: 1.25rem !important;
+}
+
+.car-features-section .flex.items-center.gap-2 {
+  font-size: 0.875rem !important; /* 14px */
+  line-height: 1.25rem !important;
+}
+
+.car-features-section .flex.items-center.gap-2 span {
+  font-weight: 400 !important; /* font-normal */
+  color: #374151 !important; /* text-gray-700 */
+}
+
+/* توحيد عناوين الأقسام الرئيسية */
+.car-specifications-title,
+.car-features-title-text {
+  font-size: 1.125rem !important; /* 18px */
+  font-weight: 600 !important; /* font-semibold */
+  color: #111827 !important; /* text-gray-900 */
+  line-height: 1.75rem !important;
+}
+
+/* توحيد الأيقونات */
+.car-spec-icon,
+.car-features-title-icon {
+  width: 16px !important; /* h-4 w-4 */
+  height: 16px !important;
+  color: #4b5563 !important; /* text-gray-600 */
+}
+
+.car-features-section .h-4.w-4 {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* إزالة أي تنسيقات متضاربة */
+.car-specifications-container * {
+  font-family: inherit !important;
+}
+
+.car-features-container * {
+  font-family: inherit !important;
+}
+
+/* تحسين التباعد */
+.car-spec-label {
+  margin-bottom: 8px !important; /* mb-2 */
+}
+
+.car-features-section h5 {
+  margin-bottom: 12px !important; /* mb-3 */
+}
+
+/* تحسين تخطيط قائمة المميزات للشاشات المختلفة */
+@media (min-width: 801px) {
+  /* الشاشات الكبيرة - 3 أعمدة */
+  .car-features-section .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 800px) and (min-width: 641px) {
+  /* الشاشات المتوسطة - 3 أعمدة */
+  .car-features-section .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 640px) and (min-width: 481px) {
+  /* الشاشات الصغيرة - عمودين */
+  .car-features-section .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* الشاشات الصغيرة جداً - عمود واحد */
+  .car-features-section .grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+}
+
+/* ضمان التجاوب */
+@media (max-width: 640px) {
+  .car-specifications-container,
+  .car-features-container {
+    font-size: 0.8125rem; /* 13px */
+    line-height: 1.2rem;
+  }
+
+  .car-spec-label,
+  .car-spec-value,
+  .car-spec-value-large,
+  .car-features-section h5,
+  .car-features-section .flex.items-center.gap-2 {
+    font-size: 0.8125rem !important; /* 13px */
+    line-height: 1.2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .car-specifications-container,
+  .car-features-container {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem;
+  }
+}
+
+/* تحسين الوضوح */
+.car-specifications-container,
+.car-features-container {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

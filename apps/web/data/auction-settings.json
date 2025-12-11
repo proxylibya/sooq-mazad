@@ -1,0 +1,98 @@
+{
+  "minStartingPrice": 1000,
+  "minBidIncrement": 250,
+  "autoExtendTime": 5,
+  "maxImagesPerAuction": 2,
+  "durationConfig": {
+    "minDuration": {
+      "type": "preset",
+      "presetId": "1_hour",
+      "totalMinutes": 60
+    },
+    "maxDuration": {
+      "type": "preset",
+      "presetId": "30_days",
+      "totalMinutes": 43200
+    },
+    "defaultDuration": {
+      "type": "preset",
+      "presetId": "7_days",
+      "totalMinutes": 10080
+    }
+  },
+  "startTimeOptions": [
+    {
+      "id": "now",
+      "label": "مزاد مباشر",
+      "description": "يبدأ المزاد فوراً",
+      "value": "now",
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "id": "after_30_seconds",
+      "label": "بعد 30 ثانية",
+      "description": "يبدأ المزاد بعد 30 ثانية من النشر",
+      "value": "after_30_seconds",
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "id": "after_1_hour",
+      "label": "بعد ساعة",
+      "description": "يبدأ المزاد بعد ساعة واحدة",
+      "value": "after_1_hour",
+      "enabled": true,
+      "order": 3
+    },
+    {
+      "id": "after_24_hours",
+      "label": "بعد 24 ساعة",
+      "description": "يبدأ المزاد بعد يوم كامل",
+      "value": "after_24_hours",
+      "enabled": true,
+      "order": 4
+    },
+    {
+      "id": "after_3_days",
+      "label": "بعد 3 أيام",
+      "description": "يبدأ المزاد بعد 3 أيام",
+      "value": "after_3_days",
+      "enabled": true,
+      "order": 5
+    },
+    {
+      "id": "after_7_days",
+      "label": "بعد أسبوع",
+      "description": "يبدأ المزاد بعد أسبوع كامل",
+      "value": "after_7_days",
+      "enabled": true,
+      "order": 6
+    },
+    {
+      "id": "custom",
+      "label": "مخصص",
+      "description": "حدد وقت بداية المزاد بنفسك",
+      "value": "custom",
+      "enabled": false,
+      "order": 99
+    }
+  ],
+  "defaultStartTimeOption": "now",
+  "allowCustomStartTime": true,
+  "defaultStartTime": "now",
+  "defaultDuration": "1_week",
+  "minimumBidIncrement": 250,
+  "minimumStartingPrice": 1000,
+  "defaultStartPriceFactor": 0.7,
+  "startFactorNew": 0.85,
+  "startFactorUsed": 0.7,
+  "startFactorNeedsRepair": 0.55,
+  "startFactorSUV": 0.75,
+  "startFactorSedan": 0.7,
+  "startFactorPickup": 0.65,
+  "startFactorVan": 0.6,
+  "allowFeaturedAuctions": true,
+  "featuredAuctionDuration": 7,
+  "updatedAt": "2025-12-01T04:14:20.088Z"
+}

@@ -1,0 +1,414 @@
+/* تصميم محسن للتحكم في المزايدات على الأجهزة المحمولة */
+
+.mobile-auction-controls {
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.mobile-auction-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  min-height: 500px; /* ارتفاع أدنى للشبكة */
+}
+
+/* للشاشات المتوسطة والكبيرة */
+@media (min-width: 640px) {
+  .mobile-auction-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    min-height: 600px; /* ارتفاع أكبر للشاشات الأكبر */
+    align-items: stretch; /* تمديد العناصر لتأخذ الارتفاع الكامل */
+  }
+}
+
+/* حاوية عداد المزايدة */
+.mobile-auction-timer-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 1rem;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-auction-timer-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.mobile-auction-timer-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+}
+
+/* حاوية قائمة المزايدين */
+.mobile-bidders-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 1rem;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px; /* ارتفاع أدنى لضمان مساحة كافية */
+  height: 100%; /* تأخذ كامل الارتفاع المتاح */
+}
+
+.mobile-bidders-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.mobile-bidders-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+}
+
+/* تحسين العداد الدائري */
+.mobile-auction-timer-container .relative {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* تحسين شارة المباشر */
+.mobile-auction-timer-container .absolute.-top-2.-right-2 {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* تحسين النصوص */
+.price-value {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* تحسين الأزرار والعناصر التفاعلية */
+.mobile-auction-controls button {
+  transition: all 0.2s ease;
+  border-radius: 0.75rem;
+}
+
+.mobile-auction-controls button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* تحسين القائمة الداخلية للمزايدين */
+.bidders-container {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  height: 100% !important; /* تأخذ كامل الارتفاع المتاح */
+  max-height: none !important; /* إزالة أي قيود على الارتفاع الأقصى */
+  padding-bottom: 0 !important; /* إزالة المساحة السفلية */
+  margin-bottom: 0 !important; /* إزالة الهامش السفلي */
+}
+
+/* تحسين شريط التمرير */
+.bidders-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bidders-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.bidders-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+  border-radius: 3px;
+}
+
+.bidders-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 639px) {
+  .mobile-auction-controls {
+    padding: 0.75rem;
+  }
+
+  .mobile-auction-grid {
+    gap: 1rem;
+  }
+
+  .mobile-auction-timer-container,
+  .mobile-bidders-container {
+    padding: 1rem;
+  }
+
+  /* إبقاء حجم العداد الدائري الأصلي */
+  .mobile-auction-timer-container .relative {
+    width: 224px !important;
+    height: 224px !important;
+  }
+
+  /* الحفاظ على أحجام النصوص الأصلية للوضوح */
+  .mobile-auction-timer-container .text-2xl {
+    font-size: 1.5rem !important;
+  }
+
+  .mobile-auction-timer-container .text-base {
+    font-size: 1rem !important;
+  }
+
+  .mobile-auction-timer-container .text-xs {
+    font-size: 0.75rem !important;
+  }
+
+  .mobile-auction-timer-container .text-sm {
+    font-size: 0.875rem !important;
+  }
+
+  /* الحفاظ على المسافات الطبيعية */
+  .mobile-auction-timer-container .px-3 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .mobile-auction-timer-container .gap-2 {
+    gap: 0.5rem !important;
+  }
+
+  /* تحسين ارتفاع قائمة المزايدين لتأخذ المساحة الكاملة */
+  .bidders-container {
+    flex: 1 !important;
+    height: 100% !important; /* تأخذ كامل الارتفاع المتاح */
+    max-height: none !important; /* إزالة أي قيود على الارتفاع الأقصى */
+    min-height: 300px !important; /* ارتفاع أدنى للشاشات الصغيرة */
+    padding-bottom: 0 !important; /* إزالة المساحة السفلية */
+    margin-bottom: 0 !important; /* إزالة الهامش السفلي */
+  }
+}
+
+/* تحسينات خاصة للشاشات بعرض 800px */
+@media (min-width: 800px) and (max-width: 850px) {
+  .mobile-auction-controls {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .mobile-auction-grid {
+    gap: 0.75rem;
+    min-height: 450px; /* تقليل الارتفاع الأدنى */
+  }
+
+  .mobile-auction-timer-container,
+  .mobile-bidders-container {
+    padding: 1rem;
+    margin-bottom: 0;
+  }
+
+  /* تحسين قائمة المزايدين */
+  .mobile-bidders-container {
+    min-height: 350px; /* تقليل الارتفاع الأدنى */
+  }
+
+  .bidders-container {
+    min-height: 280px !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* إزالة المسافات من العناصر الداخلية */
+  .mobile-bidders-container .space-y-2 > * + *,
+  .mobile-bidders-container .space-y-3 > * + *,
+  .mobile-bidders-container .space-y-4 > * + * {
+    margin-top: 0.5rem !important;
+  }
+
+  /* إزالة المسافة السفلية من آخر عنصر في قائمة المزايدين */
+  .mobile-bidders-container > div:last-child,
+  .bidders-container > div:last-child,
+  .bidders-container > *:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* تحسينات للشاشات الصغيرة جداً */
+@media (max-width: 479px) {
+  .mobile-auction-controls {
+    padding: 0.5rem;
+  }
+
+  .mobile-auction-timer-container,
+  .mobile-bidders-container {
+    padding: 0.75rem;
+  }
+
+  /* تكبير العداد للشاشات الصغيرة جداً لمنع التداخل */
+  .mobile-auction-timer-container .relative {
+    width: 280px !important;
+    height: 280px !important;
+  }
+
+  /* الحفاظ على أحجام النصوص الأصلية للوضوح */
+  .mobile-auction-timer-container .text-2xl {
+    font-size: 1.5rem !important;
+  }
+
+  .mobile-auction-timer-container .text-base {
+    font-size: 1rem !important;
+  }
+
+  .mobile-auction-timer-container .text-xs {
+    font-size: 0.75rem !important;
+  }
+
+  .mobile-auction-timer-container .text-sm {
+    font-size: 0.875rem !important;
+  }
+
+  /* الحفاظ على المسافات الطبيعية */
+  .mobile-auction-timer-container .px-3 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .mobile-auction-timer-container .gap-2 {
+    gap: 0.5rem !important;
+  }
+}
+
+/* تأثيرات الحركة */
+.mobile-auction-timer-container .price-value,
+.mobile-auction-timer-container .text-blue-700 {
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-gentle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* تحسين التباعد والتنسيق */
+.mobile-auction-controls .space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+/* قواعد عامة لإزالة المسافات الكبيرة في جميع الشاشات المتوسطة */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* إزالة المسافات الإضافية من قائمة المزايدين */
+  .mobile-bidders-container {
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .bidders-container {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* إزالة المسافات من العناصر الأخيرة */
+  .mobile-auction-timer-container > div:last-child,
+  .mobile-bidders-container > div:last-child,
+  .bidders-container > div:last-child,
+  .bidders-container > *:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* تقليل المسافات بين العناصر الداخلية */
+  .mobile-bidders-container .space-y-2 > * + *,
+  .mobile-bidders-container .space-y-3 > * + *,
+  .mobile-bidders-container .space-y-4 > * + * {
+    margin-top: 0.5rem !important;
+  }
+}
+
+.mobile-auction-controls .text-center {
+  text-align: center;
+}
+
+/* تحسين الحدود والظلال */
+.mobile-auction-timer-container,
+.mobile-bidders-container {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* تحسين الاستجابة للمس */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-auction-timer-container:hover,
+  .mobile-bidders-container:hover {
+    transform: none;
+  }
+
+  .mobile-auction-controls button:hover {
+    transform: none;
+  }
+}
+
+/* تحسين إمكانية الوصول */
+.mobile-auction-controls [role='button'],
+.mobile-auction-controls button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* تحسين التباين للنصوص */
+.mobile-auction-controls .text-gray-500 {
+  color: #6b7280;
+}
+
+.mobile-auction-controls .text-gray-700 {
+  color: #374151;
+}
+
+.mobile-auction-controls .text-gray-900 {
+  color: #111827;
+}
+
+/* ============================================= */
+/* تحسينات إضافية للعداد الدائري على الموبايل    */
+/* ============================================= */
+
+/* إزالة تأثير التدرج من السعر على الموبايل للوضوح */
+@media (max-width: 480px) {
+  .circular-timer-content .price-value {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: currentColor !important;
+    background-clip: unset !important;
+  }
+}

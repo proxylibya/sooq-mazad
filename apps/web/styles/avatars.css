@@ -1,0 +1,22 @@
+/* تعطيل أي حلقات (ring) أو outline حول صور الحساب بشكل نهائي داخل UserAvatar فقط */
+.user-avatar-root,
+.user-avatar-root img,
+.user-avatar-root svg,
+.user-avatar-root div {
+  /* تعطيل جميع متغيرات الـ ring الخاصة بـ Tailwind */
+  --tw-ring-offset-width: 0px !important;
+  --tw-ring-offset-color: transparent !important;
+  --tw-ring-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+
+  /* عدم رسم أي ظل لحلقة الـ ring */
+  box-shadow: var(--tw-shadow, 0 0 #0000) !important;
+  outline: none !important;
+}
+
+/* ضمان عدم ظهور حلقات في حالات focus داخل العنصر */
+.user-avatar-root:focus,
+.user-avatar-root *:focus {
+  outline: none !important;
+  box-shadow: var(--tw-shadow, 0 0 #0000) !important;
+}

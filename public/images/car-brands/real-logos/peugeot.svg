@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="peugeotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- خلفية دائرية -->
+  <circle cx="50" cy="50" r="45" fill="url(#peugeotGrad)" stroke="#1e40af" stroke-width="2"/>
+  
+  <!-- شعار بيجو المبسط -->
+  <g transform="translate(50,50)">
+    <!-- جسم الأسد -->
+    <path d="M-15,-10 Q-20,-15 -15,-20 Q-10,-25 0,-20 Q10,-25 15,-20 Q20,-15 15,-10 Q10,-5 0,-8 Q-10,-5 -15,-10 Z" 
+          fill="white" stroke="white" stroke-width="1"/>
+    
+    <!-- رأس الأسد -->
+    <circle cx="0" cy="-15" r="8" fill="white"/>
+    
+    <!-- عيون الأسد -->
+    <circle cx="-3" cy="-17" r="1.5" fill="#1e40af"/>
+    <circle cx="3" cy="-17" r="1.5" fill="#1e40af"/>
+    
+    <!-- أنف الأسد -->
+    <path d="M-1,-12 L0,-10 L1,-12 Z" fill="#1e40af"/>
+    
+    <!-- ذيل الأسد -->
+    <path d="M15,-8 Q20,-5 18,0 Q15,2 12,0" fill="white" stroke="white" stroke-width="1"/>
+    
+    <!-- أرجل الأسد -->
+    <rect x="-12" y="5" width="3" height="8" fill="white" rx="1"/>
+    <rect x="-5" y="5" width="3" height="8" fill="white" rx="1"/>
+    <rect x="2" y="5" width="3" height="8" fill="white" rx="1"/>
+    <rect x="9" y="5" width="3" height="8" fill="white" rx="1"/>
+  </g>
+  
+  <!-- نص بيجو -->
+  <text x="50" y="85" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">PEUGEOT</text>
+</svg>

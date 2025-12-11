@@ -1,0 +1,264 @@
+/* 🎨 التنسيق الموحد لصفحة تفاصيل المزاد */
+
+/* ========================
+   النمط الموحد للبطاقات
+======================== */
+
+/* البطاقات الأساسية */
+.auction-card {
+  @apply mb-6 rounded-lg bg-white border border-gray-200 p-6 shadow-sm;
+}
+
+/* بطاقات الشريط الجانبي */
+.sidebar-card {
+  @apply rounded-lg bg-white border border-gray-200 p-6 shadow-sm;
+}
+
+/* العناوين الموحدة */
+.section-title {
+  @apply mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900;
+}
+
+.section-title-large {
+  @apply mb-6 flex items-center gap-2 text-lg font-semibold text-gray-900;
+}
+
+/* ========================
+   أقسام المحتوى
+======================== */
+
+/* قسم معرض الصور */
+.image-gallery-card {
+  @apply overflow-hidden rounded-lg bg-white border border-gray-200 shadow-sm;
+}
+
+/* قسم الوصف */
+.description-card {
+  @apply mb-6 rounded-lg bg-white border border-gray-200 p-6 shadow-sm;
+}
+
+/* قسم المواصفات */
+.specifications-card {
+  @apply mb-6 rounded-lg bg-white border border-gray-200 p-6 shadow-sm;
+}
+
+/* قسم الكماليات */
+.features-card {
+  @apply mb-6 rounded-lg bg-white border border-gray-200 p-6 shadow-sm;
+}
+
+/* قسم الموقع */
+.location-card {
+  @apply mb-6 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm;
+}
+
+/* قسم تقرير الفحص */
+.inspection-card {
+  @apply mb-6 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm;
+}
+
+/* قسم التقييمات */
+.reviews-card {
+  @apply mb-6 rounded-lg bg-white border border-gray-200 p-6 shadow-sm;
+}
+
+/* ========================
+   الشريط الجانبي
+======================== */
+
+/* عداد المزاد */
+.auction-timer-card {
+  @apply rounded-lg bg-white border border-gray-200 p-6 shadow-sm;
+}
+
+/* البطاقات الخاصة */
+.upcoming-auction-card {
+  @apply rounded-lg border border-yellow-200 bg-yellow-50 p-6 shadow-sm;
+}
+
+.ended-auction-card {
+  @apply rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm;
+}
+
+/* ========================
+   الشاشات الصغيرة
+======================== */
+
+/* البطاقات للجوال */
+.mobile-card {
+  @apply block rounded-lg bg-white border border-gray-200 p-5 shadow-sm lg:hidden;
+}
+
+/* بطاقات فرعية */
+.sub-card {
+  @apply rounded-lg bg-white border border-gray-200 p-3;
+}
+
+.sub-card-gray {
+  @apply rounded-lg bg-gray-50 border border-gray-200 p-3;
+}
+
+/* ========================
+   التحسينات البصرية
+======================== */
+
+/* تأثيرات التحويم */
+.hover-card {
+  @apply transition-all duration-200 hover:border-gray-300 hover:shadow-md;
+}
+
+.hover-card-blue {
+  @apply transition-all duration-200 hover:border-blue-300 hover:bg-blue-50 hover:shadow-md;
+}
+
+/* الفواصل */
+.card-divider {
+  @apply border-b border-gray-100 p-4;
+}
+
+/* النصوص الموحدة */
+.card-subtitle {
+  @apply mb-1 text-sm font-medium text-gray-600;
+}
+
+.card-value {
+  @apply text-sm text-gray-700;
+}
+
+.card-value-large {
+  @apply text-lg text-gray-700;
+}
+
+/* ========================
+   الأيقونات والألوان
+======================== */
+
+/* أيقونات الأقسام */
+.section-icon-blue {
+  @apply h-5 w-5 text-blue-600;
+}
+
+.section-icon-large-blue {
+  @apply h-6 w-6 text-blue-600;
+}
+
+.section-icon-purple {
+  @apply h-6 w-6 text-purple-600;
+}
+
+.section-icon-yellow {
+  @apply h-6 w-6 text-yellow-500;
+}
+
+/* ========================
+   الاستجابة للشاشات
+======================== */
+
+/* تحسينات للشاشات الكبيرة */
+@media (min-width: 1024px) {
+  .desktop-sidebar-spacing {
+    @apply space-y-6;
+  }
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 1023px) {
+  .mobile-spacing {
+    @apply space-y-4;
+  }
+  
+  .mobile-padding {
+    @apply p-4;
+  }
+}
+
+/* ========================
+   حالات خاصة
+======================== */
+
+/* حالة التحميل */
+.loading-card {
+  @apply animate-pulse rounded-lg bg-gray-200 p-6;
+}
+
+/* حالة الخطأ */
+.error-card {
+  @apply rounded-lg border border-red-200 bg-red-50 p-6 shadow-sm;
+}
+
+/* حالة النجاح */
+.success-card {
+  @apply rounded-lg border border-green-200 bg-green-50 p-6 shadow-sm;
+}
+
+/* حالة التحذير */
+.warning-card {
+  @apply rounded-lg border border-yellow-200 bg-yellow-50 p-6 shadow-sm;
+}
+
+/* ========================
+   تحسينات الأداء
+======================== */
+
+/* تحسين الرسوم المتحركة */
+.smooth-transition {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* تحسين الظلال */
+.optimized-shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* تحسين الحدود */
+.optimized-border {
+  border: 1px solid rgba(209, 213, 219, 1);
+}
+
+/* ========================
+   متغيرات CSS مخصصة
+======================== */
+
+:root {
+  /* الألوان الموحدة */
+  --auction-bg-primary: #ffffff;
+  --auction-border-primary: #e5e7eb;
+  --auction-shadow-primary: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  
+  /* المسافات الموحدة */
+  --auction-padding-card: 1.5rem;
+  --auction-padding-mobile: 1.25rem;
+  --auction-margin-bottom: 1.5rem;
+  
+  /* نصف القطر الموحد */
+  --auction-border-radius: 0.5rem;
+  
+  /* الانتقالات */
+  --auction-transition: all 0.2s ease-in-out;
+}
+
+/* ========================
+   فئات المساعدة
+======================== */
+
+/* إخفاء عناصر معينة على الشاشات الصغيرة */
+.hide-on-mobile {
+  @apply hidden lg:block;
+}
+
+/* إظهار عناصر معينة على الشاشات الصغيرة فقط */
+.show-on-mobile {
+  @apply block lg:hidden;
+}
+
+/* محاذاة النص للعربية */
+.rtl-text {
+  @apply text-right;
+  direction: rtl;
+}
+
+/* محاذاة النص للإنجليزية */
+.ltr-text {
+  @apply text-left;
+  direction: ltr;
+}

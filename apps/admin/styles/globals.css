@@ -1,0 +1,680 @@
+/* 
+ * نظام الخطوط الموحد للوحة التحكم
+ * الخط: Cairo - محمّل من _document.tsx
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* متغيرات لوحة التحكم */
+:root {
+  --admin-primary: #2563eb;
+  --admin-secondary: #64748b;
+  --admin-success: #22c55e;
+  --admin-danger: #ef4444;
+  --admin-warning: #f59e0b;
+  --admin-info: #3b82f6;
+  --font-family: 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* إعدادات أساسية */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* تعريف الخط مرة واحدة فقط */
+html,
+body {
+  font-family: var(--font-family);
+  direction: rtl;
+  background-color: #0f172a;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================
+   منع تحديد وسحب النصوص في لوحة التحكم
+   No text selection/drag in admin panel
+   ============================================= */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* السماح بتحديد النص في حقول الإدخال فقط */
+input,
+textarea,
+[contenteditable='true'],
+pre,
+code,
+.selectable {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* منع السحب للصور والروابط */
+img,
+a {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* Dark mode base */
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+}
+
+/* Scrollbar styling - Dark mode - سمك عريض جداً */
+::-webkit-scrollbar {
+  width: 24px;
+  height: 24px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #475569 0%, #334155 100%);
+  border-radius: 12px;
+  border: 4px solid #1e293b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #64748b 0%, #475569 100%);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+}
+
+::-webkit-scrollbar-corner {
+  background: #1e293b;
+}
+
+/* Scrollbar للقائمة الجانبية */
+.admin-sidebar::-webkit-scrollbar,
+nav::-webkit-scrollbar,
+aside::-webkit-scrollbar {
+  width: 20px;
+}
+
+.admin-sidebar::-webkit-scrollbar-track,
+nav::-webkit-scrollbar-track,
+aside::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 10px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb,
+nav::-webkit-scrollbar-thumb,
+aside::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #475569 0%, #334155 100%);
+  border-radius: 10px;
+  border: 4px solid #0f172a;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb:hover,
+nav::-webkit-scrollbar-thumb:hover,
+aside::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #64748b 0%, #475569 100%);
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thick;
+  scrollbar-color: #475569 #1e293b;
+}
+
+/* Admin sidebar */
+.admin-sidebar {
+  @apply fixed right-0 top-0 h-full w-64 bg-slate-900 text-white shadow-xl;
+}
+
+.admin-sidebar-link {
+  @apply flex items-center gap-3 px-4 py-3 text-slate-300 transition-colors hover:bg-slate-800 hover:text-white;
+}
+
+.admin-sidebar-link.active {
+  @apply bg-blue-600 text-white;
+}
+
+/* Admin content */
+.admin-content {
+  @apply mr-64 min-h-screen bg-slate-100 p-6;
+}
+
+/* Admin cards */
+.admin-card {
+  @apply rounded-xl bg-white p-6 shadow-sm;
+}
+
+.admin-stat-card {
+  @apply rounded-xl bg-white p-6 shadow-sm transition-transform hover:scale-105;
+}
+
+/* Admin tables */
+.admin-table {
+  @apply w-full text-right;
+}
+
+.admin-table th {
+  @apply border-b bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-600;
+}
+
+.admin-table td {
+  @apply border-b px-4 py-3 text-sm text-slate-700;
+}
+
+.admin-table tr:hover {
+  @apply bg-slate-50;
+}
+
+/* Admin buttons */
+.admin-btn {
+  @apply inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors;
+}
+
+.admin-btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.admin-btn-secondary {
+  @apply bg-slate-200 text-slate-700 hover:bg-slate-300;
+}
+
+.admin-btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+.admin-btn-success {
+  @apply bg-green-600 text-white hover:bg-green-700;
+}
+
+/* Admin forms */
+.admin-input {
+  @apply w-full rounded-lg border border-slate-300 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+}
+
+.admin-select {
+  @apply w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+}
+
+.admin-label {
+  @apply mb-2 block text-sm font-medium text-slate-700;
+}
+
+/* Admin badges */
+.admin-badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+}
+
+.admin-badge-success {
+  @apply bg-green-100 text-green-800;
+}
+
+.admin-badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.admin-badge-danger {
+  @apply bg-red-100 text-red-800;
+}
+
+.admin-badge-info {
+  @apply bg-blue-100 text-blue-800;
+}
+
+/* Loading spinner */
+.admin-spinner {
+  @apply h-8 w-8 animate-spin rounded-full border-4 border-blue-200 border-t-blue-600;
+}
+
+/* =============================================
+   UNIFIED ANIMATION SYSTEM
+   نظام التأثيرات الموحد - مستوى احترافي
+   ============================================= */
+
+/* متغيرات التوقيت والمدة */
+:root {
+  --transition-fast: 150ms;
+  --transition-base: 250ms;
+  --transition-slow: 350ms;
+  --transition-slower: 500ms;
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* تأثيرات القوائم المنسدلة */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes expandHeight {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
+@keyframes collapseHeight {
+  from {
+    max-height: 1000px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+}
+
+/* كلاسات التأثيرات الجاهزة */
+.animate-slide-down {
+  animation: slideDown var(--transition-base) var(--ease-smooth) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp var(--transition-base) var(--ease-smooth) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight var(--transition-base) var(--ease-smooth) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft var(--transition-base) var(--ease-smooth) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-base) var(--ease-smooth) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp var(--transition-base) var(--ease-smooth) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--transition-base) var(--ease-smooth) forwards;
+}
+
+.animate-expand {
+  animation: expandHeight var(--transition-slow) var(--ease-smooth) forwards;
+}
+
+.animate-collapse {
+  animation: collapseHeight var(--transition-slow) var(--ease-smooth) forwards;
+}
+
+/* تأثيرات Hover المتقدمة */
+.hover-lift {
+  transition: transform var(--transition-base) var(--ease-smooth),
+              box-shadow var(--transition-base) var(--ease-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-base) var(--ease-smooth),
+              transform var(--transition-base) var(--ease-smooth);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  transform: scale(1.02);
+}
+
+.hover-scale {
+  transition: transform var(--transition-base) var(--ease-bounce);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale-down {
+  transition: transform var(--transition-fast) var(--ease-smooth);
+}
+
+.hover-scale-down:active {
+  transform: scale(0.95);
+}
+
+/* تأثيرات التحميل */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    #1e293b 0%,
+    #334155 50%,
+    #1e293b 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* تأثيرات القوائم المنسدلة للقائمة الجانبية */
+.sidebar-dropdown {
+  overflow: hidden;
+  transition: max-height var(--transition-slow) var(--ease-in-out),
+              opacity var(--transition-base) var(--ease-smooth);
+}
+
+.sidebar-dropdown.expanded {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.sidebar-dropdown.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* تأثير الأيقونة الدوارة */
+.rotate-icon {
+  transition: transform var(--transition-base) var(--ease-smooth);
+}
+
+.rotate-icon.expanded {
+  transform: rotate(-90deg);
+}
+
+/* تأثيرات البطاقات */
+.card-entrance {
+  animation: fadeInUp var(--transition-base) var(--ease-smooth) forwards;
+}
+
+.card-entrance:nth-child(1) { animation-delay: 0ms; }
+.card-entrance:nth-child(2) { animation-delay: 50ms; }
+.card-entrance:nth-child(3) { animation-delay: 100ms; }
+.card-entrance:nth-child(4) { animation-delay: 150ms; }
+.card-entrance:nth-child(5) { animation-delay: 200ms; }
+.card-entrance:nth-child(6) { animation-delay: 250ms; }
+
+/* تأثيرات الجداول */
+.table-row-entrance {
+  animation: fadeInUp var(--transition-fast) var(--ease-smooth) forwards;
+  opacity: 0;
+}
+
+.table-row-entrance:nth-child(1) { animation-delay: 0ms; }
+.table-row-entrance:nth-child(2) { animation-delay: 30ms; }
+.table-row-entrance:nth-child(3) { animation-delay: 60ms; }
+.table-row-entrance:nth-child(4) { animation-delay: 90ms; }
+.table-row-entrance:nth-child(5) { animation-delay: 120ms; }
+.table-row-entrance:nth-child(6) { animation-delay: 150ms; }
+.table-row-entrance:nth-child(7) { animation-delay: 180ms; }
+.table-row-entrance:nth-child(8) { animation-delay: 210ms; }
+.table-row-entrance:nth-child(9) { animation-delay: 240ms; }
+.table-row-entrance:nth-child(10) { animation-delay: 270ms; }
+
+/* تأثير hover للصفوف */
+.admin-table tr {
+  transition: background-color var(--transition-fast) var(--ease-smooth),
+              transform var(--transition-fast) var(--ease-smooth);
+}
+
+.admin-table tr:hover {
+  background-color: rgba(51, 65, 85, 0.5);
+  transform: scale(1.001);
+}
+
+/* تأثيرات النماذج */
+.admin-input,
+.admin-select {
+  transition: border-color var(--transition-base) var(--ease-smooth),
+              box-shadow var(--transition-base) var(--ease-smooth),
+              background-color var(--transition-base) var(--ease-smooth);
+}
+
+.admin-input:focus,
+.admin-select:focus {
+  animation: pulse-glow 1.5s infinite;
+}
+
+/* تأثيرات الأزرار */
+.admin-btn {
+  transition: all var(--transition-base) var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-slower) var(--ease-smooth),
+              height var(--transition-slower) var(--ease-smooth);
+}
+
+.admin-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.admin-btn:active {
+  transform: scale(0.95);
+}
+
+/* تأثيرات الإشعارات */
+.notification-badge {
+}
+
+/* تأثيرات القائمة الجانبية */
+.sidebar-item {
+  transition: all var(--transition-base) var(--ease-smooth);
+  position: relative;
+}
+
+.sidebar-item::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1));
+  transition: width var(--transition-base) var(--ease-smooth);
+}
+
+.sidebar-item:hover::before {
+  width: 100%;
+}
+
+.sidebar-item.active {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.1));
+  border-right: 3px solid #2563eb;
+}
+
+/* تأثيرات القوائم المنسدلة */
+.dropdown-menu {
+  animation: slideDown var(--transition-base) var(--ease-smooth) forwards;
+  transform-origin: top;
+}
+
+.dropdown-item {
+  transition: all var(--transition-fast) var(--ease-smooth);
+}
+
+.dropdown-item:hover {
+  background-color: rgba(51, 65, 85, 0.8);
+  transform: translateX(-4px);
+}
+
+/* تأثيرات البحث */
+.search-input {
+  transition: all var(--transition-base) var(--ease-smooth);
+}
+
+.search-input:focus {
+  transform: scale(1.02);
+}
+
+/* Smooth Page Transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all var(--transition-slow) var(--ease-smooth);
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity var(--transition-base) var(--ease-smooth);
+}
+
+/* تحسين الأداء */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* تعطيل التأثيرات للمستخدمين الذين يفضلون تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

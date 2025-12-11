@@ -1,0 +1,125 @@
+/* Admin Login RTL Styles */
+
+/* Additional styles for admin login page can be added here */
+
+/* Animation for error messages */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Performance optimizations */
+.bg-gradient-to-br {
+  will-change: background-position;
+}
+
+input:focus {
+  will-change: border-color, box-shadow;
+}
+
+button:hover {
+  will-change: background-color, transform;
+}
+
+/* Disable animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* RTL Support for All Admin Pages */
+[dir='rtl'] {
+  text-align: right;
+}
+
+/* Input Fields RTL Support */
+[dir='rtl'] input[type='email'],
+[dir='rtl'] input[type='password'],
+[dir='rtl'] input[type='text'] {
+  text-align: left;
+  direction: ltr;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+/* Placeholder RTL */
+[dir='rtl'] input::placeholder {
+  text-align: left;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+/* Labels and Arabic Text */
+[dir='rtl'] label,
+[dir='rtl'] p,
+[dir='rtl'] h1,
+[dir='rtl'] h2,
+[dir='rtl'] h3,
+[dir='rtl'] span {
+  font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+  text-align: right;
+}
+
+/* Checkbox RTL Support */
+[dir='rtl'] input[type='checkbox'] {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Button Loading State */
+[dir='rtl'] .animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Focus Styles */
+[dir='rtl'] input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+/* Error Messages */
+[dir='rtl'] .error-message {
+  text-align: right;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Security Notice */
+[dir='rtl'] .text-center {
+  text-align: center !important;
+}

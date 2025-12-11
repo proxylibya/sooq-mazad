@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookmarklet لتحويل الأرقام العربية</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 20px;
+        background-color: #f5f5f5;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .bookmarklet {
+        background: #e3f2fd;
+        border: 2px dashed #2196f3;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .bookmarklet a {
+        background: #2196f3;
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        display: inline-block;
+        margin: 10px;
+      }
+      .bookmarklet a:hover {
+        background: #1976d2;
+      }
+      .code-block {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: 'Courier New', monospace;
+        font-size: 12px;
+        overflow-x: auto;
+        margin: 15px 0;
+      }
+      .step {
+        background: #fff3e0;
+        border-left: 4px solid #ff9800;
+        padding: 15px;
+        margin: 15px 0;
+      }
+      .warning {
+        background: #ffebee;
+        border-left: 4px solid #f44336;
+        padding: 15px;
+        margin: 15px 0;
+      }
+      .success {
+        background: #e8f5e8;
+        border-left: 4px solid #4caf50;
+        padding: 15px;
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔖 Bookmarklet لتحويل الأرقام العربية إلى إنجليزية</h1>
+
+      <div class="success">
+        <h3>✅ ما هو Bookmarklet؟</h3>
+        <p>
+          Bookmarklet هو إشارة مرجعية تحتوي على كود JavaScript يمكن تشغيله على أي صفحة ويب بنقرة
+          واحدة.
+        </p>
+      </div>
+
+      <div class="bookmarklet">
+        <h3>📌 اسحب هذا الرابط إلى شريط الإشارات المرجعية:</h3>
+        <a
+          href="javascript:(function(){function convertArabicToEnglishNumbers(text){const arabicNumbers=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];const englishNumbers=['0','1','2','3','4','5','6','7','8','9'];let result=text;for(let i=0;i<arabicNumbers.length;i++){result=result.replace(new RegExp(arabicNumbers[i],'g'),englishNumbers[i]);}return result;}let changesCount=0;document.querySelectorAll('*').forEach(element=>{if(element.childNodes){element.childNodes.forEach(node=>{if(node.nodeType===Node.TEXT_NODE){const originalText=node.textContent;let newText=originalText;newText=newText.replace(/يوليو ٢٠٢٥/g,'يوليو 2025');newText=newText.replace(/٢٨٩ مشاهدة/g,'289 مشاهدة');newText=convertArabicToEnglishNumbers(newText);if(newText!==originalText){node.textContent=newText;changesCount++;}}});}});alert(`✅ تم الانتهاء! تم إجراء ${changesCount} تغيير في الصفحة`);})();"
+          >🔢 تحويل الأرقام العربية</a
+        >
+      </div>
+
+      <div class="step">
+        <h3>📋 خطوات الاستخدام:</h3>
+        <ol>
+          <li><strong>اسحب الرابط أعلاه</strong> إلى شريط الإشارات المرجعية في متصفحك</li>
+          <li><strong>انتقل إلى أي صفحة</strong> تحتوي على أرقام عربية</li>
+          <li><strong>انقر على الإشارة المرجعية</strong> "تحويل الأرقام العربية"</li>
+          <li><strong>ستظهر رسالة</strong> تخبرك بعدد التغييرات التي تمت</li>
+        </ol>
+      </div>
+
+      <div class="warning">
+        <h3>⚠️ ملاحظات مهمة:</h3>
+        <ul>
+          <li>هذا التحويل يؤثر على النص المعروض فقط، لا يغير البيانات الأصلية</li>
+          <li>إذا أردت التراجع، أعد تحميل الصفحة</li>
+          <li>يعمل على معظم المتصفحات الحديثة</li>
+          <li>آمن تماماً ولا يرسل أي بيانات خارجية</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <h3>🎯 ما يقوم به Bookmarklet:</h3>
+        <ul>
+          <li>يحول "يوليو ٢٠٢٥" إلى "يوليو 2025"</li>
+          <li>يحول "٢٨٩ مشاهدة" إلى "289 مشاهدة"</li>
+          <li>يحول جميع الأرقام العربية (٠١٢٣٤٥٦٧٨٩) إلى إنجليزية (0123456789)</li>
+          <li>يعرض عدد التغييرات التي تمت</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <h3>💻 للاستخدام المتقدم - كود JavaScript:</h3>
+        <p>يمكنك نسخ هذا الكود وتشغيله في console المتصفح:</p>
+        <div class="code-block">
+          // تحويل الأرقام العربية إلى إنجليزية function convertArabicToEnglishNumbers(text) { const
+          arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩']; const englishNumbers =
+          ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; let result = text; for (let i = 0; i <
+          arabicNumbers.length; i++) { result = result.replace(new RegExp(arabicNumbers[i], 'g'),
+          englishNumbers[i]); } return result; } // تحويل جميع النصوص في الصفحة let changesCount =
+          0; document.querySelectorAll('*').forEach(element => { if (element.childNodes) {
+          element.childNodes.forEach(node => { if (node.nodeType === Node.TEXT_NODE) { const
+          originalText = node.textContent; let newText = originalText; // تحويلات محددة newText =
+          newText.replace(/يوليو ٢٠٢٥/g, 'يوليو 2025'); newText = newText.replace(/٢٨٩ مشاهدة/g,
+          '289 مشاهدة'); // تحويل عام للأرقام العربية newText =
+          convertArabicToEnglishNumbers(newText); if (newText !== originalText) { node.textContent =
+          newText; changesCount++; console.log('تم التحويل:', originalText, '→', newText); } } }); }
+          }); console.log(`✅ تم الانتهاء! تم إجراء ${changesCount} تغيير في الصفحة`);
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>🔧 إنشاء Bookmarklet مخصص:</h3>
+        <p>إذا كنت تريد إضافة تحويلات أخرى، يمكنك تعديل الكود وإنشاء bookmarklet جديد:</p>
+        <ol>
+          <li>عدّل الكود JavaScript حسب احتياجاتك</li>
+          <li>استخدم أداة تحويل JavaScript إلى Bookmarklet</li>
+          <li>أو ابدأ الكود بـ <code>javascript:(function(){...})();</code></li>
+        </ol>
+      </div>
+
+      <div class="success">
+        <h3>✨ مثال للاستخدام:</h3>
+        <p>جرب الـ bookmarklet على هذا النص:</p>
+        <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; margin: 10px 0">
+          <p>اسم المستخدم: علي سالم</p>
+          <p>تاريخ التسجيل: يوليو ٢٠٢٥</p>
+          <p>عدد المشاهدات: ٢٨٩ مشاهدة</p>
+          <p>التقييم: ٤.٨ من ٥</p>
+          <p>رقم الهاتف: ٠٩١٢٣٤٥٦٧٨</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

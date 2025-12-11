@@ -1,0 +1,14 @@
+[
+  {
+    "id": "role_super_admin",
+    "name": "SUPER_ADMIN",
+    "displayName": "مدير النظام الرئيسي",
+    "description": "صلاحيات كاملة لإدارة النظام بالكامل",
+    "permissions": ["*"],
+    "status": "ACTIVE",
+    "isSystem": true,
+    "userCount": 1,
+    "createdAt": "2025-08-24T06:12:56.566Z",
+    "updatedAt": "2025-08-24T06:12:56.566Z"
+  }
+]

@@ -1,0 +1,399 @@
+---
+# =====================================
+# 🚀 Kubernetes Deployment for Sooq Mazad
+# إعدادات Kubernetes للنشر على نطاق واسع
+# =====================================
+
+# =====================================
+# Namespace
+# =====================================
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sooq-mazad
+  labels:
+    app: sooq-mazad
+    environment: production
+
+---
+# =====================================
+# ConfigMap - Application Config
+# =====================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sooq-mazad-config
+  namespace: sooq-mazad
+data:
+  NODE_ENV: 'production'
+  WEB_PORT: '3021'
+  ADMIN_PORT: '3022'
+  API_PORT: '3020'
+  REALTIME_PORT: '3024'
+
+---
+# =====================================
+# Secret - Sensitive Data
+# =====================================
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sooq-mazad-secrets
+  namespace: sooq-mazad
+type: Opaque
+stringData:
+  DATABASE_URL: 'postgres://user:password@postgres:5432/sooq_mazad'
+  REDIS_URL: 'redis://redis:6379'
+  JWT_SECRET: 'your-jwt-secret-here'
+  NEXTAUTH_SECRET: 'your-nextauth-secret-here'
+
+---
+# =====================================
+# Web Application Deployment
+# =====================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sooq-web
+  namespace: sooq-mazad
+  labels:
+    app: sooq-web
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: sooq-web
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: sooq-web
+    spec:
+      containers:
+        - name: web
+          image: sooq-mazad-web:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3021
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: sooq-mazad-config
+            - secretRef:
+                name: sooq-mazad-secrets
+          resources:
+            requests:
+              memory: '512Mi'
+              cpu: '500m'
+            limits:
+              memory: '1Gi'
+              cpu: '1000m'
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3021
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3021
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+
+---
+# =====================================
+# Web Service
+# =====================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: sooq-web
+  namespace: sooq-mazad
+spec:
+  selector:
+    app: sooq-web
+  ports:
+    - port: 3021
+      targetPort: 3021
+      protocol: TCP
+  type: ClusterIP
+
+---
+# =====================================
+# API Deployment
+# =====================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sooq-api
+  namespace: sooq-mazad
+  labels:
+    app: sooq-api
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: sooq-api
+  template:
+    metadata:
+      labels:
+        app: sooq-api
+    spec:
+      containers:
+        - name: api
+          image: sooq-mazad-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3020
+          envFrom:
+            - configMapRef:
+                name: sooq-mazad-config
+            - secretRef:
+                name: sooq-mazad-secrets
+          resources:
+            requests:
+              memory: '256Mi'
+              cpu: '250m'
+            limits:
+              memory: '512Mi'
+              cpu: '500m'
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3020
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3020
+            initialDelaySeconds: 15
+            periodSeconds: 20
+
+---
+# =====================================
+# API Service
+# =====================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: sooq-api
+  namespace: sooq-mazad
+spec:
+  selector:
+    app: sooq-api
+  ports:
+    - port: 3020
+      targetPort: 3020
+  type: ClusterIP
+
+---
+# =====================================
+# Horizontal Pod Autoscaler - Web
+# =====================================
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: sooq-web-hpa
+  namespace: sooq-mazad
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sooq-web
+  minReplicas: 4
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Percent
+          value: 10
+          periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+        - type: Pods
+          value: 4
+          periodSeconds: 15
+      selectPolicy: Max
+
+---
+# =====================================
+# Horizontal Pod Autoscaler - API
+# =====================================
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: sooq-api-hpa
+  namespace: sooq-mazad
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sooq-api
+  minReplicas: 4
+  maxReplicas: 16
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+
+---
+# =====================================
+# Ingress Controller Configuration
+# =====================================
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sooq-mazad-ingress
+  namespace: sooq-mazad
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/proxy-body-size: '100m'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '300'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '300'
+    cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+    nginx.ingress.kubernetes.io/rate-limit: '100'
+    nginx.ingress.kubernetes.io/rate-limit-window: '1m'
+spec:
+  tls:
+    - hosts:
+        - sooqmazad.ly
+        - www.sooqmazad.ly
+        - api.sooqmazad.ly
+        - admin.sooqmazad.ly
+      secretName: sooq-mazad-tls
+  rules:
+    - host: sooqmazad.ly
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sooq-web
+                port:
+                  number: 3021
+    - host: www.sooqmazad.ly
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sooq-web
+                port:
+                  number: 3021
+    - host: api.sooqmazad.ly
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sooq-api
+                port:
+                  number: 3020
+    - host: admin.sooqmazad.ly
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sooq-admin
+                port:
+                  number: 3022
+
+---
+# =====================================
+# Pod Disruption Budget
+# =====================================
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: sooq-web-pdb
+  namespace: sooq-mazad
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: sooq-web
+
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: sooq-api-pdb
+  namespace: sooq-mazad
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: sooq-api
+
+---
+# =====================================
+# Network Policy
+# =====================================
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: sooq-mazad-network-policy
+  namespace: sooq-mazad
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+        - podSelector: {}
+  egress:
+    - to:
+        - podSelector: {}
+    - to:
+        - namespaceSelector: {}
+          podSelector:
+            matchLabels:
+              app: postgres
+    - to:
+        - namespaceSelector: {}
+          podSelector:
+            matchLabels:
+              app: redis

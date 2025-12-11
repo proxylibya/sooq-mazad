@@ -1,0 +1,16 @@
+﻿export const carTypes = [
+  { value: 'all', label: 'جميع النواع' },
+  { value: 'sedan', label: 'سيدان' },
+  { value: 'hatchback', label: 'هاتشباك' },
+  { value: 'suv', label: 'دفع رباعي' },
+  { value: 'pickup', label: 'بيك ب' },
+  { value: 'coupe', label: 'كوبيه' },
+  { value: 'convertible', label: 'مكشوفة' },
+  { value: 'wagon', label: 'ستيشن واجن' },
+  { value: 'van', label: 'فان' },
+  { value: 'minivan', label: 'ميني فان' },
+  { value: 'truck', label: 'شاحنة' },
+  { value: 'bus', label: 'حافلة' },
+  { value: 'motorcycle', label: 'دراجة نارية' },
+  { value: 'other', label: 'خرى' },
+];

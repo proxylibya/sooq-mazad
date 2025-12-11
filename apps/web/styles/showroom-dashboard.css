@@ -1,0 +1,233 @@
+/* تصميم خاص بصفحة dashboard المعارض */
+
+/* إصلاح مشاكل الأزرار في بطاقات المعارض */
+.showroom-management-card {
+  position: relative;
+  z-index: 1;
+}
+
+.showroom-management-card .showroom-actions {
+  position: relative;
+  z-index: 10;
+}
+
+.showroom-management-card .showroom-actions button,
+.showroom-management-card .showroom-actions a {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 11;
+  cursor: pointer !important;
+  user-select: none;
+}
+
+.showroom-management-card .showroom-actions button:hover,
+.showroom-management-card .showroom-actions a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.showroom-management-card .showroom-actions button:active,
+.showroom-management-card .showroom-actions a:active {
+  transform: translateY(0);
+}
+
+/* إصلاح مشاكل الصور */
+.showroom-image-container {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.showroom-image-container img {
+  transition: transform 0.3s ease;
+}
+
+.showroom-image-container:hover img {
+  transform: scale(1.05);
+}
+
+/* تحسين عرض الشارات */
+.showroom-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.showroom-badge {
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* تحسين عرض عدد الصور */
+.image-count-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* تحسين التخطيط العام للبطاقة */
+.showroom-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* إصلاح مشاكل التحويم */
+.showroom-management-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ضمان عدم تداخل العناصر */
+.showroom-management-card * {
+  box-sizing: border-box;
+}
+
+/* تحسين الاستجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .showroom-management-card .showroom-actions {
+    gap: 8px;
+  }
+
+  .showroom-management-card .showroom-actions button,
+  .showroom-management-card .showroom-actions a {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+  }
+}
+
+/* إصلاح خاص للأيقونات */
+.showroom-management-card .showroom-actions svg {
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* تحسين حالة التحميل */
+.showroom-management-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.showroom-management-card.loading .showroom-actions {
+  pointer-events: none;
+}
+
+/* تحسين حالة الأزرار المعطلة */
+.showroom-management-card .showroom-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: auto !important;
+}
+
+.showroom-management-card .showroom-actions button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* تحسينات إضافية للتصميم */
+.showroom-management-card {
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.showroom-management-card:hover {
+  border-color: #3b82f6;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* تحسين عرض النصوص */
+.showroom-card-content h3 {
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.25;
+}
+
+.showroom-card-content p {
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* تحسين الأيقونات */
+.showroom-card-content svg {
+  flex-shrink: 0;
+  color: #9ca3af;
+}
+
+/* تحسين التباعد */
+.showroom-card-content > div {
+  margin-bottom: 1rem;
+}
+
+.showroom-card-content > div:last-child {
+  margin-bottom: 0;
+}
+
+/* تحسين عرض الإحصائيات */
+.showroom-stats {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.showroom-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.showroom-stat-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.showroom-stat-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+/* تحسين عرض المعلومات */
+.showroom-info-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.showroom-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: #f9fafb;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s ease;
+}
+
+.showroom-info-item:hover {
+  background: #f3f4f6;
+}
+
+/* تحسين الشارات */
+.showroom-badge {
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* تحسين عداد الصور */
+.image-count-badge {
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,447 @@
+/* تصميم لوحة تحكم المالك الحديث */
+
+/* تحسينات عامة للوحة */
+.auction-owner-panel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 1rem;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+}
+
+/* رأس اللوحة */
+.auction-panel-header {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-bottom: 1px solid #cbd5e1;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.auction-panel-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+}
+
+/* أيقونة الرأس */
+.panel-icon {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.panel-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+/* بطاقات الإحصائيات */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.75rem;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* شريط التقدم السفلي */
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, currentColor, transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* أزرار التحكم */
+.control-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.control-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.control-button:hover::before {
+  left: 100%;
+}
+
+.control-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.control-button:active {
+  transform: translateY(0);
+}
+
+/* أزرار الخيارات الإضافية */
+.option-button {
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.option-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.3s,
+    height 0.3s;
+}
+
+.option-button:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.option-button:hover {
+  border-color: #3b82f6;
+  background: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* حالة المزاد */
+.status-badge {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: statusShine 3s infinite;
+}
+
+@keyframes statusShine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* النقطة المتحركة للحالة */
+.status-dot {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* تحسينات متجاوبة */
+@media (max-width: 640px) {
+  .auction-panel-header {
+    padding: 1rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-card .stat-number {
+    font-size: 1.125rem; /* text-lg */
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  .stat-card .stat-label {
+    font-size: 0.75rem; /* text-xs */
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  .control-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .option-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .stat-card {
+    padding: 1.5rem;
+  }
+
+  .stat-card .stat-number {
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  .stat-card .stat-label {
+    font-size: 1rem; /* text-base */
+    line-height: 1.3;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 1024px) {
+  .auction-owner-panel {
+    border-radius: 1.5rem;
+  }
+
+  .stat-card {
+    padding: 2rem;
+  }
+
+  .stat-card .stat-number {
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  .stat-card .stat-label {
+    font-size: 1.125rem; /* text-lg */
+    line-height: 1.3;
+    font-weight: 500;
+  }
+}
+
+/* تأثيرات خاصة */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* تحسينات الأداء */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* تحسينات إمكانية الوصول */
+.control-button:focus,
+.option-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* تحسينات الطباعة */
+@media print {
+  .auction-owner-panel {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .control-button,
+  .option-button {
+    display: none;
+  }
+}
+
+/* تحسينات الوضع المظلم */
+@media (prefers-color-scheme: dark) {
+  .auction-owner-panel {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-color: #334155;
+  }
+
+  .auction-panel-header {
+    background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+    border-bottom-color: #475569;
+  }
+
+  .option-button {
+    background: #1e293b;
+    border-color: #475569;
+    color: #e2e8f0;
+  }
+
+  .option-button:hover {
+    background: #334155;
+    border-color: #3b82f6;
+  }
+}
+
+/* تحسينات الحركة المقللة */
+@media (prefers-reduced-motion: reduce) {
+  .stat-card,
+  .control-button,
+  .option-button {
+    transition: none;
+  }
+
+  .stat-card::before,
+  .control-button::before,
+  .option-button::after {
+    display: none;
+  }
+
+  .progress-bar,
+  .status-badge::before,
+  .status-dot {
+    animation: none;
+  }
+}
+
+/* تحسينات الكونتراست العالي */
+@media (prefers-contrast: high) {
+  .auction-owner-panel {
+    border: 2px solid #000;
+  }
+
+  .control-button,
+  .option-button {
+    border: 2px solid #000;
+  }
+}
+
+/* تحسينات وضوح النصوص */
+.stat-card .stat-number {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.025em;
+}
+
+.stat-card .stat-label {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.025em;
+}
+
+/* تحسينات إضافية للخطوط */
+.stat-card {
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1;
+}
+
+/* ضمان الحد الأدنى للأحجام */
+.stat-card .stat-number {
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.stat-card .stat-label {
+  min-height: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* منع ضغط النصوص العربية */
+.stat-card p {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  word-break: keep-all;
+  hyphens: none;
+}
+
+/* تحسينات خاصة للنصوص العربية */
+.stat-card .stat-label {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+/* ضمان المساحة الكافية للنصوص */
+.stat-card .flex-1 {
+  min-width: 0;
+  flex: 1 1 auto;
+  padding-right: 0.5rem;
+}
+
+.stat-card .flex-shrink-0 {
+  flex-shrink: 0;
+  margin-left: 0;
+}

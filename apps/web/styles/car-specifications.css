@@ -1,0 +1,57 @@
+/* أنماط قسم مواصفات السيارة - التصميم الجديد */
+.car-specifications-container {
+  @apply mb-6 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm;
+}
+
+.car-features-title {
+  @apply mb-6 flex items-center gap-3;
+}
+
+.car-features-title-icon {
+  @apply h-6 w-6 text-blue-600;
+}
+
+.car-features-title-text {
+  @apply text-lg font-semibold text-gray-900;
+}
+
+.car-specifications-grid {
+  @apply grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3;
+}
+
+.car-spec-card {
+  @apply relative overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md hover:border-blue-300;
+}
+
+.car-spec-card.spec-basic {
+  @apply bg-gradient-to-br from-blue-50 to-white border-blue-200;
+}
+
+.car-spec-card.spec-general {
+  @apply bg-gradient-to-br from-gray-50 to-white border-gray-200;
+}
+
+.car-spec-label {
+  @apply mb-3 flex items-center gap-2;
+}
+
+.car-spec-icon {
+  @apply h-5 w-5 text-gray-600;
+}
+
+.car-spec-label span {
+  @apply text-sm font-medium text-gray-600;
+}
+
+.car-spec-value {
+  @apply text-base font-semibold text-gray-900;
+}
+
+/* تأثيرات تفاعلية */
+.car-spec-card:hover .car-spec-icon {
+  @apply text-blue-600;
+}
+
+.car-spec-card:hover .car-spec-label span {
+  @apply text-blue-600;
+}
