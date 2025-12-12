@@ -1,9 +1,11 @@
 import React from 'react';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import FireIcon from '@heroicons/react/24/outline/FireIcon';
+import {
+  CalendarIcon,
+  CogIcon,
+  FireIcon,
+  MapPinIcon,
+  TruckIcon,
+} from '@heroicons/react/24/outline';
 
 // أيقونات المواصفات
 export const CarSpecIcons = {

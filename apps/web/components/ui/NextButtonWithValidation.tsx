@@ -1,4 +1,4 @@
-import CheckIcon from '@heroicons/react/24/outline/CheckIcon';
+import { CheckIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import { ForwardIcon } from '../common/icons/RTLIcon';
 

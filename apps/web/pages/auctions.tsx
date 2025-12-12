@@ -31,18 +31,20 @@ import { formatMileage } from '@/utils/carTranslations';
 import { log } from '@/utils/clientLogger';
 import { translateToArabic } from '@/utils/formatters';
 import { UnifiedLocalStorage } from '@/utils/unifiedLocalStorage';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import ChevronUpIcon from '@heroicons/react/24/outline/ChevronUpIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import FolderIcon from '@heroicons/react/24/outline/FolderIcon';
-import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
-import ListBulletIcon from '@heroicons/react/24/outline/ListBulletIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  FolderIcon,
+  FunnelIcon,
+  ListBulletIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  Squares2X2Icon,
+  TrophyIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { SignalIcon, StarIcon } from '@heroicons/react/24/solid';
 
 // تم إزالة TargetIcon لعدم استخدامه - تم استبدال جميع المراجع بـ SignalIcon/TrophyIcon

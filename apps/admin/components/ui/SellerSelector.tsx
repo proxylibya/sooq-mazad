@@ -3,10 +3,12 @@
  * Seller Selector Component - Allows admin to select or create seller for listings
  */
 
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  MagnifyingGlassIcon,
+  PlusIcon,
+  UserIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { useCallback, useEffect, useState } from 'react';
 import UnifiedPhoneInput from './UnifiedPhoneInput';
 

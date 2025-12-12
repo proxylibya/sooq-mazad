@@ -2,13 +2,15 @@
 /**
  * صفحة رفع صور الإعلان - لوحة التحكم
  */
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import CloudArrowUpIcon from '@heroicons/react/24/outline/CloudArrowUpIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckCircleIcon,
+  CloudArrowUpIcon,
+  ExclamationTriangleIcon,
+  PhotoIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

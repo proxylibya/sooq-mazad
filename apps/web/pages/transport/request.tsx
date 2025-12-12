@@ -3,14 +3,16 @@
  * Transport Request Page - Integrated System
  */
 
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
+import {
+  ArrowLeftIcon,
+  CheckCircleIcon,
+  DocumentTextIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  MapPinIcon,
+  TruckIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

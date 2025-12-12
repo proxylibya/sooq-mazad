@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { OpensooqNavbar } from '../components/common';
-import CalculatorIcon from '@heroicons/react/24/outline/CalculatorIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
-import PrinterIcon from '@heroicons/react/24/outline/PrinterIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import BanknotesIcon from '@heroicons/react/24/outline/BanknotesIcon';
-import ArrowTrendingUpIcon from '@heroicons/react/24/outline/ArrowTrendingUpIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon';
-import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon';
-import CalendarDaysIcon from '@heroicons/react/24/outline/CalendarDaysIcon';
-import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
+import {
+  ArrowDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowUpIcon,
+  BanknotesIcon,
+  CalculatorIcon,
+  CalendarDaysIcon,
+  ChartBarIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  CreditCardIcon,
+  CurrencyDollarIcon,
+  DocumentTextIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  PrinterIcon,
+  ShareIcon,
+  ShieldCheckIcon,
+} from '@heroicons/react/24/outline';
 
 // صفحة حاسبة التمويل
 const FinancingCalculatorPage = () => {

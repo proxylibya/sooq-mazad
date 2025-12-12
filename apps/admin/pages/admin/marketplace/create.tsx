@@ -2,17 +2,19 @@
  * صفحة إنشاء إعلان جديد في السوق الفوري - لوحة التحكم
  * يستخدم البيانات المشتركة من packages/utils
  */
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import ChevronUpIcon from '@heroicons/react/24/outline/ChevronUpIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import CursorArrowRaysIcon from '@heroicons/react/24/outline/CursorArrowRaysIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import SwatchIcon from '@heroicons/react/24/outline/SwatchIcon';
-import WrenchScrewdriverIcon from '@heroicons/react/24/outline/WrenchScrewdriverIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  ArrowRightIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  CogIcon,
+  CursorArrowRaysIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  SparklesIcon,
+  SwatchIcon,
+  WrenchScrewdriverIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import StarIcon from '@heroicons/react/24/solid/StarIcon';
 import Head from 'next/head';
 import Link from 'next/link';

@@ -3,14 +3,16 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 // import { useSession } from 'next-auth/react'; // تم تعطيل نظام المصادقة مؤقتاً
 import { OpensooqNavbar } from '../components/common';
-import BuildingOfficeIcon from '@heroicons/react/24/outline/BuildingOfficeIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import AcademicCapIcon from '@heroicons/react/24/outline/AcademicCapIcon';
-import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
+import {
+  AcademicCapIcon,
+  BuildingOfficeIcon,
+  CheckCircleIcon,
+  CurrencyDollarIcon,
+  DocumentTextIcon,
+  MapPinIcon,
+  PhotoIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 import { countries } from '../utils/localizationSystem';
 import PhoneInputField from '../components/PhoneInputField';
 import { type Country } from '../components/CountryCodeSelector';

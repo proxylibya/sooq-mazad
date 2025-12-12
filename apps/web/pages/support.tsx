@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon';
-import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
-import PaperAirplaneIcon from '@heroicons/react/24/outline/PaperAirplaneIcon';
+import {
+  ArrowLeftIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  DocumentTextIcon,
+  EnvelopeIcon,
+  ExclamationTriangleIcon,
+  PaperAirplaneIcon,
+  PhoneIcon,
+  QuestionMarkCircleIcon,
+} from '@heroicons/react/24/outline';
 import { OpensooqNavbar } from '../components/common';
 
 const SupportPage: React.FC = () => {

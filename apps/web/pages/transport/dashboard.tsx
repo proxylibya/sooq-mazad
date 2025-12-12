@@ -1,20 +1,22 @@
-import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClipboardDocumentIcon from '@heroicons/react/24/outline/ClipboardDocumentIcon';
-import ClipboardDocumentListIcon from '@heroicons/react/24/outline/ClipboardDocumentListIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import WalletIcon from '@heroicons/react/24/outline/WalletIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
+import {
+  ArrowPathIcon,
+  CalendarIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ClipboardDocumentIcon,
+  ClipboardDocumentListIcon,
+  ClockIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  MapPinIcon,
+  PhoneIcon,
+  PlusIcon,
+  StarIcon,
+  TruckIcon,
+  UserIcon,
+  WalletIcon,
+  XCircleIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

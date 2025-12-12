@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
+import {
+  ArrowLeftIcon,
+  ArrowPathIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  ExclamationTriangleIcon,
+  PhoneIcon,
+} from '@heroicons/react/24/outline';
 import { OpensooqNavbar } from '../components/common';
 import { processPhoneNumber } from '../utils/phoneUtils';
 

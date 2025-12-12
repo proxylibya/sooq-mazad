@@ -1,4 +1,4 @@
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useEffect, useRef, useState } from 'react';
 
 interface FilterDropdownProps {

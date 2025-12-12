@@ -48,19 +48,21 @@ import SimpleSpinner from '@/components/ui/SimpleSpinner';
 import useAuthProtection from '@/hooks/useAuthProtection';
 import { usePageElements } from '@/hooks/usePageElements';
 import { calculateMinimumBid } from '@/utils/auctionHelpers';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import HandRaisedIcon from '@heroicons/react/24/outline/HandRaisedIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  ExclamationTriangleIcon,
+  EyeIcon,
+  HandRaisedIcon,
+  InformationCircleIcon,
+  PhoneIcon,
+  SparklesIcon,
+  TrophyIcon,
+  TruckIcon,
+  UserIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { StarIcon } from '@heroicons/react/24/solid';
 import CarFeaturesDisplay from '../../components/CarFeaturesDisplay';
 import EnhancedImageGallery from '../../components/EnhancedImageGallery';

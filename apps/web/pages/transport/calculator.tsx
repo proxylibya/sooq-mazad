@@ -3,16 +3,18 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { OpensooqNavbar } from '../../components/common';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import CalculatorIcon from '@heroicons/react/24/outline/CalculatorIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import ScaleIcon from '@heroicons/react/24/outline/ScaleIcon';
-import PrinterIcon from '@heroicons/react/24/outline/PrinterIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import ArrowsRightLeftIcon from '@heroicons/react/24/outline/ArrowsRightLeftIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
+import {
+  ArrowsRightLeftIcon,
+  CalculatorIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  MapPinIcon,
+  PrinterIcon,
+  ScaleIcon,
+  ShareIcon,
+  TruckIcon,
+} from '@heroicons/react/24/outline';
 
 interface CalculationResult {
   distance: number;

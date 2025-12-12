@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
+import { CheckCircleIcon, TruckIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { OpensooqNavbar, BackButton } from '../../components/common';
 
 interface TransportProfileData {

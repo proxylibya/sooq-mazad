@@ -1,6 +1,8 @@
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import KeyIcon from '@heroicons/react/24/outline/KeyIcon';
+import {
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  KeyIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

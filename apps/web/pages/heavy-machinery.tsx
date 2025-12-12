@@ -3,17 +3,19 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Layout } from '../components/common';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon';
-import ListBulletIcon from '@heroicons/react/24/outline/ListBulletIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
+import {
+  ChatBubbleLeftRightIcon,
+  ClockIcon,
+  CogIcon,
+  HeartIcon,
+  ListBulletIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  PhoneIcon,
+  Squares2X2Icon,
+  TruckIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { formatNumber } from '../utils/numberUtils';
 import { libyanCities } from '../data/libyan-cities';
 

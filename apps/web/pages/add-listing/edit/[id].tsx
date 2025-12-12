@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Layout, BackButton } from '../../../components/common';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { toast } from 'react-hot-toast';
 
 interface ListingData {

@@ -1,18 +1,20 @@
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import CameraIcon from '@heroicons/react/24/outline/CameraIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
+import {
+  ArrowLeftIcon,
+  CalendarIcon,
+  CameraIcon,
+  ChatBubbleLeftRightIcon,
+  CogIcon,
+  DocumentTextIcon,
+  HeartIcon,
+  MapPinIcon,
+  PhoneIcon,
+  ShareIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  StarIcon,
+  TruckIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

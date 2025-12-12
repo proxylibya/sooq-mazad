@@ -1,6 +1,4 @@
-import BoltIcon from '@heroicons/react/24/outline/BoltIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
+import { BoltIcon, CheckCircleIcon, ClockIcon } from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';

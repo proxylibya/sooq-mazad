@@ -2,13 +2,15 @@
  * مكون قائمة منبثقة لتحديد الموقع على الخريطة
  * Location Picker Modal Component with Interactive Map
  */
-import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
-import CheckIcon from '@heroicons/react/24/outline/CheckIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import MinusIcon from '@heroicons/react/24/outline/MinusIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  ArrowPathIcon,
+  CheckIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  MinusIcon,
+  PlusIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 // إحداثيات المدن الليبية الرئيسية

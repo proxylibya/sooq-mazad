@@ -1,21 +1,23 @@
-import CameraIcon from '@heroicons/react/24/outline/CameraIcon';
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClipboardDocumentIcon from '@heroicons/react/24/outline/ClipboardDocumentIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import HomeIcon from '@heroicons/react/24/outline/HomeIcon';
-import LightBulbIcon from '@heroicons/react/24/outline/LightBulbIcon';
-import MegaphoneIcon from '@heroicons/react/24/outline/MegaphoneIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  CameraIcon,
+  ChartBarIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ClipboardDocumentIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  DocumentTextIcon,
+  EyeIcon,
+  HomeIcon,
+  LightBulbIcon,
+  MegaphoneIcon,
+  PlusIcon,
+  ShareIcon,
+  SparklesIcon,
+  StarIcon,
+  TrophyIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

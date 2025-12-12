@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { OpensooqNavbar } from '../../components/common';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
+import {
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  PhoneIcon,
+  TruckIcon,
+} from '@heroicons/react/24/outline';
 
 interface TrackingStatus {
   id: string;

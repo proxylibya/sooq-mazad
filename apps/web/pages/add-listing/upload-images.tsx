@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import CloudArrowUpIcon from '@heroicons/react/24/outline/CloudArrowUpIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  CheckCircleIcon,
+  CloudArrowUpIcon,
+  ExclamationTriangleIcon,
+  PhotoIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';

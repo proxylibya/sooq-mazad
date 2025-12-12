@@ -1,12 +1,14 @@
 import SelectField from '../components/ui/SelectField';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import ListBulletIcon from '@heroicons/react/24/outline/ListBulletIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon';
-import WrenchScrewdriverIcon from '@heroicons/react/24/outline/WrenchScrewdriverIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  CogIcon,
+  HeartIcon,
+  ListBulletIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  Squares2X2Icon,
+  WrenchScrewdriverIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';

@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Layout } from '../../../components/common';
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import ChartPieIcon from '@heroicons/react/24/outline/ChartPieIcon';
-import ArrowTrendingUpIcon from '@heroicons/react/24/outline/ArrowTrendingUpIcon';
-import ArrowTrendingDownIcon from '@heroicons/react/24/outline/ArrowTrendingDownIcon';
+import {
+  ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ChartBarIcon,
+  ChartPieIcon,
+  CurrencyDollarIcon,
+  DocumentArrowDownIcon,
+  EyeIcon,
+  UserGroupIcon,
+} from '@heroicons/react/24/outline';
 import { BackButton } from '../../../components/common';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import UserGroupIcon from '@heroicons/react/24/outline/UserGroupIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import DocumentArrowDownIcon from '@heroicons/react/24/outline/DocumentArrowDownIcon';
 
 interface AnalyticsData {
   auctionId: string;

@@ -1,8 +1,10 @@
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  ArrowRightIcon,
+  CheckCircleIcon,
+  PhotoIcon,
+  TruckIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';

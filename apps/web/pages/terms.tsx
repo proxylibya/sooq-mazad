@@ -2,18 +2,20 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { OpensooqNavbar } from '../components/common';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import ShieldCheckIcon from '@heroicons/react/24/outline/ShieldCheckIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
+import {
+  ArrowRightIcon,
+  BuildingStorefrontIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  DocumentTextIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  ShieldCheckIcon,
+  TrophyIcon,
+  UserIcon,
+  XCircleIcon,
+} from '@heroicons/react/24/outline';
 
 // صفحة الشروط والأحكام
 const TermsPage = () => {

@@ -1,17 +1,19 @@
-import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
-import CalendarDaysIcon from '@heroicons/react/24/outline/CalendarDaysIcon';
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import InformationCircleIcon from '@heroicons/react/24/outline/InformationCircleIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import PrinterIcon from '@heroicons/react/24/outline/PrinterIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
+import {
+  ArrowPathIcon,
+  CalendarDaysIcon,
+  ChartBarIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  DocumentTextIcon,
+  InformationCircleIcon,
+  MagnifyingGlassIcon,
+  PhoneIcon,
+  PrinterIcon,
+  ShareIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useState } from 'react';
 import { OpensooqNavbar } from '../components/common';

@@ -1,11 +1,13 @@
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
+import {
+  CalendarIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  EyeIcon,
+  HeartIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import Head from 'next/head';
 import Image from 'next/image';

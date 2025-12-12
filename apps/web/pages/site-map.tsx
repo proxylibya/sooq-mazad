@@ -2,24 +2,26 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { OpensooqNavbar } from '../components/common';
-import HomeIcon from '@heroicons/react/24/outline/HomeIcon';
-import TrophyIcon from '@heroicons/react/24/outline/TrophyIcon';
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
-import BuildingOfficeIcon from '@heroicons/react/24/outline/BuildingOfficeIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import ChatBubbleLeftIcon from '@heroicons/react/24/outline/ChatBubbleLeftIcon';
-import BellIcon from '@heroicons/react/24/outline/BellIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon';
-import ArrowsRightLeftIcon from '@heroicons/react/24/outline/ArrowsRightLeftIcon';
-import WrenchScrewdriverIcon from '@heroicons/react/24/outline/WrenchScrewdriverIcon';
-import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
-import UserPlusIcon from '@heroicons/react/24/outline/UserPlusIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import MapIcon from '@heroicons/react/24/outline/MapIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
+import {
+  ArrowsRightLeftIcon,
+  BellIcon,
+  BuildingOfficeIcon,
+  BuildingStorefrontIcon,
+  ChatBubbleLeftIcon,
+  CheckCircleIcon,
+  CreditCardIcon,
+  HeartIcon,
+  HomeIcon,
+  MapIcon,
+  PlusIcon,
+  QuestionMarkCircleIcon,
+  TrophyIcon,
+  TruckIcon,
+  UserIcon,
+  UserPlusIcon,
+  WrenchScrewdriverIcon,
+  XCircleIcon,
+} from '@heroicons/react/24/outline';
 
 interface PageInfo {
   href: string;

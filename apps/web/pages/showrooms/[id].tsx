@@ -1,20 +1,22 @@
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
-import CalendarDaysIcon from '@heroicons/react/24/outline/CalendarDaysIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CheckBadgeIcon from '@heroicons/react/24/outline/CheckBadgeIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import FireIcon from '@heroicons/react/24/outline/FireIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import ListBulletIcon from '@heroicons/react/24/outline/ListBulletIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import TagIcon from '@heroicons/react/24/outline/TagIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {
+  BuildingStorefrontIcon,
+  CalendarDaysIcon,
+  ChatBubbleLeftRightIcon,
+  CheckBadgeIcon,
+  CheckCircleIcon,
+  FireIcon,
+  HeartIcon,
+  ListBulletIcon,
+  MapPinIcon,
+  PhoneIcon,
+  PlusIcon,
+  ShareIcon,
+  Squares2X2Icon,
+  StarIcon,
+  TagIcon,
+  TruckIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
 import Head from 'next/head';
 import Link from 'next/link';

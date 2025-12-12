@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Layout, BackButton } from '../../../components/common';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import UserGroupIcon from '@heroicons/react/24/outline/UserGroupIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import DevicePhoneMobileIcon from '@heroicons/react/24/outline/DevicePhoneMobileIcon';
-import GlobeAltIcon from '@heroicons/react/24/outline/GlobeAltIcon';
-import DocumentArrowDownIcon from '@heroicons/react/24/outline/DocumentArrowDownIcon';
-import PrinterIcon from '@heroicons/react/24/outline/PrinterIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
+import {
+  DevicePhoneMobileIcon,
+  DocumentArrowDownIcon,
+  EyeIcon,
+  GlobeAltIcon,
+  MapPinIcon,
+  PrinterIcon,
+  ShareIcon,
+  UserGroupIcon,
+} from '@heroicons/react/24/outline';
 
 interface AuctionReportData {
   auctionId: string;

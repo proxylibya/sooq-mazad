@@ -8,14 +8,16 @@ import useAuth from '../hooks/useAuth';
 import { useFavorites } from '../hooks/useFavorites';
 
 // Icons (unified with notifications style)
-import BuildingStorefrontIcon from '@heroicons/react/24/outline/BuildingStorefrontIcon';
-import CheckBadgeIcon from '@heroicons/react/24/outline/CheckBadgeIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import EllipsisHorizontalIcon from '@heroicons/react/24/outline/EllipsisHorizontalIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
+import {
+  BuildingStorefrontIcon,
+  CheckBadgeIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  EllipsisHorizontalIcon,
+  MapPinIcon,
+  TrashIcon,
+  TruckIcon,
+} from '@heroicons/react/24/outline';
 import HeartSolid from '@heroicons/react/24/solid/HeartIcon';
 import { CarIcon } from '../components/ui/MissingIcons';
 

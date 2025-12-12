@@ -3,15 +3,17 @@
  * My Transport Bookings Page
  */
 
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClipboardDocumentIcon from '@heroicons/react/24/outline/ClipboardDocumentIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import TruckIcon from '@heroicons/react/24/outline/TruckIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
+import {
+  CalendarIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ClipboardDocumentIcon,
+  ClockIcon,
+  MapPinIcon,
+  PhoneIcon,
+  TruckIcon,
+  XCircleIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

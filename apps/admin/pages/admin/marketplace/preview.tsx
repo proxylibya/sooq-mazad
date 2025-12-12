@@ -2,18 +2,20 @@
 /**
  * صفحة معاينة ونشر الإعلان - لوحة التحكم
  */
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ChevronLeftIcon from '@heroicons/react/24/outline/ChevronLeftIcon';
-import ChevronRightIcon from '@heroicons/react/24/outline/ChevronRightIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
+import {
+  ArrowLeftIcon,
+  CalendarIcon,
+  CheckCircleIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CogIcon,
+  CurrencyDollarIcon,
+  EyeIcon,
+  MapPinIcon,
+  PencilIcon,
+  PhoneIcon,
+  PhotoIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

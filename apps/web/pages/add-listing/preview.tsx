@@ -1,14 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import ArrowLeftIcon from '@heroicons/react/24/outline/ArrowLeftIcon';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
-import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
+import {
+  ArrowLeftIcon,
+  CalendarIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  CogIcon,
+  CurrencyDollarIcon,
+  EyeIcon,
+  MapPinIcon,
+  PencilIcon,
+  PhotoIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

@@ -1,19 +1,21 @@
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import ArrowTrendingDownIcon from '@heroicons/react/24/outline/ArrowTrendingDownIcon';
-import ArrowTrendingUpIcon from '@heroicons/react/24/outline/ArrowTrendingUpIcon';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
-import ChatBubbleLeftIcon from '@heroicons/react/24/outline/ChatBubbleLeftIcon';
-import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon';
-import DevicePhoneMobileIcon from '@heroicons/react/24/outline/DevicePhoneMobileIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import EyeIcon from '@heroicons/react/24/outline/EyeIcon';
-import GlobeAltIcon from '@heroicons/react/24/outline/GlobeAltIcon';
-import HeartIcon from '@heroicons/react/24/outline/HeartIcon';
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
+import {
+  ArrowRightIcon,
+  ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
+  CalendarIcon,
+  ChartBarIcon,
+  ChatBubbleLeftIcon,
+  ComputerDesktopIcon,
+  DevicePhoneMobileIcon,
+  ExclamationTriangleIcon,
+  EyeIcon,
+  GlobeAltIcon,
+  HeartIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon,
+  PhoneIcon,
+  ShareIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

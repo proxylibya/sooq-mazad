@@ -2,20 +2,22 @@ import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTriangleIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import BanknotesIcon from '@heroicons/react/24/outline/BanknotesIcon';
-import CreditCardIcon from '@heroicons/react/24/outline/CreditCardIcon';
-import BuildingLibraryIcon from '@heroicons/react/24/outline/BuildingLibraryIcon';
-import ChatBubbleLeftRightIcon from '@heroicons/react/24/outline/ChatBubbleLeftRightIcon';
-import PrinterIcon from '@heroicons/react/24/outline/PrinterIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
+import {
+  ArrowRightIcon,
+  BanknotesIcon,
+  BuildingLibraryIcon,
+  ChatBubbleLeftRightIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  CreditCardIcon,
+  DocumentTextIcon,
+  EnvelopeIcon,
+  ExclamationTriangleIcon,
+  PhoneIcon,
+  PrinterIcon,
+  ShareIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 import { CheckCircleIcon as CheckCircleSolid } from '@heroicons/react/24/solid';
 import { OpensooqNavbar } from '../../../components/common';
 import PaymentCountdownTimer from '../../../components/PaymentCountdownTimer';

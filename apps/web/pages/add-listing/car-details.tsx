@@ -1,10 +1,12 @@
-import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon';
-import ChevronUpIcon from '@heroicons/react/24/outline/ChevronUpIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CogIcon from '@heroicons/react/24/outline/CogIcon';
-import SparklesIcon from '@heroicons/react/24/outline/SparklesIcon';
-import SwatchIcon from '@heroicons/react/24/outline/SwatchIcon';
-import WrenchScrewdriverIcon from '@heroicons/react/24/outline/WrenchScrewdriverIcon';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ClockIcon,
+  CogIcon,
+  SparklesIcon,
+  SwatchIcon,
+  WrenchScrewdriverIcon,
+} from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';

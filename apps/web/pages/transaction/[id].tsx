@@ -4,20 +4,22 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 // // import { useSession } from 'next-auth/react'; // تم تعطيل نظام المصادقة مؤقتاً // تم تعطيل نظام المصادقة مؤقتاً
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
-import BanknotesIcon from '@heroicons/react/24/outline/BanknotesIcon';
-import CalendarIcon from '@heroicons/react/24/outline/CalendarIcon';
-import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
-import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
-import PhoneIcon from '@heroicons/react/24/outline/PhoneIcon';
-import PrinterIcon from '@heroicons/react/24/outline/PrinterIcon';
-import ReceiptPercentIcon from '@heroicons/react/24/outline/ReceiptPercentIcon';
-import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
-import StarIcon from '@heroicons/react/24/outline/StarIcon';
-import UserIcon from '@heroicons/react/24/outline/UserIcon';
+import {
+  ArrowRightIcon,
+  BanknotesIcon,
+  CalendarIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  CurrencyDollarIcon,
+  DocumentTextIcon,
+  MapPinIcon,
+  PhoneIcon,
+  PrinterIcon,
+  ReceiptPercentIcon,
+  ShareIcon,
+  StarIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline';
 import DateLocationInfo from '../../components/DateLocationInfo';
 import { OpensooqNavbar } from '../../components/common';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
