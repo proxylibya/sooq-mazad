@@ -124,7 +124,13 @@ export function initializeSocketIO(httpServer: NetServer) {
             path: '/socket.io', // Standard Socket.IO path
             addTrailingSlash: false,
             cors: {
-                origin: ['http://localhost:3021', 'http://localhost:3022', 'https://sooq-mazad-web.vercel.app', 'https://www.sooq-mazad-web.vercel.app'],
+                origin: [
+                    'http://localhost:3021',
+                    'http://localhost:3022',
+                    'https://sooq-mazad-web.vercel.app',
+                    'https://www.sooq-mazad-web.vercel.app',
+                    ...(process.env.CORS_ORIGIN ? [process.env.CORS_ORIGIN] : [])
+                ],
                 methods: ['GET', 'POST'],
                 credentials: true,
             },
