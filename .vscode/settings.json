@@ -20,5 +20,6 @@
   "prisma.pinToPrisma6": true,
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "codium.codeCompletion.enable": true
 }

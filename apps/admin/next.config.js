@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
-  poweredByHeader: false,
+
+  // هام جداً للنشر على Vercel لتقليل حجم البناء
+  output: 'standalone',
 
   typescript: {
     ignoreBuildErrors: true,
@@ -11,13 +13,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-
-  experimental: {
-    workerThreads: false,
-    cpus: 1,
-  },
-
-  outputFileTracing: false,
 
   transpilePackages: [
     '@sooq-mazad/ui',
