@@ -4,20 +4,21 @@
  */
 
 import cors from 'cors';
+import dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import { createServer } from 'http';
 import morgan from 'morgan';
-import { Server } from 'socket.io';
+import { initializeSocketIO } from './socket-handler';
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-    cors: {
-        origin: ['http://localhost:3021', 'http://localhost:3022'],
-        methods: ['GET', 'POST'],
-    },
-});
+
+// Initialize Socket.IO
+const io = initializeSocketIO(httpServer);
 
 // Middleware
 app.use(helmet());
@@ -33,15 +34,6 @@ app.get('/health', (req, res) => {
 // API Routes
 app.get('/api', (req, res) => {
     res.json({ message: 'سوق مزاد API', version: '1.0.0' });
-});
-
-// Socket.IO
-io.on('connection', (socket) => {
-    console.log('Client connected:', socket.id);
-
-    socket.on('disconnect', () => {
-        console.log('Client disconnected:', socket.id);
-    });
 });
 
 // Start server

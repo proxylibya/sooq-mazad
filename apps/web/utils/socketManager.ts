@@ -5,11 +5,11 @@
 
 import { io, Socket } from 'socket.io-client';
 import {
-  ServerToClientEvents,
-  ClientToServerEvents,
   AuctionState,
   BidData,
+  ClientToServerEvents,
   ConnectionState,
+  ServerToClientEvents,
   SocketErrorCodes,
 } from '../types/socket';
 
@@ -24,7 +24,7 @@ interface EnterpriseClientToServerEvents {
   'leave:conversation': (conversationId: string) => void;
   'typing:start': (conversationId: string) => void;
   'typing:stop': (conversationId: string) => void;
-  'message:mark-read': (data: { conversationId: string; messageIds: string[] }) => void;
+  'message:mark-read': (data: { conversationId: string; messageIds: string[]; }) => void;
   // presence announce (alternative overload used by enterprise server)
   'presence:announce': (userId: string) => void;
 }
@@ -37,10 +37,10 @@ type ClientSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 
 // Enterprise-only server->client events (from enterprise-socket-server)
 interface EnterpriseServerToClientEvents {
-  'user:online': { userId: string; status: 'online' };
-  'user:offline': { userId: string; status: 'offline'; lastSeen?: string };
-  'chat:typing:start': { conversationId: string; userId: string; userName: string };
-  'chat:typing:stop': { conversationId: string; userId: string; userName: string };
+  'user:online': { userId: string; status: 'online'; };
+  'user:offline': { userId: string; status: 'offline'; lastSeen?: string; };
+  'chat:typing:start': { conversationId: string; userId: string; userName: string; };
+  'chat:typing:stop': { conversationId: string; userId: string; userName: string; };
   'chat:message:read': {
     conversationId: string;
     messageId: string;
@@ -66,7 +66,7 @@ export class SocketManager {
 
   // Connection status callbacks
   private onConnectionChange?: (state: ConnectionState) => void;
-  private onError?: (error: { code: string; message: string }) => void;
+  private onError?: (error: { code: string; message: string; }) => void;
   constructor() {
     if (typeof window === 'undefined') {
       // Server-side rendering check
@@ -84,7 +84,7 @@ export class SocketManager {
       // اجعل عنوان الخادم ديناميكياً لتفادي تعارض المنافذ في التطوير
       const envUrl =
         (typeof window !== 'undefined'
-          ? (window as unknown as { __SOCKET_URL__?: string }).__SOCKET_URL__
+          ? (window as unknown as { __SOCKET_URL__?: string; }).__SOCKET_URL__
           : undefined) || process.env.NEXT_PUBLIC_SOCKET_URL;
       const socketUrl =
         envUrl ||
@@ -94,7 +94,7 @@ export class SocketManager {
       const isDev = process.env.NODE_ENV !== 'production';
 
       this.socket = io(socketUrl, {
-        path: '/api/socketio', // ✅ موحّد مع الخادم في pages/api/socketio.ts
+        path: '/socket.io', // ✅ Standard Socket.IO path for external server
         transports: ['websocket', 'polling'],
         timeout: 5000,
         reconnection: !isDev, // إعادة الاتصال فقط في الإنتاج
@@ -272,13 +272,13 @@ export class SocketManager {
     (this.socket as unknown as any).on('user:online', (data: any) => {
       try {
         this.emit('presence:update', { userId: String(data?.userId), isOnline: true });
-      } catch (_) {}
+      } catch (_) { }
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this.socket as unknown as any).on('user:offline', (data: any) => {
       try {
         this.emit('presence:update', { userId: String(data?.userId), isOnline: false });
-      } catch (_) {}
+      } catch (_) { }
     });
 
     this.socket.on('chat:typing', (data) => {
@@ -294,7 +294,7 @@ export class SocketManager {
           typing: true,
         };
         this.emit('chat:typing', payload);
-      } catch (_) {}
+      } catch (_) { }
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this.socket as unknown as any).on('chat:typing:stop', (data: any) => {
@@ -305,7 +305,7 @@ export class SocketManager {
           typing: false,
         };
         this.emit('chat:typing', payload);
-      } catch (_) {}
+      } catch (_) { }
     });
 
     this.socket.on('chat:message:new', (data) => {
@@ -325,7 +325,7 @@ export class SocketManager {
           readAt: String(data?.timestamp || data?.readAt || new Date().toISOString()),
         };
         this.emit('chat:messages:read', payload);
-      } catch (_) {}
+      } catch (_) { }
     });
 
     this.socket.on('chat:message:delivered', (data) => {
@@ -343,7 +343,7 @@ export class SocketManager {
     (this.socket as unknown as any).on('call:ring', (data: any) => {
       try {
         this.emit('call:ring', data);
-      } catch (_) {}
+      } catch (_) { }
     });
 
     // Call accepted/rejected
@@ -351,13 +351,13 @@ export class SocketManager {
     (this.socket as unknown as any).on('call:accepted', (data: any) => {
       try {
         this.emit('call:accepted', data);
-      } catch (_) {}
+      } catch (_) { }
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this.socket as unknown as any).on('call:rejected', (data: any) => {
       try {
         this.emit('call:rejected', data);
-      } catch (_) {}
+      } catch (_) { }
     });
 
     // SDP exchange
@@ -365,13 +365,13 @@ export class SocketManager {
     (this.socket as unknown as any).on('call:offer', (data: any) => {
       try {
         this.emit('call:offer', data);
-      } catch (_) {}
+      } catch (_) { }
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this.socket as unknown as any).on('call:answer', (data: any) => {
       try {
         this.emit('call:answer', data);
-      } catch (_) {}
+      } catch (_) { }
     });
 
     // ICE candidates
@@ -379,7 +379,7 @@ export class SocketManager {
     (this.socket as unknown as any).on('call:ice-candidate', (data: any) => {
       try {
         this.emit('call:ice-candidate', data);
-      } catch (_) {}
+      } catch (_) { }
     });
 
     // Call ended/busy/error
@@ -387,19 +387,19 @@ export class SocketManager {
     (this.socket as unknown as any).on('call:ended', (data: any) => {
       try {
         this.emit('call:ended', data);
-      } catch (_) {}
+      } catch (_) { }
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this.socket as unknown as any).on('call:busy', (data: any) => {
       try {
         this.emit('call:busy', data);
-      } catch (_) {}
+      } catch (_) { }
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this.socket as unknown as any).on('call:error', (data: any) => {
       try {
         this.emit('call:error', data);
-      } catch (_) {}
+      } catch (_) { }
     });
   }
 
@@ -409,7 +409,7 @@ export class SocketManager {
   public async joinAuction(
     auctionId: string,
     userToken: string,
-  ): Promise<{ success: boolean; error?: string; auction?: AuctionState }> {
+  ): Promise<{ success: boolean; error?: string; auction?: AuctionState; }> {
     return new Promise((resolve) => {
       // محاولة الاتصال إذا لم يكن متصلاً
       if (!this.socket) {
@@ -446,7 +446,7 @@ export class SocketManager {
   private joinAuctionInternal(
     auctionId: string,
     userToken: string,
-    resolve: (value: { success: boolean; error?: string; auction?: AuctionState }) => void,
+    resolve: (value: { success: boolean; error?: string; auction?: AuctionState; }) => void,
   ): void {
     if (!this.socket) {
       resolve({ success: false, error: 'Socket not available' });
@@ -479,7 +479,7 @@ export class SocketManager {
   public async placeBid(
     auctionId: string,
     amount: number,
-  ): Promise<{ success: boolean; error?: string; bid?: BidData }> {
+  ): Promise<{ success: boolean; error?: string; bid?: BidData; }> {
     return new Promise((resolve) => {
       if (!this.socket || !this.isConnected()) {
         resolve({ success: false, error: 'Socket not connected' });
@@ -639,7 +639,7 @@ export class SocketManager {
     this.onConnectionChange = callback;
   }
 
-  public setErrorCallback(callback: (error: { code: string; message: string }) => void): void {
+  public setErrorCallback(callback: (error: { code: string; message: string; }) => void): void {
     this.onError = callback;
   }
 

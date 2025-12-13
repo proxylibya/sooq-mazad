@@ -1,0 +1,2 @@
+# Run auction diagnostics every 5 minutes
+*/5 * * * * /usr/bin/node /workspace/sooq-mazad/scripts/diagnose-fix-auctions.js >> /var/log/auction-monitor.log 2>&1

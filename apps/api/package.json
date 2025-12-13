@@ -9,12 +9,14 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@prisma/client": "^7.1.0",
     "@sooq-mazad/config": "*",
     "@sooq-mazad/database": "*",
     "@sooq-mazad/types": "*",
     "@sooq-mazad/utils": "*",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^4.18.2",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",

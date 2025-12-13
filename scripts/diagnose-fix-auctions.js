@@ -111,20 +111,54 @@ async function main() {
       );
     }
 
-    // 3. مزاد ACTIVE لكن انتهى وقته
-    if (auction.status === 'ACTIVE' && auction.endDate && new Date(auction.endDate) < now) {
-      results.issues.push(`⚠️ مزاد ACTIVE منتهي الوقت: ${auction.title}`);
-
-      // إصلاح: تحديث الحالة
+    // 3. Handle auction status transitions
+    const startDate = auction.startDate ? new Date(auction.startDate) : null;
+    const endDate = auction.endDate ? new Date(auction.endDate) : null;
+    
+    // Active auction that should be ended
+    if (auction.status === 'ACTIVE' && endDate && endDate < now) {
+      results.issues.push(`⚠️ Active auction past end date: ${auction.title}`);
+      
       const hasBids = auction._count.bids > 0;
       const newStatus = hasBids ? 'SOLD' : 'ENDED';
-
+      
       await prisma.auctions.update({
         where: { id: auction.id },
         data: { status: newStatus },
       });
-
-      results.fixes.push(`✅ تحديث حالة المزاد: ${auction.title} → ${newStatus}`);
+      
+      results.fixes.push(`✅ Updated auction status: ${auction.title} → ${newStatus}`);
+      results.auctions.fixed++;
+    }
+    
+    // Upcoming auction that should be active
+    if ((auction.status === 'UPCOMING' || auction.status === 'PENDING') &&
+        startDate && startDate <= now &&
+        endDate && endDate > now) {
+      results.issues.push(`⚠️ Upcoming auction should be active: ${auction.title}`);
+      
+      await prisma.auctions.update({
+        where: { id: auction.id },
+        data: { status: 'ACTIVE' },
+      });
+      
+      results.fixes.push(`✅ Activated auction: ${auction.title}`);
+      results.auctions.fixed++;
+    }
+    
+    // Ended auction that should be closed
+    if (auction.status === 'ACTIVE' && endDate && endDate < now) {
+      results.issues.push(`⚠️ Active auction past end date: ${auction.title}`);
+      
+      const hasBids = auction._count.bids > 0;
+      const newStatus = hasBids ? 'SOLD' : 'ENDED';
+      
+      await prisma.auctions.update({
+        where: { id: auction.id },
+        data: { status: newStatus },
+      });
+      
+      results.fixes.push(`✅ Updated auction status: ${auction.title} → ${newStatus}`);
       results.auctions.fixed++;
     }
 
