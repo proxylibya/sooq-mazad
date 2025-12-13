@@ -27,14 +27,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             whereClause.targetType = { in: ['ALL', String(type).toUpperCase()] };
         }
 
-        const packages = await prisma.promotion_packages.findMany({
-            where: whereClause,
-            orderBy: { priority: 'desc' },
-        });
+        // Check if the table exists before querying
+        try {
+            const packages = await prisma.promotion_packages.findMany({
+                where: whereClause,
+                orderBy: { priority: 'desc' },
+            });
 
-        return res.status(200).json({ success: true, data: packages });
+            return res.status(200).json({ success: true, data: packages });
+        } catch (dbError: any) {
+            // If table doesn't exist or other DB error, return empty array
+            if (dbError.code === 'P2021' || dbError.message?.includes('does not exist')) {
+                console.warn('[Public Promotion Packages API] Table not found, returning empty data');
+                return res.status(200).json({ success: true, data: [] });
+            }
+            throw dbError;
+        }
     } catch (error) {
         console.error('[Public Promotion Packages API] Error:', error);
-        return res.status(500).json({ success: false, message: 'Internal Server Error' });
+        // Return empty data instead of 500 error for better UX
+        return res.status(200).json({ success: true, data: [], message: 'No packages available' });
     }
 }

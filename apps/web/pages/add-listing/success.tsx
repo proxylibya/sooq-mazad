@@ -632,7 +632,7 @@ const SuccessPage = () => {
           </div>
 
           {/* ⭐ بطاقات الترويج - تظهر في الأعلى مباشرة بعد رسالة النجاح */}
-          {showPromotionCard && hasPromotion === false && (
+          {showPromotionCard && hasPromotion !== true && promotionPackages.length > 0 && (
             <div className="relative mb-6 overflow-hidden rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 p-6 shadow-lg">
               <button
                 onClick={() => setShowPromotionCard(false)}

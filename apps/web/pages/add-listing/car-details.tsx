@@ -22,6 +22,7 @@ import { Layout } from '../../components/common';
 import { BackIcon } from '../../components/common/icons/RTLIcon';
 import SelectField from '../../components/ui/SelectField';
 import { useUserContext } from '../../contexts/UserContext';
+import { libyanCities } from '../../data/libyan-cities';
 import {
   bodyTypes,
   carBrands,
@@ -100,39 +101,6 @@ interface FormData {
 }
 
 const CarDetailsForm = () => {
-  const [promotionPackages, setPromotionPackages] = useState<any[]>([]);
-
-  useEffect(() => {
-    const fetchPromotionPackages = async () => {
-      try {
-        const type = effectiveType === 'auction' ? 'AUCTION' : 'LISTING';
-        const res = await fetch(`/api/promotion-packages?type=${type}`);
-        if (res.ok) {
-          const data = await res.json();
-          setPromotionPackages(data.data);
-
-          // Set default package if not set or invalid
-          if (
-            data.data.length > 0 &&
-            (!formData.promotionPackage || formData.promotionPackage === 'free')
-          ) {
-            // Optional: Select the first free package or just leave it
-            const freePkg = data.data.find((p: any) => p.price === 0);
-            if (freePkg) {
-              setFormData((prev) => ({
-                ...prev,
-                promotionPackage: freePkg.id,
-                promotionDays: freePkg.duration,
-              }));
-            }
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching promotion packages:', error);
-      }
-    };
-    fetchPromotionPackages();
-  }, [effectiveType]);
   const router = useRouter();
   const { type } = router.query;
   const currentPath = router.pathname || '';
@@ -148,6 +116,8 @@ const CarDetailsForm = () => {
     (typeof type === 'string' && type) ||
     (isAdminAuctions ? 'auction' : isAdminMarketplace ? 'instant' : '');
   const { user } = useUserContext();
+
+  const [promotionPackages, setPromotionPackages] = useState<any[]>([]);
 
   const [formData, setFormData] = useState<FormData>({
     brand: '',
@@ -194,6 +164,39 @@ const CarDetailsForm = () => {
       },
     },
   });
+
+  // جلب باقات الترويج من API
+  useEffect(() => {
+    const fetchPromotionPackages = async () => {
+      try {
+        const packageType = effectiveType === 'auction' ? 'AUCTION' : 'LISTING';
+        const res = await fetch(`/api/promotion-packages?type=${packageType}`);
+        if (res.ok) {
+          const data = await res.json();
+          setPromotionPackages(data.data);
+
+          // Set default package if not set or invalid
+          if (
+            data.data.length > 0 &&
+            (!formData.promotionPackage || formData.promotionPackage === 'free')
+          ) {
+            // Optional: Select the first free package or just leave it
+            const freePkg = data.data.find((p: any) => p.price === 0);
+            if (freePkg) {
+              setFormData((prev) => ({
+                ...prev,
+                promotionPackage: freePkg.id,
+                promotionDays: freePkg.duration,
+              }));
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching promotion packages:', error);
+      }
+    };
+    fetchPromotionPackages();
+  }, [effectiveType]);
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [availableModels, setAvailableModels] = useState<string[]>([]);
@@ -469,7 +472,7 @@ const CarDetailsForm = () => {
 
     if (!formData.title) newErrors.title = 'يرجى إدخال عنوان الإعلان';
 
-    if (!formData.city || !formData.city.trim()) newErrors.city = 'يرجى إدخال المدينة';
+    if (!formData.city || !formData.city.trim()) newErrors.city = 'يرجى اختيار المدينة';
 
     // التحقق من وجود السعر (مطلوب)
     if (!formData.price || !formData.price.trim()) {
@@ -838,23 +841,21 @@ const CarDetailsForm = () => {
                       </p>
                     </div>
 
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
-                        المدينة <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="city"
-                        data-field="city"
+                    <div data-field="city">
+                      <SelectField
+                        label="المدينة"
+                        options={libyanCities.map((city) => ({
+                          value: city.name,
+                          label: `${city.name} (${city.region})`,
+                        }))}
                         value={formData.city}
-                        onChange={(e) => handleInputChange('city', e.target.value)}
-                        placeholder="طرابلس، بنغازي، مصراتة..."
-                        className={`w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                          errors.city ? 'border-red-300 bg-red-50' : 'border-gray-300'
-                        }`}
+                        onChange={(value) => handleInputChange('city', value)}
+                        placeholder="اختر المدينة"
+                        error={errors.city}
                         required
+                        searchable
+                        clearable
                       />
-                      {errors.city && <p className="mt-1 text-sm text-red-600">{errors.city}</p>}
                     </div>
 
                     <div>

@@ -209,11 +209,13 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ placements });
   } catch (error) {
+    // Check if it's a table not found error
+    if (error.code === 'P2021' || error.message?.includes('does not exist')) {
+      console.warn('Public ad placements: Table not found, returning empty data');
+      return res.status(200).json({ placements: [] });
+    }
     console.error('Public ad placements error:', error.message);
-    console.error('Stack trace:', error.stack);
-    return res.status(500).json({
-      error: 'Internal server error',
-      message: process.env.NODE_ENV !== 'production' ? error.message : undefined,
-    });
+    // Return empty data instead of 500 error for better UX
+    return res.status(200).json({ placements: [], error: 'Data temporarily unavailable' });
   }
 }
