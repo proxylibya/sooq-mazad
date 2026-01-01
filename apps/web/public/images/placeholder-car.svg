@@ -1,0 +1,26 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f3f4f6"/>
+  
+  <!-- Car silhouette -->
+  <g transform="translate(50, 100)">
+    <!-- Car body -->
+    <path d="M0 80 L20 60 L80 60 L100 40 L200 40 L220 60 L280 60 L300 80 L300 120 L280 120 L280 140 L240 140 L240 120 L60 120 L60 140 L20 140 L20 120 L0 120 Z" fill="#9ca3af"/>
+    
+    <!-- Windows -->
+    <path d="M30 60 L70 60 L85 45 L185 45 L200 60 L270 60 L270 80 L30 80 Z" fill="#d1d5db"/>
+    
+    <!-- Wheels -->
+    <circle cx="70" cy="140" r="25" fill="#374151"/>
+    <circle cx="70" cy="140" r="15" fill="#6b7280"/>
+    <circle cx="230" cy="140" r="25" fill="#374151"/>
+    <circle cx="230" cy="140" r="15" fill="#6b7280"/>
+    
+    <!-- Headlights -->
+    <circle cx="290" cy="90" r="8" fill="#fbbf24"/>
+    <circle cx="290" cy="110" r="8" fill="#fbbf24"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="200" y="220" text-anchor="middle" fill="#6b7280" font-family="Arial, sans-serif" font-size="16">صورة غير متاحة</text>
+  <text x="200" y="240" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="12">Image not available</text>
+</svg>

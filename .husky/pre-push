@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# فحص TypeScript
+echo "🔍 فحص TypeScript..."
+npm run prisma:generate
+npx tsc --noEmit
+
+# تشغيل الاختبارات
+echo "🧪 تشغيل الاختبارات..."
+npm test -- --passWithNoTests
+
+echo "✅ جميع الفحوصات نجحت!"

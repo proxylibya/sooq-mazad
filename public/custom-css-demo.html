@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بطاقة السيارة - CSS مخصص</title>
+    <link rel="stylesheet" href="../styles/improved-car-card.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="improved-car-card">
+        <!-- العنوان الرئيسي -->
+        <div class="improved-car-card__header">
+            <h2 class="improved-car-card__title">نيسان باثفايندر 2022</h2>
+            <span class="improved-car-card__id">رقم الإعلان: cmgadpyu50007vg3csiz3uozs</span>
+        </div>
+
+        <!-- المحتوى الرئيسي -->
+        <div class="improved-car-card__body">
+            <!-- شبكة المعلومات -->
+            <div class="improved-car-card__grid">
+                <!-- معلومات السيارة -->
+                <div class="improved-car-card__section improved-car-card__section--car-info">
+                    <h3 class="improved-car-card__section-title">معلومات السيارة</h3>
+                    <div class="improved-car-card__info-rows">
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">الماركة:</span>
+                            <span class="improved-car-card__info-value">نيسان</span>
+                        </div>
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">الموديل:</span>
+                            <span class="improved-car-card__info-value">باثفايندر</span>
+                        </div>
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">السنة:</span>
+                            <span class="improved-car-card__info-value">2022</span>
+                        </div>
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">المسافة:</span>
+                            <span class="improved-car-card__info-value">68,000 كم</span>
+                        </div>
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">اللون:</span>
+                            <span class="improved-car-card__info-value">فضي</span>
+                        </div>
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">الحالة:</span>
+                            <span class="improved-car-card__info-value">مستعملة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- معلومات البيع -->
+                <div class="improved-car-card__section improved-car-card__section--sale-info">
+                    <h3 class="improved-car-card__section-title">معلومات البيع</h3>
+                    <div class="improved-car-card__info-rows">
+                        <!-- السعر -->
+                        <div class="improved-car-card__price-box">
+                            <span class="improved-car-card__price-label">السعر:</span>
+                            <span class="improved-car-card__price-value">55,000 د.ل</span>
+                        </div>
+
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">البائع:</span>
+                            <span class="improved-car-card__info-value">غير محدد</span>
+                        </div>
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">نوع البائع:</span>
+                            <span class="improved-car-card__info-value">فرد</span>
+                        </div>
+                        <div class="improved-car-card__info-row">
+                            <span class="improved-car-card__info-label">الهاتف:</span>
+                            <span class="improved-car-card__info-value" dir="ltr">
+                                📞 950000000
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- قسم الموقع -->
+            <div class="improved-car-card__location">
+                <h3 class="improved-car-card__location-title">
+                    📍 الموقع
+                </h3>
+                <div class="improved-car-card__location-grid">
+                    <div class="improved-car-card__location-item">
+                        <span class="improved-car-card__location-label">المدينة:</span>
+                        <span class="improved-car-card__location-value">صبراتة</span>
+                    </div>
+                    <div class="improved-car-card__location-item">
+                        <span class="improved-car-card__location-label">العنوان:</span>
+                        <span class="improved-car-card__location-value">صبراتة</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- قسم الوصف -->
+            <div class="improved-car-card__description">
+                <h3 class="improved-car-card__description-title">الوصف</h3>
+                <p class="improved-car-card__description-text">
+                    هذا الرقم للمهتمين بالسيارة. سيارة بحالة ممتازة ونظيفة جداً، تم الاعتناء بها بشكل
+                    منتظم. جميع الأوراق سليمة والسيارة جاهزة للاستخدام الفوري. للمزيد من المعلومات
+                    يرجى التواصل على الرقم المذكور أعلاه.
+                </p>
+            </div>
+
+            <!-- الإحصائيات -->
+            <div class="improved-car-card__stats">
+                <!-- المشاهدات -->
+                <div class="improved-car-card__stat improved-car-card__stat--views">
+                    <div class="improved-car-card__stat-icon">👁️</div>
+                    <span class="improved-car-card__stat-value">0</span>
+                    <span class="improved-car-card__stat-label">مشاهدة</span>
+                </div>
+
+                <!-- المفضلة -->
+                <div class="improved-car-card__stat improved-car-card__stat--favorites">
+                    <div class="improved-car-card__stat-icon">❤️</div>
+                    <span class="improved-car-card__stat-value">0</span>
+                    <span class="improved-car-card__stat-label">مفضل</span>
+                </div>
+
+                <!-- التاريخ -->
+                <div class="improved-car-card__stat improved-car-card__stat--date">
+                    <div class="improved-car-card__stat-icon">📅</div>
+                    <span class="improved-car-card__stat-value">10/3/2025</span>
+                    <span class="improved-car-card__stat-label">تاريخ الإنشاء</span>
+                </div>
+            </div>
+
+            <!-- زر الاتصال -->
+            <div class="improved-car-card__cta">
+                <button class="improved-car-card__cta-button">
+                    📞 اتصل بالبائع
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تأثيرات إضافية
+        document.addEventListener('DOMContentLoaded', () => {
+            // تفعيل تأثير النقر على بطاقات الإحصائيات
+            const stats = document.querySelectorAll('.improved-car-card__stat');
+            stats.forEach(stat => {
+                stat.addEventListener('click', function() {
+                    this.style.animation = 'pulse 0.3s';
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 300);
+                });
+            });
+
+            // تفعيل زر الاتصال
+            const ctaButton = document.querySelector('.improved-car-card__cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', () => {
+                    alert('سيتم الاتصال بالبائع...');
+                });
+            }
+
+            // إضافة أرقام المشاهدات والمفضلة بشكل تدريجي
+            setTimeout(() => {
+                animateValue(document.querySelector('.improved-car-card__stat--views .improved-car-card__stat-value'), 0, 142, 2000);
+                animateValue(document.querySelector('.improved-car-card__stat--favorites .improved-car-card__stat-value'), 0, 37, 2000);
+            }, 500);
+        });
+
+        // دالة لتحريك الأرقام
+        function animateValue(element, start, end, duration) {
+            if (!element) return;
+            
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    </script>
+</body>
+</html>

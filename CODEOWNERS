@@ -1,0 +1,94 @@
+# CODEOWNERS File
+# This file defines who is responsible for code reviews in different parts of the repository
+# Each line is a file pattern followed by one or more owners
+# Order matters - the last matching pattern takes precedence
+
+# Default owners for everything in the repo
+* @sooq-mazad/core-team
+
+# Frontend Team
+/apps/web/ @sooq-mazad/frontend-team @sooq-mazad/ui-team
+/apps/web/components/ @sooq-mazad/ui-team
+/apps/web/pages/ @sooq-mazad/frontend-team
+/apps/web/styles/ @sooq-mazad/ui-team
+/apps/web/public/ @sooq-mazad/ui-team
+
+# Admin Panel Team  
+/apps/admin/ @sooq-mazad/admin-team @sooq-mazad/security-team
+/apps/admin/pages/ @sooq-mazad/admin-team
+/apps/admin/components/ @sooq-mazad/admin-team
+/apps/admin/lib/auth/ @sooq-mazad/security-team
+
+# Backend Team
+/apps/api/ @sooq-mazad/backend-team @sooq-mazad/api-team
+/apps/api/src/routes/ @sooq-mazad/api-team
+/apps/api/src/middleware/ @sooq-mazad/security-team @sooq-mazad/backend-team
+/apps/api/src/services/ @sooq-mazad/backend-team
+/apps/api/src/utils/ @sooq-mazad/backend-team
+
+# Real-time Services Team
+/services/ @sooq-mazad/realtime-team @sooq-mazad/backend-team
+/services/realtime/ @sooq-mazad/realtime-team
+
+# Database Team
+/packages/database/ @sooq-mazad/database-team @sooq-mazad/backend-team
+/prisma/ @sooq-mazad/database-team
+*.prisma @sooq-mazad/database-team
+/prisma/migrations/ @sooq-mazad/database-team @sooq-mazad/dba
+
+# Shared Packages Team
+/packages/ @sooq-mazad/core-team
+/packages/auth/ @sooq-mazad/security-team @sooq-mazad/backend-team
+/packages/ui/ @sooq-mazad/ui-team
+/packages/types/ @sooq-mazad/core-team
+/packages/config/ @sooq-mazad/devops-team
+/packages/utils/ @sooq-mazad/core-team
+
+# DevOps & Infrastructure
+/.github/ @sooq-mazad/devops-team
+/docker/ @sooq-mazad/devops-team
+/scripts/ @sooq-mazad/devops-team
+*.yml @sooq-mazad/devops-team
+*.yaml @sooq-mazad/devops-team
+Dockerfile* @sooq-mazad/devops-team
+docker-compose* @sooq-mazad/devops-team
+.dockerignore @sooq-mazad/devops-team
+nginx.conf @sooq-mazad/devops-team
+
+# Configuration Files
+/.env* @sooq-mazad/security-team @sooq-mazad/devops-team
+/config/ @sooq-mazad/devops-team
+*.config.js @sooq-mazad/core-team
+*.config.ts @sooq-mazad/core-team
+tsconfig* @sooq-mazad/core-team
+.eslint* @sooq-mazad/core-team
+.prettier* @sooq-mazad/core-team
+
+# Security-sensitive Files
+**/auth* @sooq-mazad/security-team
+**/security* @sooq-mazad/security-team
+**/middleware/auth* @sooq-mazad/security-team
+**/middleware/security* @sooq-mazad/security-team
+/packages/auth/ @sooq-mazad/security-team
+/apps/api/src/services/auth* @sooq-mazad/security-team
+
+# Documentation
+/docs/ @sooq-mazad/docs-team @sooq-mazad/core-team
+*.md @sooq-mazad/docs-team
+README* @sooq-mazad/docs-team @sooq-mazad/core-team
+
+# Testing
+*.test.* @sooq-mazad/qa-team
+*.spec.* @sooq-mazad/qa-team
+__tests__/ @sooq-mazad/qa-team
+/e2e/ @sooq-mazad/qa-team
+
+# Build & Deployment
+/turbo.json @sooq-mazad/devops-team @sooq-mazad/core-team
+/package.json @sooq-mazad/core-team
+/package-lock.json @sooq-mazad/core-team
+
+# Critical Files (require multiple reviewers)
+/prisma/schema.prisma @sooq-mazad/database-team @sooq-mazad/backend-team @sooq-mazad/core-team
+/apps/api/src/index.ts @sooq-mazad/backend-team @sooq-mazad/core-team
+/middleware.ts @sooq-mazad/security-team @sooq-mazad/core-team

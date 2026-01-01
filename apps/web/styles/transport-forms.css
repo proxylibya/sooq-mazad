@@ -1,0 +1,165 @@
+/* ملف CSS خاص بنماذج النقل - حل جذري للمشاكل */
+
+/* تجاوز جميع القيود العامة لعناصر select */
+.transport-form-select,
+.transport-form-select:not([disabled]),
+select.transport-form-select,
+.transport-form-container select,
+.transport-form-container .transport-form-select {
+  font-size: 1rem !important;
+  padding: 0.75rem 3rem 0.75rem 1rem !important;
+  min-height: 50px !important;
+  height: 50px !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  border-radius: 0.75rem !important;
+  border: 2px solid #e5e7eb !important;
+  background-color: white !important;
+  color: #111827 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* تجاوز جميع القيود العامة لعناصر input */
+.transport-form-input,
+.transport-form-input:not([disabled]),
+input.transport-form-input,
+.transport-form-container input[type='number'],
+.transport-form-container .transport-form-input {
+  font-size: 1rem !important;
+  padding: 0.75rem 3rem 0.75rem 1rem !important;
+  min-height: 50px !important;
+  height: 50px !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  border-radius: 0.75rem !important;
+  border: 2px solid #e5e7eb !important;
+  background-color: white !important;
+  color: #111827 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* حالات التفاعل */
+.transport-form-select:hover,
+.transport-form-container select:hover {
+  border-color: #d1d5db !important;
+}
+
+.transport-form-input:hover,
+.transport-form-container input[type='number']:hover {
+  border-color: #d1d5db !important;
+}
+
+.transport-form-select:focus,
+.transport-form-container select:focus {
+  outline: none !important;
+  border-color: #3b82f6 !important;
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+.transport-form-input:focus,
+.transport-form-container input[type='number']:focus {
+  outline: none !important;
+  border-color: #10b981 !important;
+  background-color: rgba(16, 185, 129, 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* تجاوز قواعد Tailwind CSS */
+.transport-form-select.w-full,
+.transport-form-input.w-full {
+  width: 100% !important;
+}
+
+/* تجاوز قواعد globals.css */
+.transport-form-container select,
+.transport-form-container input {
+  font-size: 1rem !important;
+  padding: 0.75rem 3rem 0.75rem 1rem !important;
+  min-height: 50px !important;
+  height: 50px !important;
+}
+
+/* قواعد إضافية للتأكد من التطبيق */
+[class*='transport-form-select'] {
+  font-size: 1rem !important;
+  min-height: 50px !important;
+  height: 50px !important;
+}
+
+[class*='transport-form-input'] {
+  font-size: 1rem !important;
+  min-height: 50px !important;
+  height: 50px !important;
+}
+
+/* تجاوز أي قواعد أخرى */
+.transport-form-container * {
+  box-sizing: border-box !important;
+}
+
+/* قواعد خاصة للعناصر المطلقة */
+.transport-form-container .relative select,
+.transport-form-container .relative input {
+  font-size: 1rem !important;
+  padding: 0.75rem 3rem 0.75rem 1rem !important;
+  min-height: 50px !important;
+  height: 50px !important;
+  line-height: 1.5 !important;
+}
+
+/* تحسين أسهم حقل الرقم */
+.transport-form-input::-webkit-outer-spin-button,
+.transport-form-input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+.transport-form-input[type='number'] {
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}
+
+/* أسهم مخصصة أكبر وأوضح */
+.number-input-container {
+  position: relative !important;
+}
+
+.custom-number-controls {
+  position: absolute !important;
+  left: 8px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  z-index: 10 !important;
+}
+
+.custom-number-btn {
+  width: 24px !important;
+  height: 18px !important;
+  background: #f3f4f6 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  color: #6b7280 !important;
+  user-select: none !important;
+}
+
+.custom-number-btn:hover {
+  background: #e5e7eb !important;
+  border-color: #9ca3af !important;
+  color: #374151 !important;
+}
+
+.custom-number-btn:active {
+  background: #d1d5db !important;
+  transform: scale(0.95) !important;
+}

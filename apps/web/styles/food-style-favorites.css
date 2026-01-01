@@ -1,0 +1,247 @@
+/* تحسينات بصرية لصفحة المفضلة بأسلوب تطبيقات الطعام */
+
+/* تأثيرات الحركة المتقدمة */
+.food-style-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.food-style-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* تأثير التدرج للصور */
+.image-gradient {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.3) 80%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+/* تأثير النجوم */
+.star-rating {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* تأثير الأزرار */
+.action-button {
+  transition: all 0.2s ease-in-out;
+  backdrop-filter: blur(8px);
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+}
+
+/* تأثير البحث */
+.search-input {
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
+}
+
+/* تأثير الفلاتر */
+.filter-chip {
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-chip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.filter-chip:hover::before {
+  left: 100%;
+}
+
+/* تأثير التحميل */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* تأثير النبضة للمزادات المباشرة */
+.live-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* تحسين الاستجابة */
+@media (max-width: 640px) {
+  .food-style-card {
+    margin-bottom: 0.75rem;
+  }
+
+  .filter-chip {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* تأثير الظل المتدرج */
+.gradient-shadow {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.gradient-shadow:hover {
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* تأثير الانتقال السلس للصور */
+.smooth-image {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-image:hover {
+  transform: scale(1.1);
+}
+
+/* تحسين النصوص */
+.text-shadow {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* تأثير الحدود المتوهجة */
+.glow-border {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(45deg, #3b82f6, #10b981) border-box;
+}
+
+/* تحسين الأيقونات */
+.icon-bounce {
+  transition: transform 0.2s ease;
+}
+
+.icon-bounce:hover {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* تأثير الموجة للأزرار */
+.wave-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.wave-effect:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* تحسين التمرير */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* تأثير التلاشي للعناصر الفارغة */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* تحسين الشبكة */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* تأثير التركيز المحسن */
+.enhanced-focus:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #3b82f6;
+  ring-opacity: 0.5;
+  ring-offset: 2px;
+}
+
+/* تحسين الألوان للوضع المظلم */
+@media (prefers-color-scheme: dark) {
+  .food-style-card {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .search-input {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #f9fafb;
+  }
+
+  .filter-chip {
+    background-color: #374151;
+    color: #f9fafb;
+  }
+}

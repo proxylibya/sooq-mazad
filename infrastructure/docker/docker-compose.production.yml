@@ -1,0 +1,399 @@
+version: '3.9'
+
+# =====================================
+# 🚀 Docker Compose للإنتاج العالي الأداء
+# Production Docker Compose for High Traffic
+# =====================================
+
+services:
+  # =====================================
+  # PostgreSQL Primary (Master)
+  # =====================================
+  postgres-primary:
+    image: postgres:15-alpine
+    container_name: sooq-postgres-primary
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-sooq_mazad}
+      POSTGRES_INITDB_ARGS: '--encoding=UTF8 --locale=ar_LY.UTF-8'
+    volumes:
+      - postgres_primary_data:/var/lib/postgresql/data
+      - ./database/postgresql_performance.conf:/etc/postgresql/postgresql.conf:ro
+      - ./database/init:/docker-entrypoint-initdb.d:ro
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - '5432:5432'
+    networks:
+      - sooq-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d sooq_mazad']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2'
+        reservations:
+          memory: 2G
+          cpus: '1'
+
+  # =====================================
+  # PostgreSQL Replica (Read-only)
+  # =====================================
+  postgres-replica:
+    image: postgres:15-alpine
+    container_name: sooq-postgres-replica
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-sooq_mazad}
+      POSTGRES_PRIMARY_HOST: postgres-primary
+      POSTGRES_REPLICATION_MODE: slave
+    volumes:
+      - postgres_replica_data:/var/lib/postgresql/data
+    depends_on:
+      postgres-primary:
+        condition: service_healthy
+    networks:
+      - sooq-network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+
+  # =====================================
+  # PgBouncer (Connection Pooling)
+  # =====================================
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    container_name: sooq-pgbouncer
+    restart: always
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres-primary:5432/${POSTGRES_DB:-sooq_mazad}
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: 5000
+      DEFAULT_POOL_SIZE: 100
+      MIN_POOL_SIZE: 10
+      RESERVE_POOL_SIZE: 25
+    volumes:
+      - ./infrastructure/database/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+      - ./infrastructure/database/userlist.txt:/etc/pgbouncer/userlist.txt:ro
+    ports:
+      - '6432:6432'
+    depends_on:
+      postgres-primary:
+        condition: service_healthy
+    networks:
+      - sooq-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h localhost -p 6432']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # =====================================
+  # KeyDB (Redis Alternative - Faster)
+  # =====================================
+  keydb:
+    image: eqalpha/keydb:latest
+    container_name: sooq-keydb
+    restart: always
+    command: keydb-server --server-threads 4 --maxmemory 2gb --maxmemory-policy allkeys-lru --appendonly yes
+    volumes:
+      - keydb_data:/data
+    ports:
+      - '6379:6379'
+    networks:
+      - sooq-network
+    healthcheck:
+      test: ['CMD', 'keydb-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 2.5G
+          cpus: '2'
+        reservations:
+          memory: 1G
+          cpus: '1'
+
+  # =====================================
+  # Web Application (4 Instances)
+  # =====================================
+  web-1:
+    image: sooq-mazad-web:latest
+    build:
+      context: ../..
+      dockerfile: Dockerfile.production
+    container_name: sooq-web-1
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3021
+      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@pgbouncer:6432/${POSTGRES_DB:-sooq_mazad}
+      REDIS_URL: redis://keydb:6379
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+    depends_on:
+      pgbouncer:
+        condition: service_healthy
+      keydb:
+        condition: service_healthy
+    networks:
+      - sooq-network
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3021/api/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+
+  web-2:
+    extends:
+      service: web-1
+    container_name: sooq-web-2
+
+  web-3:
+    extends:
+      service: web-1
+    container_name: sooq-web-3
+
+  web-4:
+    extends:
+      service: web-1
+    container_name: sooq-web-4
+
+  # =====================================
+  # Admin Application (2 Instances)
+  # =====================================
+  admin-1:
+    image: sooq-mazad-admin:latest
+    build:
+      context: ../..
+      dockerfile: apps/admin/Dockerfile
+    container_name: sooq-admin-1
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3022
+      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@pgbouncer:6432/${POSTGRES_DB:-sooq_mazad}
+      REDIS_URL: redis://keydb:6379
+    depends_on:
+      - pgbouncer
+      - keydb
+    networks:
+      - sooq-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+  admin-2:
+    extends:
+      service: admin-1
+    container_name: sooq-admin-2
+
+  # =====================================
+  # API Server (4 Instances)
+  # =====================================
+  api-1:
+    image: sooq-mazad-api:latest
+    build:
+      context: ../..
+      dockerfile: apps/api/Dockerfile
+    container_name: sooq-api-1
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3020
+      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@pgbouncer:6432/${POSTGRES_DB:-sooq_mazad}
+      REDIS_URL: redis://keydb:6379
+    depends_on:
+      - pgbouncer
+      - keydb
+    networks:
+      - sooq-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+  api-2:
+    extends:
+      service: api-1
+    container_name: sooq-api-2
+
+  api-3:
+    extends:
+      service: api-1
+    container_name: sooq-api-3
+
+  api-4:
+    extends:
+      service: api-1
+    container_name: sooq-api-4
+
+  # =====================================
+  # Realtime Server (4 Instances)
+  # =====================================
+  realtime-1:
+    image: sooq-mazad-realtime:latest
+    build:
+      context: ../..
+      dockerfile: services/realtime/Dockerfile
+    container_name: sooq-realtime-1
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3024
+      REDIS_URL: redis://keydb:6379
+    depends_on:
+      - keydb
+    networks:
+      - sooq-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+  realtime-2:
+    extends:
+      service: realtime-1
+    container_name: sooq-realtime-2
+
+  realtime-3:
+    extends:
+      service: realtime-1
+    container_name: sooq-realtime-3
+
+  realtime-4:
+    extends:
+      service: realtime-1
+    container_name: sooq-realtime-4
+
+  # =====================================
+  # Nginx Load Balancer
+  # =====================================
+  nginx:
+    image: nginx:alpine
+    container_name: sooq-nginx
+    restart: always
+    volumes:
+      - ./nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx_cache:/var/cache/nginx
+    ports:
+      - '80:80'
+      - '443:443'
+    depends_on:
+      - web-1
+      - web-2
+      - web-3
+      - web-4
+      - admin-1
+      - admin-2
+      - api-1
+      - api-2
+    networks:
+      - sooq-network
+    healthcheck:
+      test: ['CMD', 'nginx', '-t']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+
+  # =====================================
+  # Prometheus (Monitoring)
+  # =====================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: sooq-prometheus
+    restart: always
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - '9090:9090'
+    networks:
+      - sooq-network
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+  # =====================================
+  # Grafana (Dashboards)
+  # =====================================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: sooq-grafana
+    restart: always
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: 'false'
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    ports:
+      - '3000:3000'
+    depends_on:
+      - prometheus
+    networks:
+      - sooq-network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+
+# =====================================
+# Networks
+# =====================================
+networks:
+  sooq-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+# =====================================
+# Volumes
+# =====================================
+volumes:
+  postgres_primary_data:
+  postgres_replica_data:
+  keydb_data:
+  nginx_cache:
+  prometheus_data:
+  grafana_data:

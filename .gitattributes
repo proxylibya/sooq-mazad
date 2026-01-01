@@ -1,0 +1,118 @@
+# Git Attributes Configuration
+# Ensures consistent line endings and proper handling of different file types
+
+# Default behavior - auto-detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Source code
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.sass text eol=lf
+*.less text eol=lf
+*.html text eol=lf
+*.xml text eol=lf
+*.svg text eol=lf
+
+# Configuration files
+*.env text eol=lf
+*.env.* text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.eslintrc* text eol=lf
+.prettierrc* text eol=lf
+*.config.js text eol=lf
+*.config.ts text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+
+# Windows scripts
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Documentation
+*.txt text eol=lf
+README* text eol=lf
+LICENSE* text eol=lf
+CHANGELOG* text eol=lf
+
+# Binary files (should not be modified)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.otf binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.7z binary
+*.rar binary
+*.mp4 binary
+*.mp3 binary
+*.avi binary
+*.mov binary
+*.wav binary
+
+# Database files
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+
+# Compiled files
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+
+# Lock files (preserve exact format)
+package-lock.json text eol=lf -diff
+yarn.lock text eol=lf -diff
+pnpm-lock.yaml text eol=lf -diff
+
+# Generated files
+*.min.js text eol=lf -diff
+*.min.css text eol=lf -diff
+*.map text eol=lf -diff
+.next/** binary
+dist/** binary
+build/** binary
+out/** binary
+
+# Prisma
+*.prisma text eol=lf
+migrations/** text eol=lf
+
+# Next.js specific
+.next/** binary
+.turbo/** binary
+
+# Language statistics (GitHub)
+# Mark vendored or generated files
+node_modules/** linguist-vendored
+.next/** linguist-generated
+dist/** linguist-generated
+build/** linguist-generated
+*.min.js linguist-generated
+*.min.css linguist-generated
+
+# Set language for specific files
+*.prisma linguist-language=GraphQL
+*.mdx linguist-language=Markdown

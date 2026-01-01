@@ -1,0 +1,55 @@
+/*
+ * ملف تحسين الخطوط ومنع FOUT (Flash of Unstyled Text)
+ * Font optimization file to prevent FOUT
+ */
+
+/* خط احتياطي سريع لمنع FOUT */
+body {
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-display: swap;
+}
+
+/* تحسين عرض النص أثناء تحميل الخطوط */
+.font-loading {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  visibility: visible;
+}
+
+.fonts-loaded {
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.fonts-failed {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* تحسين عرض النص أثناء تحميل الخطوط */
+html.font-loading body,
+html.font-loading * {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  text-rendering: optimizeSpeed;
+}
+
+html.fonts-loaded body,
+html.fonts-loaded * {
+  font-family: 'Cairo', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+/* تحسين عرض الخطوط العربية */
+[lang='ar'],
+[dir='rtl'] {
+  font-family: 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* تحسين عرض الخطوط الإنجليزية */
+[lang='en'],
+[dir='ltr'] {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

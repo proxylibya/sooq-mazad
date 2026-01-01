@@ -1,0 +1,489 @@
+/* تصميم البطاقة المدمجة للمعارض - ارتفاع 110 بكسل - محسن */
+
+/* البطاقة الرئيسية */
+.compact-showroom-card {
+  @apply mb-4 overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-all duration-200 hover:scale-[1.01] hover:border-blue-200 hover:shadow-md;
+  height: 110px;
+}
+
+.compact-showroom-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* تأثيرات التحويم المتقدمة */
+.compact-showroom-card:hover .stat-card {
+  transform: scale(1.05);
+}
+
+.compact-showroom-card:hover .action-button:not(.favorite-button) {
+  transform: scale(1.05);
+}
+
+/* منع تأثير التحويم على أزرار المفضلة */
+.compact-showroom-card .action-button.favorite-button {
+  transform: none !important;
+}
+
+.compact-showroom-card:hover .action-button.favorite-button {
+  transform: none !important;
+}
+
+/* تخطيط البطاقة */
+.compact-showroom-layout {
+  @apply flex h-full;
+}
+
+/* قسم الصورة - محسن للارتفاع 110px */
+.compact-image-section {
+  @apply group relative h-full w-36 flex-shrink-0;
+}
+
+.compact-image-section img {
+  @apply h-full w-full object-cover transition-transform duration-300;
+}
+
+.compact-image-section:hover img {
+  transform: scale(1.05);
+}
+
+/* أسهم التنقل المحسنة */
+.compact-nav-arrow {
+  @apply absolute z-30 -translate-y-1/2 rounded-full border border-white/20 bg-black/70 p-1 text-white opacity-0 transition-all duration-200 hover:bg-black/90 hover:opacity-100 group-hover:opacity-100;
+  top: 50%;
+  backdrop-filter: blur(4px);
+}
+
+.compact-nav-arrow.left {
+  left: 4px;
+}
+
+.compact-nav-arrow.right {
+  right: 4px;
+}
+
+.compact-nav-arrow:hover {
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* تأثيرات الأسهم المتقدمة */
+.compact-nav-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* مؤشرات الصور */
+.compact-image-indicators {
+  @apply absolute bottom-1 left-1/2 z-20 flex -translate-x-1/2 gap-0.5;
+}
+
+.compact-indicator {
+  @apply h-1 w-1 rounded-full transition-colors;
+}
+
+.compact-indicator.active {
+  @apply bg-white;
+}
+
+.compact-indicator.inactive {
+  @apply bg-white/50;
+}
+
+/* عداد الصور */
+.compact-image-counter {
+  @apply absolute bottom-1 right-1 flex items-center gap-0.5 rounded bg-black/70 px-1 py-0.5 text-xs text-white;
+}
+
+/* أزرار الإجراءات على الصورة */
+.compact-action-buttons {
+  @apply absolute right-1 top-1 flex flex-col gap-1;
+}
+
+.compact-action-button {
+  @apply rounded border border-gray-300 bg-white/90 p-1 text-gray-600 transition-all duration-200 hover:scale-110 hover:bg-gray-50;
+}
+
+.compact-action-button.favorite.active {
+  @apply text-red-500;
+}
+
+/* قسم المحتوى */
+.compact-content-section {
+  @apply flex flex-1 flex-col justify-between p-3;
+}
+
+/* العنوان والمعلومات الأساسية */
+.compact-header {
+  @apply mb-2 flex items-start justify-between;
+}
+
+.compact-title {
+  @apply line-clamp-1 cursor-pointer text-sm font-bold text-gray-900 transition-colors hover:text-blue-600;
+}
+
+.compact-location {
+  @apply mb-1 flex items-center gap-1;
+}
+
+.compact-location-icon {
+  @apply h-3 w-3 text-gray-500;
+}
+
+.compact-location-text {
+  @apply text-xs text-gray-600;
+}
+
+.compact-description {
+  @apply line-clamp-1 text-xs text-gray-600;
+}
+
+/* الإحصائيات المصغرة */
+.compact-stats-grid {
+  @apply mb-2 grid grid-cols-3 gap-2 text-center;
+}
+
+.compact-stat-card {
+  @apply rounded p-1 transition-transform duration-200 hover:scale-105;
+}
+
+.compact-stat-card.blue {
+  @apply bg-gradient-to-br from-blue-50 to-blue-100;
+}
+
+.compact-stat-card.green {
+  @apply bg-gradient-to-br from-green-50 to-green-100;
+}
+
+.compact-stat-card.yellow {
+  @apply bg-gradient-to-br from-yellow-50 to-yellow-100;
+}
+
+.compact-stat-icon {
+  @apply flex justify-center;
+}
+
+.compact-stat-icon.blue {
+  @apply h-3 w-3 text-blue-600;
+}
+
+.compact-stat-icon.green {
+  @apply h-3 w-3 text-green-600;
+}
+
+.compact-stat-icon.yellow {
+  @apply h-3 w-3 fill-yellow-400 text-yellow-600;
+}
+
+.compact-stat-value {
+  @apply text-xs font-bold;
+}
+
+.compact-stat-value.blue {
+  @apply text-blue-900;
+}
+
+.compact-stat-value.green {
+  @apply text-green-900;
+}
+
+.compact-stat-value.yellow {
+  @apply text-yellow-900;
+}
+
+.compact-stat-label {
+  @apply text-xs;
+}
+
+.compact-stat-label.blue {
+  @apply text-blue-700;
+}
+
+.compact-stat-label.green {
+  @apply text-green-700;
+}
+
+.compact-stat-label.yellow {
+  @apply text-yellow-700;
+}
+
+/* المعلومات الإضافية */
+.compact-info-grid {
+  @apply mb-2 grid grid-cols-2 gap-1;
+}
+
+.compact-info-item {
+  @apply flex items-center gap-1 rounded bg-gradient-to-r from-gray-50 to-gray-100 p-1 transition-colors hover:from-gray-100 hover:to-gray-200;
+}
+
+.compact-info-icon {
+  @apply h-2 w-2 text-gray-600;
+}
+
+.compact-info-title {
+  @apply text-xs font-medium text-gray-900;
+}
+
+.compact-info-value {
+  @apply text-xs text-gray-600;
+}
+
+/* أزرار الإجراءات السفلية */
+.compact-action-buttons-bottom {
+  @apply flex gap-1;
+}
+
+.compact-primary-button {
+  @apply flex flex-1 items-center justify-center gap-1 rounded bg-blue-600 px-2 py-1 text-xs font-medium text-white transition-colors hover:bg-blue-700;
+}
+
+.compact-secondary-button {
+  @apply flex flex-1 items-center justify-center gap-1 rounded border border-blue-600 bg-white px-2 py-1 text-xs font-medium text-blue-600 transition-colors hover:bg-blue-50;
+}
+
+.compact-button-icon {
+  @apply h-3 w-3;
+}
+
+/* تنسيقات العناصر المصغرة للارتفاع 110px */
+.compact-110-elements {
+  /* أسهم التنقل المصغرة */
+  .compact-nav-arrow {
+    @apply p-0.5;
+  }
+
+  .compact-nav-arrow svg {
+    @apply h-2.5 w-2.5;
+  }
+
+  /* مؤشرات الصور المصغرة */
+  .compact-indicator {
+    @apply h-0.5 w-0.5;
+  }
+
+  /* عداد الصور المصغر */
+  .compact-image-counter {
+    @apply bottom-0.5 right-0.5 px-1 py-0.5;
+  }
+
+  .compact-image-counter svg {
+    @apply h-1.5 w-1.5;
+  }
+
+  /* أزرار الإجراءات المصغرة */
+  .compact-action-button {
+    @apply p-0.5;
+  }
+
+  .compact-action-button svg {
+    @apply h-2.5 w-2.5;
+  }
+
+  /* الشارات المصغرة */
+  .compact-badge {
+    @apply px-1 py-0.5 text-xs;
+  }
+
+  .compact-badge svg {
+    @apply h-1.5 w-1.5;
+  }
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 640px) {
+  .compact-showroom-card {
+    height: auto;
+    min-height: 110px;
+  }
+
+  .compact-showroom-layout {
+    flex-direction: column;
+  }
+
+  .compact-image-section {
+    width: 100%;
+    height: 110px;
+  }
+
+  .compact-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .compact-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* تحسينات للشاشات الكبيرة */
+@media (min-width: 1024px) {
+  .compact-image-section {
+    width: 180px;
+  }
+
+  .compact-stats-grid {
+    gap: 3px;
+  }
+
+  .compact-info-grid {
+    gap: 2px;
+  }
+}
+
+/* تأثيرات التحويم المتقدمة */
+.compact-showroom-card:hover .compact-stat-card {
+  transform: scale(1.02);
+}
+
+.compact-showroom-card:hover .compact-info-item {
+  background: linear-gradient(to right, #f9fafb, #e5e7eb);
+}
+
+/* تحسينات الأداء */
+.compact-showroom-card * {
+  will-change: transform;
+}
+
+.compact-image-section img {
+  will-change: transform;
+}
+
+/* تحسينات إمكانية الوصول */
+.compact-action-button:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-1;
+}
+
+.compact-primary-button:focus,
+.compact-secondary-button:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-1;
+}
+
+/* الشارات المتدرجة الجديدة */
+.gradient-badge {
+  @apply flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-bold text-white shadow-sm transition-all duration-200;
+}
+
+.gradient-badge.featured {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+}
+
+.gradient-badge.verified {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.gradient-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* الإحصائيات المحسنة */
+.enhanced-stat-card {
+  @apply rounded-lg p-1.5 text-center transition-all duration-200 hover:scale-105;
+  background: linear-gradient(135deg, var(--stat-color-light), var(--stat-color-dark));
+}
+
+.enhanced-stat-card.blue {
+  --stat-color-light: #dbeafe;
+  --stat-color-dark: #bfdbfe;
+}
+
+.enhanced-stat-card.green {
+  --stat-color-light: #dcfce7;
+  --stat-color-dark: #bbf7d0;
+}
+
+.enhanced-stat-card.yellow {
+  --stat-color-light: #fef3c7;
+  --stat-color-dark: #fde68a;
+}
+
+.enhanced-stat-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.08) translateY(-2px);
+}
+
+/* أزرار الإجراءات المحسنة */
+.enhanced-action-button {
+  @apply flex flex-1 items-center justify-center gap-1 rounded-lg px-2 py-1.5 text-xs font-medium transition-all duration-200;
+}
+
+.enhanced-action-button.primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.enhanced-action-button.secondary {
+  @apply border border-blue-600 bg-white text-blue-600 hover:bg-blue-50;
+}
+
+.enhanced-action-button:hover {
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.enhanced-action-button:active {
+  transform: scale(0.98);
+}
+
+/* تنسيقات خاصة للتصميم 110px */
+.compact-110px {
+  height: 110px;
+}
+
+.compact-110px .image-section {
+  width: 144px; /* 36 * 4px = 144px */
+}
+
+.compact-110px .content-padding {
+  padding: 8px; /* p-2 */
+}
+
+.compact-110px .stats-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.compact-110px .stat-card {
+  padding: 2px;
+}
+
+.compact-110px .info-grid {
+  gap: 2px;
+}
+
+.compact-110px .info-item {
+  padding: 2px;
+}
+
+.compact-110px .button-group {
+  gap: 2px;
+}
+
+.compact-110px .button {
+  padding: 2px 4px;
+}
+
+.compact-110px .icon-xs {
+  width: 8px;
+  height: 8px;
+}
+
+.compact-110px .icon-sm {
+  width: 10px;
+  height: 10px;
+}
+
+.compact-110px .text-xs {
+  font-size: 10px;
+}
+
+/* تحسينات للطباعة */
+@media print {
+  .compact-showroom-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+  }
+
+  .compact-nav-arrow,
+  .compact-action-buttons {
+    display: none;
+  }
+}

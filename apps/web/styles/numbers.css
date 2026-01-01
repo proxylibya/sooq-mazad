@@ -1,0 +1,207 @@
+/* إعدادات عرض الأرقام بالتنسيق الإنجليزي */
+
+/* كلاس أساسي لجميع الأرقام */
+.number-display {
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+  text-align: left;
+}
+
+/* أرقام الهواتف */
+.phone-number {
+  @apply number-display font-mono;
+  letter-spacing: 0.05em;
+}
+
+/* الأسعار */
+.price-display {
+  @apply number-display font-semibold;
+  font-weight: 600;
+}
+
+/* العدادات والإحصائيات */
+.count-display {
+  @apply number-display font-medium;
+  text-align: center;
+}
+
+/* السنوات */
+.year-display {
+  @apply number-display font-medium;
+  text-align: center;
+}
+
+/* المسافات المقطوعة */
+.mileage-display {
+  @apply number-display font-medium;
+}
+
+/* أرقام عامة */
+.general-number {
+  @apply number-display;
+}
+
+/* تأكيد استخدام الأرقام الإنجليزية فقط */
+.english-numbers-only {
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* منع عرض الأرقام العربية الهندية */
+.no-arabic-numerals {
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum';
+}
+
+/* تنسيق خاص للأرقام في الجداول */
+.table-number {
+  @apply number-display text-right;
+  min-width: fit-content;
+}
+
+/* تنسيق الأرقام في البطاقات */
+.card-number {
+  @apply number-display;
+  line-height: 1.2;
+}
+
+/* تنسيق الأرقام في النماذج */
+.form-number {
+  @apply number-display;
+  text-align: left;
+}
+
+/* تنسيق الأرقام الكبيرة */
+.large-number {
+  @apply number-display text-2xl font-bold;
+}
+
+/* تنسيق الأرقام الصغيرة */
+.small-number {
+  @apply number-display text-sm;
+}
+
+/* تنسيق خاص للعملات */
+.currency-display {
+  @apply price-display;
+  white-space: nowrap;
+}
+
+/* تنسيق النسب المئوية */
+.percentage-display {
+  @apply number-display font-medium;
+}
+
+/* تنسيق الأرقام في الإشعارات */
+.notification-number {
+  @apply number-display text-xs font-semibold;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* تنسيق الأرقام في الشارات */
+.badge-number {
+  @apply number-display text-xs font-bold;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.375rem;
+  background: #3b82f6;
+  color: white;
+}
+
+/* تنسيق أرقام التقييم */
+.rating-number {
+  @apply number-display font-semibold;
+  color: #f59e0b;
+}
+
+/* تنسيق أرقام الوقت */
+.time-number {
+  @apply number-display font-mono;
+  letter-spacing: 0.05em;
+}
+
+/* تنسيق أرقام التواريخ */
+.date-number {
+  @apply number-display;
+}
+
+/* تنسيق أرقام الكميات */
+.quantity-number {
+  @apply number-display text-center font-medium;
+  min-width: 2rem;
+}
+
+/* تنسيق أرقام الصفحات */
+.page-number {
+  @apply number-display font-medium;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+}
+
+/* تنسيق أرقام الخطوات */
+.step-number {
+  @apply number-display text-center font-bold;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #3b82f6;
+  color: white;
+}
+
+/* تنسيق أرقام الترتيب */
+.order-number {
+  @apply number-display font-semibold;
+  color: #6b7280;
+}
+
+/* تنسيق أرقام المعرفات */
+.id-number {
+  @apply number-display font-mono text-xs;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* تنسيق أرقام الإحداثيات */
+.coordinate-number {
+  @apply number-display font-mono text-sm;
+}
+
+/* تنسيق أرقام الإصدارات */
+.version-number {
+  @apply number-display font-mono text-sm;
+  color: #6b7280;
+}
+
+/* تأكيد عدم تأثر الأرقام بالاتجاه العام للصفحة */
+[dir='rtl'] .number-display,
+[dir='rtl'] .phone-number,
+[dir='rtl'] .price-display,
+[dir='rtl'] .count-display,
+[dir='rtl'] .year-display,
+[dir='rtl'] .mileage-display {
+  direction: ltr;
+  unicode-bidi: embed;
+  text-align: left;
+}
+
+/* تنسيق خاص للأرقام في النصوص العربية */
+.arabic-text .number-display {
+  display: inline-block;
+  direction: ltr;
+  unicode-bidi: embed;
+}

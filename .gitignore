@@ -1,0 +1,76 @@
+﻿# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+*.tsbuildinfo
+
+.turbo/
+**/.turbo/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Testing
+coverage/
+*.lcov
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Ignore env files everywhere (but keep example templates)
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.temp
+temp/
+tmp/
+
+uploads/
+public/uploads/
+optimized-images/
+test-results/
+
+# Binary images (do not push)
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.webp
+**/*.ico
+
+public/images/profiles/profile_*
+apps/**/public/images/profiles/profile_*
+
+**/public/images/profiles/profile_*
+
+public/images/cars/listings/
+apps/**/public/images/cars/listings/
+
+**/public/images/cars/listings/
+**/public/images/cars/listings/**
+
+# Security files
+.env.security
+.keys/

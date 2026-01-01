@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      .default-bg { fill: #f3f4f6; }
+      .default-icon { fill: #6b7280; }
+    </style>
+  </defs>
+
+  <!-- Default Logo Background -->
+  <rect width="100" height="100" fill="#f3f4f6" rx="10"/>
+
+  <!-- Car Icon -->
+  <g transform="translate(50,50)">
+    <!-- Car body -->
+    <rect x="-30" y="-8" width="60" height="16" rx="8" fill="#6b7280"/>
+
+    <!-- Car windows -->
+    <rect x="-25" y="-15" width="20" height="7" rx="3" fill="#6b7280"/>
+    <rect x="5" y="-15" width="20" height="7" rx="3" fill="#6b7280"/>
+
+    <!-- Car wheels -->
+    <circle cx="-18" cy="8" r="6" fill="#6b7280"/>
+    <circle cx="18" cy="8" r="6" fill="#6b7280"/>
+
+    <!-- Wheel centers -->
+    <circle cx="-18" cy="8" r="3" fill="#f3f4f6"/>
+    <circle cx="18" cy="8" r="3" fill="#f3f4f6"/>
+  </g>
+</svg>

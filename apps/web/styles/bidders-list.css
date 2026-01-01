@@ -1,0 +1,44 @@
+/* تصميم قائمة المزايدين */
+.bidders-list-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.bidders-list-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bidders-list-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.bidders-list-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.bidders-list-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* تحسين التمرير للأجهزة اللوحية والهواتف */
+@media (max-width: 768px) {
+  .bidders-list-scrollbar {
+    scrollbar-width: auto;
+  }
+  
+  .bidders-list-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+}
+
+/* تأثيرات hover للبطاقات */
+.bidders-list-scrollbar > div {
+  transition: all 0.2s ease;
+}
+
+.bidders-list-scrollbar > div:hover {
+  transform: translateY(-1px);
+}

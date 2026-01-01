@@ -1,0 +1,190 @@
+name: 🛡️ فحص الجودة والأمان
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # فحص يومي في الساعة 3:00 صباحاً UTC
+    - cron: '0 3 * * *'
+
+jobs:
+  quality-check:
+    name: 🔍 فحص شامل للجودة
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🟢 Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: 📦 Install dependencies
+      run: npm ci --legacy-peer-deps
+      
+    - name: 🔧 TypeScript Check
+      run: npx tsc --noEmit --skipLibCheck
+      
+    - name: 🧹 ESLint Check
+      run: npx eslint . --ext .ts,.tsx --format json --output-file eslint-report.json
+      continue-on-error: true
+      
+    - name: 🛡️ Custom Quality Check
+      run: node scripts/quality-assurance/code-integrity-checker.js
+      
+    - name: 📊 Upload Quality Reports
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: quality-reports-${{ matrix.node-version }}
+        path: |
+          code-integrity-report.json
+          eslint-report.json
+          
+  security-check:
+    name: 🔒 فحص الأمان
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        
+    - name: 📦 Install dependencies
+      run: npm ci --legacy-peer-deps
+      
+    - name: 🔍 Security Audit
+      run: npm audit --audit-level high
+      continue-on-error: true
+      
+    - name: 🛡️ Dependency Check
+      run: |
+        npx depcheck --ignores="@types/*,eslint-*" 2>&1 | tee dependency-report.txt
+      continue-on-error: true
+      
+    - name: 📊 Upload Security Reports
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: security-reports
+        path: |
+          dependency-report.txt
+          
+  build-test:
+    name: 🏗️ اختبار البناء
+    runs-on: ubuntu-latest
+    needs: [quality-check]
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        
+    - name: 📦 Install dependencies
+      run: npm ci --legacy-peer-deps
+      
+    - name: 🏗️ Build Project
+      run: npm run build
+      env:
+        NODE_ENV: production
+        
+    - name: 📊 Build Size Check
+      run: |
+        du -sh .next/ | tee build-size.txt
+        echo "Build completed successfully" >> build-size.txt
+        
+    - name: 📊 Upload Build Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-reports
+        path: build-size.txt
+
+  notify-on-failure:
+    name: 📢 إشعار في حالة الفشل
+    runs-on: ubuntu-latest
+    needs: [quality-check, security-check, build-test]
+    if: failure()
+    
+    steps:
+    - name: 📧 Send Notification
+      run: |
+        echo "🚨 فشل في فحص الجودة أو البناء!"
+        echo "المشروع: ${{ github.repository }}"
+        echo "الفرع: ${{ github.ref }}"
+        echo "الكوميت: ${{ github.sha }}"
+        echo "تاريخ: $(date)"
+        
+  generate-quality-report:
+    name: 📋 تقرير الجودة النهائي
+    runs-on: ubuntu-latest
+    needs: [quality-check, security-check, build-test]
+    if: always()
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 📥 Download all reports
+      uses: actions/download-artifact@v3
+      
+    - name: 📊 Generate Summary Report
+      run: |
+        echo "# 📊 تقرير الجودة الشامل" > QUALITY_REPORT.md
+        echo "" >> QUALITY_REPORT.md
+        echo "**التاريخ**: $(date)" >> QUALITY_REPORT.md
+        echo "**الفرع**: ${{ github.ref }}" >> QUALITY_REPORT.md
+        echo "**الكوميت**: ${{ github.sha }}" >> QUALITY_REPORT.md
+        echo "" >> QUALITY_REPORT.md
+        
+        echo "## 🔍 نتائج فحص الجودة" >> QUALITY_REPORT.md
+        if [ -f "quality-reports-20.x/code-integrity-report.json" ]; then
+          echo "✅ تم إنجاز فحص سلامة الكود" >> QUALITY_REPORT.md
+        else
+          echo "❌ فشل في فحص سلامة الكود" >> QUALITY_REPORT.md
+        fi
+        
+        echo "" >> QUALITY_REPORT.md
+        echo "## 🔒 نتائج فحص الأمان" >> QUALITY_REPORT.md
+        if [ -f "security-reports/dependency-report.txt" ]; then
+          echo "✅ تم إنجاز فحص الأمان" >> QUALITY_REPORT.md
+        else
+          echo "❌ فشل في فحص الأمان" >> QUALITY_REPORT.md
+        fi
+        
+        echo "" >> QUALITY_REPORT.md
+        echo "## 🏗️ نتائج البناء" >> QUALITY_REPORT.md
+        if [ -f "build-reports/build-size.txt" ]; then
+          echo "✅ تم بناء المشروع بنجاح" >> QUALITY_REPORT.md
+          echo "" >> QUALITY_REPORT.md
+          echo "### حجم البناء:" >> QUALITY_REPORT.md
+          echo "\`\`\`" >> QUALITY_REPORT.md
+          cat build-reports/build-size.txt >> QUALITY_REPORT.md
+          echo "\`\`\`" >> QUALITY_REPORT.md
+        else
+          echo "❌ فشل في بناء المشروع" >> QUALITY_REPORT.md
+        fi
+        
+    - name: 📤 Upload Final Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: final-quality-report
+        path: QUALITY_REPORT.md

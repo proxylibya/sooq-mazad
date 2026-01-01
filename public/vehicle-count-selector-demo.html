@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مثال على مكون اختيار عدد المركبات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .dropdown-container {
+        position: relative;
+      }
+
+      .dropdown-trigger {
+        width: 100%;
+        padding: 0.75rem 3rem 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 0.75rem;
+        background-color: white;
+        color: #111827;
+        text-align: right;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .dropdown-trigger:hover {
+        border-color: #9ca3af;
+      }
+
+      .dropdown-trigger:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 50;
+        max-height: 15rem;
+        overflow-y: auto;
+        margin-top: 0.25rem;
+        display: none;
+      }
+
+      .dropdown-menu.show {
+        display: block;
+      }
+
+      .dropdown-option {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        text-align: right;
+      }
+
+      .dropdown-option:hover {
+        background-color: #f3f4f6;
+      }
+
+      .dropdown-option.selected {
+        background-color: #eff6ff;
+        color: #2563eb;
+        font-weight: 500;
+      }
+
+      .arrow-icon {
+        transition: transform 0.2s;
+      }
+
+      .arrow-icon.rotated {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <div class="mx-auto max-w-4xl p-6">
+      <!-- Header -->
+      <div class="mb-8 rounded-lg border bg-white p-6 shadow-sm">
+        <h1 class="mb-4 text-right text-3xl font-bold text-gray-900">
+          مثال على مكون اختيار عدد المركبات
+        </h1>
+        <p class="text-right text-gray-600">
+          هذا مثال على HTML الذي يحاكي مكون VehicleCountSelector المطور بـ React
+        </p>
+      </div>
+
+      <!-- Demo Form -->
+      <div class="rounded-lg border bg-white p-6 shadow-sm">
+        <h2 class="mb-6 text-right text-xl font-semibold text-gray-800">نموذج إنشاء معرض</h2>
+
+        <form class="space-y-6">
+          <!-- اسم المعرض -->
+          <div>
+            <label class="mb-2 block text-right text-sm font-medium text-gray-700">
+              اسم المعرض *
+            </label>
+            <input
+              type="text"
+              placeholder="أدخل اسم المعرض"
+              class="w-full rounded-lg border border-gray-300 px-3 py-2 text-right focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- عدد المركبات -->
+          <div>
+            <label class="mb-2 block text-right text-sm font-medium text-gray-700">
+              كم عدد المركبات التي بالمعرض *
+            </label>
+            <div class="dropdown-container">
+              <button type="button" class="dropdown-trigger" id="vehicleCountTrigger">
+                <span class="text-gray-500" id="selectedText">اختر عدد المركبات</span>
+                <svg
+                  class="arrow-icon h-5 w-5"
+                  id="arrowIcon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div class="dropdown-menu" id="vehicleCountMenu">
+                <div class="dropdown-option" data-value="unspecified">بدون تحديد</div>
+                <div class="dropdown-option" data-value="1-10">1 - 10 مركبات</div>
+                <div class="dropdown-option" data-value="11-25">11 - 25 مركبة</div>
+                <div class="dropdown-option" data-value="26-50">26 - 50 مركبة</div>
+                <div class="dropdown-option" data-value="51-100">51 - 100 مركبة</div>
+                <div class="dropdown-option" data-value="100+">أكثر من 100 مركبة</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- الموقع -->
+          <div>
+            <label class="mb-2 block text-right text-sm font-medium text-gray-700">
+              الموقع *
+            </label>
+            <input
+              type="text"
+              placeholder="أدخل موقع المعرض"
+              class="w-full rounded-lg border border-gray-300 px-3 py-2 text-right focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- أزرار الإجراءات -->
+          <div class="flex gap-4 pt-4">
+            <button
+              type="submit"
+              class="rounded-lg bg-blue-600 px-6 py-2 text-white transition-colors hover:bg-blue-700"
+            >
+              إنشاء المعرض
+            </button>
+            <button
+              type="button"
+              class="rounded-lg bg-gray-200 px-6 py-2 text-gray-700 transition-colors hover:bg-gray-300"
+            >
+              إلغاء
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Selected Value Display -->
+      <div
+        class="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4"
+        id="selectedValueDisplay"
+        style="display: none"
+      >
+        <h3 class="mb-2 text-right font-semibold text-blue-900">القيمة المختارة:</h3>
+        <p class="text-right text-blue-800" id="selectedValueText"></p>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript للتفاعل مع القائمة المنسدلة
+      const trigger = document.getElementById('vehicleCountTrigger');
+      const menu = document.getElementById('vehicleCountMenu');
+      const arrowIcon = document.getElementById('arrowIcon');
+      const selectedText = document.getElementById('selectedText');
+      const selectedValueDisplay = document.getElementById('selectedValueDisplay');
+      const selectedValueText = document.getElementById('selectedValueText');
+      const options = document.querySelectorAll('.dropdown-option');
+
+      let selectedValue = '';
+
+      // فتح/إغلاق القائمة
+      trigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        const isOpen = menu.classList.contains('show');
+
+        if (isOpen) {
+          menu.classList.remove('show');
+          arrowIcon.classList.remove('rotated');
+        } else {
+          menu.classList.add('show');
+          arrowIcon.classList.add('rotated');
+        }
+      });
+
+      // اختيار خيار
+      options.forEach((option) => {
+        option.addEventListener('click', function () {
+          const value = this.getAttribute('data-value');
+          const text = this.textContent;
+
+          // إزالة التحديد من جميع الخيارات
+          options.forEach((opt) => opt.classList.remove('selected'));
+
+          // تحديد الخيار الحالي
+          this.classList.add('selected');
+
+          // تحديث النص المعروض
+          selectedText.textContent = text;
+          selectedText.classList.remove('text-gray-500');
+          selectedText.classList.add('text-gray-900');
+
+          // حفظ القيمة
+          selectedValue = value;
+
+          // عرض القيمة المختارة
+          selectedValueText.textContent = `القيمة: ${value} | التسمية: ${text}`;
+          selectedValueDisplay.style.display = 'block';
+
+          // إغلاق القائمة
+          menu.classList.remove('show');
+          arrowIcon.classList.remove('rotated');
+
+          console.log('تم اختيار:', { value, text });
+        });
+      });
+
+      // إغلاق القائمة عند النقر خارجها
+      document.addEventListener('click', function (e) {
+        if (!trigger.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove('show');
+          arrowIcon.classList.remove('rotated');
+        }
+      });
+    </script>
+  </body>
+</html>

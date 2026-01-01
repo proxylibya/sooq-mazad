@@ -1,0 +1,248 @@
+/* 
+ * نظام الخطوط الموحد للوحة التحكم
+ * الخط: Cairo - محمّل من _document.tsx
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* متغيرات لوحة التحكم */
+:root {
+  --admin-primary: #2563eb;
+  --admin-secondary: #64748b;
+  --admin-success: #22c55e;
+  --admin-danger: #ef4444;
+  --admin-warning: #f59e0b;
+  --admin-info: #3b82f6;
+  --font-family: 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* إعدادات أساسية */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* تعريف الخط مرة واحدة فقط */
+html,
+body {
+  font-family: var(--font-family);
+  direction: rtl;
+  background-color: #0f172a;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================
+   منع تحديد وسحب النصوص في لوحة التحكم
+   No text selection/drag in admin panel
+   ============================================= */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* السماح بتحديد النص في حقول الإدخال فقط */
+input,
+textarea,
+[contenteditable='true'],
+pre,
+code,
+.selectable {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* منع السحب للصور والروابط */
+img,
+a {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* Dark mode base */
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+}
+
+/* Scrollbar styling - Dark mode - سمك عريض جداً */
+::-webkit-scrollbar {
+  width: 24px;
+  height: 24px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #475569 0%, #334155 100%);
+  border-radius: 12px;
+  border: 4px solid #1e293b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #64748b 0%, #475569 100%);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+}
+
+::-webkit-scrollbar-corner {
+  background: #1e293b;
+}
+
+/* Scrollbar للقائمة الجانبية */
+.admin-sidebar::-webkit-scrollbar,
+nav::-webkit-scrollbar,
+aside::-webkit-scrollbar {
+  width: 20px;
+}
+
+.admin-sidebar::-webkit-scrollbar-track,
+nav::-webkit-scrollbar-track,
+aside::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 10px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb,
+nav::-webkit-scrollbar-thumb,
+aside::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #475569 0%, #334155 100%);
+  border-radius: 10px;
+  border: 4px solid #0f172a;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb:hover,
+nav::-webkit-scrollbar-thumb:hover,
+aside::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #64748b 0%, #475569 100%);
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thick;
+  scrollbar-color: #475569 #1e293b;
+}
+
+/* Admin sidebar */
+.admin-sidebar {
+  @apply fixed right-0 top-0 h-full w-64 bg-slate-900 text-white shadow-xl;
+}
+
+.admin-sidebar-link {
+  @apply flex items-center gap-3 px-4 py-3 text-slate-300 transition-colors hover:bg-slate-800 hover:text-white;
+}
+
+.admin-sidebar-link.active {
+  @apply bg-blue-600 text-white;
+}
+
+/* Admin content */
+.admin-content {
+  @apply mr-64 min-h-screen bg-slate-100 p-6;
+}
+
+/* Admin cards */
+.admin-card {
+  @apply rounded-xl bg-white p-6 shadow-sm;
+}
+
+.admin-stat-card {
+  @apply rounded-xl bg-white p-6 shadow-sm transition-transform hover:scale-105;
+}
+
+/* Admin tables */
+.admin-table {
+  @apply w-full text-right;
+}
+
+.admin-table th {
+  @apply border-b bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-600;
+}
+
+.admin-table td {
+  @apply border-b px-4 py-3 text-sm text-slate-700;
+}
+
+.admin-table tr:hover {
+  @apply bg-slate-50;
+}
+
+/* Admin buttons */
+.admin-btn {
+  @apply inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors;
+}
+
+.admin-btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.admin-btn-secondary {
+  @apply bg-slate-200 text-slate-700 hover:bg-slate-300;
+}
+
+.admin-btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+.admin-btn-success {
+  @apply bg-green-600 text-white hover:bg-green-700;
+}
+
+/* Admin forms */
+.admin-input {
+  @apply w-full rounded-lg border border-slate-300 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+}
+
+.admin-select {
+  @apply w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+}
+
+.admin-label {
+  @apply mb-2 block text-sm font-medium text-slate-700;
+}
+
+/* Admin badges */
+.admin-badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+}
+
+.admin-badge-success {
+  @apply bg-green-100 text-green-800;
+}
+
+.admin-badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.admin-badge-danger {
+  @apply bg-red-100 text-red-800;
+}
+
+.admin-badge-info {
+  @apply bg-blue-100 text-blue-800;
+}
+
+/* Loading spinner */
+.admin-spinner {
+  @apply h-8 w-8 animate-spin rounded-full border-4 border-blue-200 border-t-blue-600;
+}

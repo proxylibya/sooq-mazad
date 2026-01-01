@@ -1,0 +1,220 @@
+/* ========================================
+   نظام العداد المتجاوب والموحد
+   ======================================== */
+
+/* تثبيت أحجام العناصر الداخلية للعداد */
+.mobile-auction-timer-container [style*="font-size: 12px"] {
+  font-size: 12px !important;
+}
+
+.mobile-auction-timer-container [style*="font-size: 24px"] {
+  font-size: 24px !important;
+}
+
+.mobile-auction-timer-container [style*="font-size: 14px"] {
+  font-size: 14px !important;
+}
+
+.mobile-auction-timer-container [style*="font-size: 16px"] {
+  font-size: 16px !important;
+}
+
+.mobile-auction-timer-container [style*="padding: 1rem"] {
+  padding: 1rem !important;
+}
+
+.mobile-auction-timer-container [style*="padding-top: 3px"] {
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+}
+
+.mobile-auction-timer-container [style*="margin-top: 10px"] {
+  margin-top: 10px !important;
+}
+
+/* تثبيت المسافات */
+.mobile-auction-timer-container .mb-1 {
+  margin-bottom: 0.25rem !important;
+}
+
+.mobile-auction-timer-container .mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mobile-auction-timer-container .gap-2 {
+  gap: 0.5rem !important;
+}
+
+.mobile-auction-timer-container .gap-1\.5 {
+  gap: 0.375rem !important;
+}
+
+.mobile-auction-timer-container .px-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+.mobile-auction-timer-container .px-1\.5 {
+  padding-left: 0.375rem !important;
+  padding-right: 0.375rem !important;
+}
+
+.mobile-auction-timer-container .py-0\.5 {
+  padding-top: 0.125rem !important;
+  padding-bottom: 0.125rem !important;
+}
+
+.mobile-auction-timer-container .py-1\.5 {
+  padding-top: 0.375rem !important;
+  padding-bottom: 0.375rem !important;
+}
+
+/* العداد في وضع القائمة - أصغر وموحد */
+.auction-list-view .mobile-auction-timer-container,
+.auction-list-mode .mobile-auction-timer-container {
+  transform: scale(0.7) !important;
+  transform-origin: center center !important;
+  margin: 0 auto !important;
+}
+
+/* العداد في وضع الشبكة - حجم عادي */
+.auction-grid-view .mobile-auction-timer-container,
+.auction-grid-mode .mobile-auction-timer-container {
+  transform: scale(1) !important;
+  transform-origin: center center !important;
+}
+
+/* تثبيت حجم العداد الدائري */
+.mobile-auction-timer-container .relative.mx-auto {
+  height: 14rem !important; /* 224px - h-56 */
+  width: 14rem !important; /* 224px - w-56 */
+  min-height: 14rem !important;
+  min-width: 14rem !important;
+  max-height: 14rem !important;
+  max-width: 14rem !important;
+}
+
+/* منع أي transform إضافي على المحتوى الداخلي */
+.mobile-auction-timer-container .absolute.inset-0 {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  padding: 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* تثبيت العناصر النصية */
+.mobile-auction-timer-container .text-center {
+  text-align: center !important;
+}
+
+.mobile-auction-timer-container .flex {
+  display: flex !important;
+}
+
+.mobile-auction-timer-container .flex-col {
+  flex-direction: column !important;
+}
+
+.mobile-auction-timer-container .items-center {
+  align-items: center !important;
+}
+
+.mobile-auction-timer-container .justify-center {
+  justify-content: center !important;
+}
+
+/* منع أي تحويلات على العناصر الداخلية */
+.mobile-auction-timer-container .price-value {
+  transform: none !important;
+}
+
+.mobile-auction-timer-container .scale-100,
+.mobile-auction-timer-container .scale-110 {
+  transform: scale(1) !important;
+}
+
+/* للشاشات المتوسطة (أقل من 768px) */
+@media (max-width: 768px) {
+  .mobile-auction-timer-container {
+    transform: scale(0.9) !important;
+    transform-origin: center center !important;
+  }
+  
+  /* في وضع القائمة على الشاشات المتوسطة */
+  .auction-list-view .mobile-auction-timer-container,
+  .auction-list-mode .mobile-auction-timer-container {
+    transform: scale(0.6) !important;
+  }
+}
+
+/* للشاشات الصغيرة (أقل من 640px) */
+@media (max-width: 640px) {
+  .mobile-auction-timer-container {
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+  }
+  
+  /* في وضع القائمة على الشاشات الصغيرة */
+  .auction-list-view .mobile-auction-timer-container,
+  .auction-list-mode .mobile-auction-timer-container {
+    transform: scale(0.55) !important;
+  }
+}
+
+/* للشاشات الصغيرة جداً (أقل من 480px) */
+@media (max-width: 480px) {
+  .mobile-auction-timer-container {
+    transform: scale(0.75) !important;
+    transform-origin: center center !important;
+  }
+  
+  /* في وضع القائمة على الشاشات الصغيرة جداً */
+  .auction-list-view .mobile-auction-timer-container,
+  .auction-list-mode .mobile-auction-timer-container {
+    transform: scale(0.5) !important;
+  }
+}
+
+/* تثبيت الأنيميشن للنقاط النابضة */
+.mobile-auction-timer-container .animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.mobile-auction-timer-container .animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ضمان عرض العداد بشكل صحيح */
+.mobile-auction-timer-container {
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+}
+
+/* تحسين الأداء */
+.mobile-auction-timer-container svg {
+  will-change: stroke-dashoffset;
+}
+
+/* Keyframes للأنيميشن */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

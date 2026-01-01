@@ -1,0 +1,25 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- خلفية رمادية -->
+  <rect width="400" height="300" fill="#F3F4F6"/>
+  
+  <!-- جسم السيارة -->
+  <path d="M80 180H320C330 180 340 170 340 160V140C340 130 330 120 320 120H280L260 100H140L120 120H80C70 120 60 130 60 140V160C60 170 70 180 80 180Z" fill="#D1D5DB"/>
+  
+  <!-- نوافذ السيارة -->
+  <path d="M140 100H260L280 120H120L140 100Z" fill="#9CA3AF"/>
+  <rect x="130" y="130" width="140" height="30" rx="5" fill="#9CA3AF"/>
+  
+  <!-- العجلات -->
+  <circle cx="120" cy="200" r="25" fill="#374151"/>
+  <circle cx="280" cy="200" r="25" fill="#374151"/>
+  <circle cx="120" cy="200" r="15" fill="#6B7280"/>
+  <circle cx="280" cy="200" r="15" fill="#6B7280"/>
+  
+  <!-- المصابيح -->
+  <circle cx="90" cy="150" r="8" fill="#FEF3C7"/>
+  <circle cx="310" cy="150" r="8" fill="#FEF3C7"/>
+  
+  <!-- النص -->
+  <text x="200" y="80" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="16" font-weight="bold">سيارة غير متاحة</text>
+  <text x="200" y="260" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="12">لا توجد صورة</text>
+</svg>

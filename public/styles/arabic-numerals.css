@@ -1,0 +1,261 @@
+/*
+ * ملف CSS لضمان استخدام الأرقام الغربية/اللاتينية فقط (0123456789)
+ * CSS file to ensure Western/Latin numerals only (0123456789)
+ *
+ * ⚠️ شرط إجباري: استخدام الأرقام الغربية/اللاتينية فقط
+ * ❌ ممنوع: الأرقام العربية-الهندية (٠١٢٣٤٥٦٧٨٩) والفارسية (۰۱۲۳۴۵۶۷۸۹)
+ */
+
+/* تطبيق الأرقام الغربية/اللاتينية على جميع العناصر */
+* {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تأكيد استخدام الأرقام الغربية/اللاتينية في النصوص */
+body,
+html,
+input,
+textarea,
+select,
+button {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق خاص للأرقام في العناصر المهمة */
+.price,
+.number,
+.count,
+.phone,
+.year,
+.mileage,
+[class*='price'],
+[class*='number'],
+[class*='count'] {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* تطبيق على عناصر الإدخال */
+input[type='number'],
+input[type='tel'],
+input[type='text'] {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على العدادات والإحصائيات */
+.counter,
+.stats,
+.countdown,
+.timer {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+/* تطبيق على أرقام الهواتف */
+.phone-number,
+[href^='tel:'] {
+  direction: ltr;
+  unicode-bidi: embed;
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على الأسعار */
+.price-value,
+.bid-amount,
+.currency {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* تطبيق على التواريخ والأوقات */
+.date,
+.time,
+.datetime {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على الشارات والعدادات */
+.badge,
+.count-badge,
+.notification-count {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على جداول البيانات */
+table td,
+table th {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على عناصر التنقل */
+.pagination,
+.page-number {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على النماذج */
+form input,
+form select,
+form textarea {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على العناصر التفاعلية */
+button,
+.btn,
+.button {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق خاص للعدادات التنازلية */
+.countdown-timer,
+.auction-timer {
+  font-family: 'Courier New', 'Monaco', monospace;
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* تطبيق على الإحصائيات */
+.stat-number,
+.metric-value {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  font-weight: bold;
+}
+
+/* تطبيق على عناصر البحث */
+.search-results-count,
+.filter-count {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على عناصر التقييم */
+.rating,
+.score,
+.review-count {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على المسافات والقياسات */
+.distance,
+.measurement,
+.dimension {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* تطبيق على عناصر التجارة الإلكترونية */
+.product-price,
+.discount-amount,
+.savings {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* تطبيق على عناصر الوقت */
+.timestamp,
+.duration,
+.elapsed-time {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على الكميات */
+.quantity,
+.amount,
+.total {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على عناصر التقدم */
+.progress-value,
+.percentage {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على الرموز البريدية والأكواد */
+.postal-code,
+.zip-code,
+.code {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* تطبيق على أرقام الصفحات */
+.page-info,
+.pagination-info {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على عناصر الفرز */
+.sort-option,
+.filter-option {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+}
+
+/* تطبيق على العناصر المخصصة للمشروع */
+.car-year,
+.car-mileage,
+.car-price,
+.bid-count,
+.auction-time {
+  font-variant-numeric: lining-nums;
+  -webkit-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  direction: ltr;
+  unicode-bidi: embed;
+}

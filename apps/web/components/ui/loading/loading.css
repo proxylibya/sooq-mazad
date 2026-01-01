@@ -1,0 +1,305 @@
+/**
+ * Loading System CSS
+ * نظام التحميل العالمي الموحد - سوق مزاد
+ * 
+ * @description أنماط CSS للتأثيرات المتحركة
+ * @version 2.0.0
+ */
+
+/* ============================================
+   Shimmer Effect - تأثير اللمعان
+   ============================================ */
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Dark mode shimmer */
+.dark .skeleton-shimmer::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* ============================================
+   Wave Effect - تأثير الموجة
+   ============================================ */
+
+.skeleton-wave {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-wave::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  50% {
+    transform: translateX(0%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-15deg);
+  }
+}
+
+/* ============================================
+   Pulse Glow Effect - تأثير التوهج النابض
+   ============================================ */
+
+.skeleton-glow {
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   Gradient Animation - تأثير التدرج المتحرك
+   ============================================ */
+
+.skeleton-gradient {
+  background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+  background-size: 200% 100%;
+  animation: gradient-move 1.5s ease infinite;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Dark mode gradient */
+.dark .skeleton-gradient {
+  background: linear-gradient(90deg, #374151 0%, #4b5563 50%, #374151 100%);
+  background-size: 200% 100%;
+}
+
+/* ============================================
+   Loading Bar - شريط التحميل
+   ============================================ */
+
+.loading-bar {
+  height: 3px;
+  width: 100%;
+  background: #e5e7eb;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  animation: loading-bar 1s ease-in-out infinite;
+}
+
+@keyframes loading-bar {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ============================================
+   Skeleton Text Lines - أسطر النص
+   ============================================ */
+
+.skeleton-line {
+  height: 1rem;
+  border-radius: 0.25rem;
+  background-color: #e5e7eb;
+}
+
+.skeleton-line-short {
+  width: 60%;
+}
+
+.skeleton-line-medium {
+  width: 80%;
+}
+
+.skeleton-line-long {
+  width: 100%;
+}
+
+/* ============================================
+   Content Placeholder - محتوى وهمي
+   ============================================ */
+
+.content-placeholder {
+  position: relative;
+}
+
+.content-placeholder.loading > * {
+  visibility: hidden;
+}
+
+.content-placeholder.loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #e5e7eb;
+  border-radius: inherit;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   Fade Transitions - تحولات التلاشي
+   ============================================ */
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+/* ============================================
+   RTL Support - دعم اللغة العربية
+   ============================================ */
+
+[dir='rtl'] .skeleton-shimmer::after {
+  transform: translateX(100%);
+  animation-name: shimmer-rtl;
+}
+
+@keyframes shimmer-rtl {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+[dir='rtl'] .skeleton-wave::after {
+  transform: translateX(100%) skewX(15deg);
+  animation-name: wave-rtl;
+}
+
+@keyframes wave-rtl {
+  0% {
+    transform: translateX(100%) skewX(15deg);
+  }
+  50% {
+    transform: translateX(0%) skewX(15deg);
+  }
+  100% {
+    transform: translateX(-100%) skewX(15deg);
+  }
+}
+
+/* ============================================
+   Accessibility - إمكانية الوصول
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer::after,
+  .skeleton-wave::after,
+  .skeleton-glow,
+  .skeleton-gradient,
+  .loading-bar::before {
+    animation: none;
+  }
+
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-ping {
+    animation: none;
+  }
+}
+
+/* ============================================
+   Utility Classes - أصناف مساعدة
+   ============================================ */
+
+.skeleton-rounded-sm {
+  border-radius: 0.125rem;
+}
+.skeleton-rounded {
+  border-radius: 0.25rem;
+}
+.skeleton-rounded-md {
+  border-radius: 0.375rem;
+}
+.skeleton-rounded-lg {
+  border-radius: 0.5rem;
+}
+.skeleton-rounded-xl {
+  border-radius: 0.75rem;
+}
+.skeleton-rounded-2xl {
+  border-radius: 1rem;
+}
+.skeleton-rounded-full {
+  border-radius: 9999px;
+}

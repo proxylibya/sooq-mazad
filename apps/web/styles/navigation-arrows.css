@@ -1,0 +1,191 @@
+/* ===== نظام أزرار التنقل الموحد ===== */
+
+/* قواعد عامة لأزرار التنقل الموحدة */
+.unified-navigation-arrows {
+  /* تحسين الأداء */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* إصلاح مشكلة عدم ظهور الأسهم في marketplace */
+.unified-navigation-arrows button {
+  /* التأكد من الظهور */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* z-index عالي للتأكد من الظهور فوق الصورة */
+  z-index: 40 !important;
+  /* حجم ثابت للأزرار */
+  width: 40px !important;
+  height: 40px !important;
+  /* خلفية واضحة */
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  /* حدود واضحة */
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* تحسينات للنمط الموحد */
+.unified-navigation-arrows button {
+  /* تأثيرات محسنة للظهور */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unified-navigation-arrows button:hover {
+  /* تأثير وهج موحد */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* تحسينات للوصولية */
+.unified-navigation-arrows button:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* إصلاح خاص لبطاقات marketplace - ظهور عند hover فقط */
+.marketplace-card .unified-navigation-arrows button,
+.group .unified-navigation-arrows button {
+  /* مخفية افتراضياً */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* تأثير انتقال سلس */
+  transition: all 0.3s ease;
+}
+
+/* إظهار الأسهم عند hover على الصورة */
+.marketplace-card:hover .unified-navigation-arrows button,
+.group:hover .unified-navigation-arrows button {
+  opacity: 0.9;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.marketplace-card .unified-navigation-arrows button:hover,
+.group .unified-navigation-arrows button:hover {
+  opacity: 1 !important;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* تحسينات خاصة لوضع القائمة */
+.marketplace-card[data-view-mode='list'] .unified-navigation-arrows button {
+  /* أزرار أصغر قليلاً في وضع القائمة */
+  width: 36px;
+  height: 36px;
+}
+
+.marketplace-card[data-view-mode='list']:hover .unified-navigation-arrows button {
+  opacity: 0.8;
+}
+
+.marketplace-card[data-view-mode='list'] .unified-navigation-arrows button:hover {
+  opacity: 1 !important;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* تحسينات للأجهزة اللمسية */
+@media (hover: none) and (pointer: coarse) {
+  .unified-navigation-arrows button {
+    /* أزرار أكبر للأجهزة اللمسية */
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* إظهار دائم على الأجهزة اللمسية */
+  .marketplace-card .unified-navigation-arrows button,
+  .group .unified-navigation-arrows button {
+    opacity: 0.8 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* تحسينات للحركة المخفضة */
+@media (prefers-reduced-motion: reduce) {
+  .unified-navigation-arrows button {
+    transition: none;
+  }
+
+  .unified-navigation-arrows button:hover {
+    transform: none;
+  }
+}
+
+/* تحسينات للشاشات عالية الكثافة */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .unified-navigation-arrows button {
+    /* حدود أكثر وضوحاً */
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* تأثيرات تحميل محسنة */
+.unified-navigation-arrows button svg {
+  /* منع الوميض أثناء التحميل */
+  opacity: 1;
+  transition: transform 0.2s ease;
+}
+
+.unified-navigation-arrows button:active svg {
+  /* تأثير النقر */
+  transform: scale(0.95);
+}
+
+/* إصلاحات للمتصفحات القديمة */
+.unified-navigation-arrows button {
+  /* دعم أفضل للمتصفحات القديمة */
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* تحسينات الأداء */
+.marketplace-arrows,
+.auction-arrows {
+  /* تحسين الرسم */
+  contain: layout style paint;
+}
+
+/* قواعد خاصة للوضع المظلم */
+@media (prefers-color-scheme: dark) {
+  .marketplace-arrows button,
+  .auction-arrows button {
+    /* خلفية محسنة للوضع المظلم */
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .marketplace-arrows button:hover,
+  .auction-arrows button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+/* تحسينات للطباعة */
+@media print {
+  .marketplace-arrows,
+  .auction-arrows,
+  .unified-navigation-arrows {
+    /* إخفاء أزرار التنقل في الطباعة */
+    display: none !important;
+  }
+}
+
+/* إصلاحات إضافية للتأكد من الظهور */
+.unified-navigation-arrows button svg {
+  /* التأكد من ظهور الأيقونات */
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 3 !important;
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .unified-navigation-arrows button {
+    /* أزرار أكبر على الشاشات الصغيرة */
+    width: 44px !important;
+    height: 44px !important;
+    /* إظهار دائم على الشاشات الصغيرة */
+    opacity: 1 !important;
+  }
+}

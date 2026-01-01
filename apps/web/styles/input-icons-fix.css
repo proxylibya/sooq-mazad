@@ -1,0 +1,187 @@
+/* إصلاح محسن لمشكلة الأيقونات في حقول الإدخال */
+
+/* إصلاح عام للأيقونات */
+.input-icon-container {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.input-icon-right {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.input-icon-left {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.input-with-right-icon {
+  padding-right: 48px;
+}
+
+.input-with-left-icon {
+  padding-left: 48px;
+}
+
+.input-with-both-icons {
+  padding-right: 48px;
+  padding-left: 48px;
+}
+
+/* إصلاح خاص للأيقونات SVG */
+.input-icon-right svg,
+.input-icon-left svg {
+  width: 20px !important;
+  height: 20px !important;
+  color: #9ca3af !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+}
+
+/* إصلاح للأيقونات في الحقول النشطة */
+.input-icon-container input:focus + .input-icon-right svg,
+.input-icon-container input:focus ~ .input-icon-right svg {
+  color: #3b82f6 !important;
+}
+
+/* إصلاح قوي لجميع الأيقونات */
+div[class*='absolute'][class*='inset-y-0'][class*='right-0'] {
+  z-index: 100 !important;
+  display: flex !important;
+  align-items: center !important;
+  pointer-events: none !important;
+}
+
+div[class*='absolute'][class*='inset-y-0'][class*='right-0'] svg {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  color: #9ca3af !important;
+}
+
+/* إصلاح خاص لأيقونات Heroicons */
+svg[data-slot='icon'] {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* إصلاح للحقول مع الأيقونات */
+input[class*='pr-12'] {
+  padding-right: 3rem !important;
+}
+
+input[class*='pl-12'] {
+  padding-left: 3rem !important;
+}
+
+/* إصلاح شامل لجميع الأيقونات في النماذج */
+form .relative .absolute svg,
+.auth-form .relative .absolute svg,
+.login-form .relative .absolute svg {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 999 !important;
+}
+
+/* إصلاح خاص لصفحات تسجيل الدخول */
+.auth-page .relative .absolute,
+.login-page .relative .absolute {
+  z-index: 999 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.auth-page .relative .absolute svg,
+.login-page .relative .absolute svg {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  color: #9ca3af !important;
+}
+
+/* إصلاح نهائي وقوي */
+.force-show-icon {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 9999 !important;
+}
+
+.force-show-icon svg {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  color: #9ca3af !important;
+}
+
+/* إصلاح للأيقونات المخفية */
+.hidden-icon-fix {
+  position: relative;
+}
+
+.hidden-icon-fix::after {
+  content: '📱';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #9ca3af;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* إصلاح للمتصفحات المختلفة */
+@supports (display: flex) {
+  .input-icon-right,
+  .input-icon-left {
+    display: flex !important;
+  }
+}
+
+/* إصلاح للشاشات الصغيرة */
+@media (max-width: 640px) {
+  .input-icon-right,
+  .input-icon-left {
+    right: 8px !important;
+    left: 8px !important;
+  }
+
+  .input-with-right-icon {
+    padding-right: 40px !important;
+  }
+
+  .input-with-left-icon {
+    padding-left: 40px !important;
+  }
+}

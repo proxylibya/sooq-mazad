@@ -1,0 +1,29 @@
+# Jest Ignore File
+# ملفات ومجلدات يجب تجاهلها أثناء تشغيل الاختبارات
+
+# Playwright tests
+e2e-tests/
+**/*.spec.ts
+**/*.spec.tsx
+
+# Backup and archive directories
+backup-emergency---/
+archive-backups-2025-11-13-01-37-39/
+archive-cleanup-2025-11-13-01-00-28/
+
+# Build directories
+.next/
+build/
+dist/
+out/
+
+# Node modules
+node_modules/
+
+# Coverage
+coverage/
+
+# Package files in subdirectories
+backup-emergency---/package.json
+archive-backups-2025-11-13-01-37-39/package.json
+archive-cleanup-2025-11-13-01-00-28/package.json

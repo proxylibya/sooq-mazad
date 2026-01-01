@@ -1,0 +1,652 @@
+/**
+ * تحسينات العرض المتجاوب لعداد المزادات وصفحة المزاد
+ * يضمن أن العداد يظهر بحجم مناسب على جميع الشاشات
+ * ويعيد ترتيب العناصر في الشاشات الصغيرة
+ */
+
+/* تحسينات إضافية للعداد في البطاقات */
+.auction-timer-responsive {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* تحسينات خاصة بصفحة المزاد - إعادة ترتيب العناصر للشاشات الصغيرة */
+
+/* للشاشات الكبيرة - إخفاء قسم الجوال وإظهار العمود الأيمن */
+@media (min-width: 1024px) {
+  .mobile-auction-controls {
+    display: none !important;
+  }
+
+  .desktop-auction-sidebar {
+    display: block !important;
+  }
+}
+
+/* للشاشات الصغيرة والمتوسطة - إظهار قسم الجوال وإخفاء العمود الأيمن */
+@media (max-width: 1023px) {
+  /* إظهار قسم العداد والمزايدين في الأعلى للشاشات الصغيرة */
+  .mobile-auction-controls {
+    display: block !important;
+  }
+
+  /* إخفاء العمود الأيمن في الشاشات الصغيرة */
+  .desktop-auction-sidebar {
+    display: none !important;
+  }
+
+  /* تحسين تخطيط الشبكة للعداد والمزايدين */
+  .mobile-auction-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* للشاشات المتوسطة - عرض العداد والمزايدين جنباً إلى جنب */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .mobile-auction-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+  }
+
+  /* للشاشات الصغيرة جداً - عمود واحد */
+  @media (max-width: 639px) {
+    .mobile-auction-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  /* تحسينات إضافية للعداد في قسم الجوال - تصميم كامل مثل الشاشات الكبيرة */
+  .mobile-auction-controls .auction-timer-container {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* تحسين قائمة المزايدين في قسم الجوال */
+  .mobile-auction-controls .bidders-container {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    height: 100% !important; /* تأخذ كامل الارتفاع المتاح */
+    max-height: none !important; /* إزالة أي قيود على الارتفاع الأقصى */
+    min-height: 300px !important; /* ارتفاع أدنى بدلاً من حد أقصى */
+    padding-bottom: 0 !important; /* إزالة المساحة السفلية */
+    margin-bottom: 0 !important; /* إزالة الهامش السفلي */
+  }
+
+  /* تصغير القائمة بالكامل في الشاشات الصغيرة */
+  .mobile-auction-timer-container,
+  .mobile-bidders-container {
+    transform-origin: top center;
+    transition: transform 0.3s ease-in-out;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* إزالة المسافات الإضافية من الحاوية الرئيسية */
+  .mobile-auction-controls {
+    margin-bottom: 1rem !important;
+  }
+
+  /* إزالة المساحة السفلية من العناصر الأخيرة */
+  .mobile-auction-timer-container > div:last-child,
+  .mobile-bidders-container > div:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* تحسينات خاصة للعداد في الشاشات الصغيرة */
+  .mobile-auction-controls .auction-timer-responsive {
+    transform: scale(1) !important;
+  }
+
+  /* تحسين العرض للشاشات بعرض 800px إلى 1023px */
+  @media (min-width: 800px) and (max-width: 1023px) {
+    .mobile-auction-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0.75rem; /* تقليل المسافة بين العناصر */
+    }
+
+    /* تصغير أقل للشاشات المتوسطة الكبيرة */
+    .mobile-auction-timer-container,
+    .mobile-bidders-container {
+      transform: scale(0.85) !important;
+    }
+
+    /* تقليل المسافات الداخلية */
+    .mobile-auction-controls {
+      padding: 0.75rem !important;
+      margin-bottom: 1rem !important;
+    }
+
+    /* تحسين المسافات العمودية */
+    .mobile-auction-timer-container,
+    .mobile-bidders-container {
+      margin-bottom: 0 !important;
+      padding-bottom: 0.5rem !important;
+    }
+
+    /* تحسين خاص لقائمة المزايدين في عرض 800px */
+    .mobile-bidders-container {
+      min-height: 350px !important;
+    }
+
+    .bidders-container {
+      min-height: 280px !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* إزالة المسافات الإضافية من العناصر الأخيرة */
+    .mobile-auction-timer-container > div:last-child,
+    .mobile-bidders-container > div:last-child {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+
+  /* تحسين العرض للشاشات بعرض 768px إلى 799px */
+  @media (min-width: 768px) and (max-width: 799px) {
+    .mobile-auction-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1rem;
+    }
+
+    /* إزالة التصغير - الحجم الكامل للوضوح */
+    .mobile-auction-timer-container,
+    .mobile-bidders-container {
+      transform: scale(1) !important;
+    }
+  }
+
+  /* تحسين للشاشات المتوسطة - 640px إلى 767px */
+  @media (min-width: 640px) and (max-width: 767px) {
+    /* إزالة التصغير - الحجم الكامل للوضوح */
+    .mobile-auction-timer-container,
+    .mobile-bidders-container {
+      transform: scale(1) !important;
+    }
+  }
+
+  /* تحسينات للشاشات الصغيرة جداً - 200px إلى 479px */
+  @media (max-width: 479px) {
+    .mobile-auction-controls {
+      padding: 0.5rem;
+    }
+
+    .mobile-auction-grid {
+      gap: 0.75rem;
+    }
+
+    /* إزالة التصغير للشاشات الصغيرة - الحجم الكامل للوضوح */
+    .mobile-auction-timer-container,
+    .mobile-bidders-container {
+      transform: scale(1) !important;
+    }
+
+    /* الحفاظ على padding كامل للعداد في الشاشات الصغيرة */
+    .mobile-auction-controls .rounded-lg {
+      padding: 1rem !important;
+    }
+
+    /* الحفاظ على الحد الأدنى للارتفاع للعداد الكامل */
+    .auction-timer-container {
+      min-height: 100px !important;
+    }
+
+    .bidders-container {
+      flex: 1 !important;
+      height: 100% !important; /* تأخذ كامل الارتفاع المتاح */
+      max-height: none !important; /* إزالة أي قيود على الارتفاع الأقصى */
+      min-height: 200px !important; /* ارتفاع أدنى للشاشات الصغيرة جداً */
+      padding-bottom: 0 !important; /* إزالة المساحة السفلية */
+      margin-bottom: 0 !important; /* إزالة الهامش السفلي */
+    }
+  }
+
+  /* تحسينات للشاشات الصغيرة - 480px إلى 639px */
+  @media (min-width: 480px) and (max-width: 639px) {
+    .mobile-auction-grid {
+      gap: 1rem;
+    }
+
+    /* إزالة التصغير للشاشات الصغيرة - الحجم الكامل للوضوح */
+    .mobile-auction-timer-container,
+    .mobile-bidders-container {
+      transform: scale(1) !important;
+    }
+
+    /* الحفاظ على الحد الأدنى للارتفاع للعداد الكامل */
+    .auction-timer-container {
+      min-height: 100px !important;
+    }
+
+    .bidders-container {
+      flex: 1 !important;
+      height: 100% !important; /* تأخذ كامل الارتفاع المتاح */
+      max-height: none !important; /* إزالة أي قيود على الارتفاع الأقصى */
+      min-height: 250px !important; /* ارتفاع أدنى للشاشات المتوسطة */
+      padding-bottom: 0 !important; /* إزالة المساحة السفلية */
+      margin-bottom: 0 !important; /* إزالة الهامش السفلي */
+    }
+  }
+}
+
+/* للشاشات الصغيرة جداً - أقل من 640px */
+@media (max-width: 639px) {
+  /* إزالة التصغير للعداد في الشاشات الصغيرة - سيكون بالحجم الكامل */
+  .auction-timer-responsive {
+    transform: scale(1);
+  }
+
+  /* تصغير فقط للعدادات في البطاقات وليس في صفحة المزاد */
+  .auction-card-grid .auction-timer-responsive,
+  .auction-card-list .auction-timer-responsive {
+    transform: scale(0.7);
+  }
+}
+
+/* تحسينات خاصة للأزرار في الشاشات الصغيرة جداً */
+@media (max-width: 800px) {
+  /* تحسين عرض التبويبات المضغوطة */
+  .compact-tabs {
+    gap: 0.25rem !important; /* تقليل المسافة بين الأزرار */
+    padding: 0.25rem;
+    background: rgba(249, 250, 251, 0.8);
+    border-radius: 0.5rem;
+    backdrop-filter: blur(4px);
+  }
+
+  /* تحسين الأزرار المضغوطة */
+  .compact-tabs button {
+    min-width: auto !important;
+    flex-shrink: 0;
+    border-radius: 0.375rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.025em;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: none !important;
+  }
+
+  /* تحسين النصوص في الأزرار المضغوطة */
+  .compact-tabs button span {
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+  }
+
+  /* تحسين الأيقونات في الأزرار المضغوطة */
+  .compact-tabs button svg,
+  .compact-tabs button div {
+    flex-shrink: 0;
+  }
+
+  /* تحسين أزرار العرض في الشاشات الصغيرة */
+  .view-controls-wrapper {
+    gap: 0.5rem !important;
+  }
+
+  .view-controls-wrapper > div {
+    background: rgba(249, 250, 251, 0.9) !important;
+    backdrop-filter: blur(4px);
+  }
+
+  .view-mode-icon {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* تحسين العنوان والتخطيط العام */
+  .auction-header-controls {
+    padding: 0.5rem 0;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .auction-header-controls h2 {
+    gap: 0.375rem !important;
+  }
+
+  .auction-header-controls h2 span {
+    white-space: nowrap;
+  }
+}
+
+/* تحسينات إضافية للشاشات الصغيرة جداً - أقل من 480px */
+@media (max-width: 480px) {
+  .compact-tabs {
+    gap: 0.125rem !important;
+    padding: 0.125rem;
+  }
+
+  .compact-tabs button {
+    padding: 0.25rem 0.5rem !important;
+    gap: 0.25rem !important;
+    min-height: 2rem !important; /* ضمان حد أدنى للارتفاع للنقر */
+    touch-action: manipulation !important; /* تحسين اللمس */
+  }
+
+  .compact-tabs button span {
+    font-size: 0.625rem !important;
+    line-height: 0.875rem !important;
+  }
+}
+
+/* تحسينات للشاشات الصغيرة جداً جداً - أقل من 320px */
+@media (max-width: 320px) {
+  .compact-tabs button {
+    padding: 0.25rem 0.375rem !important;
+    gap: 0.125rem !important;
+  }
+
+  .compact-tabs button span {
+    font-size: 0.5rem !important;
+    line-height: 0.75rem !important;
+  }
+
+  /* إخفاء الأيقونات في الشاشات الصغيرة جداً جداً لتوفير مساحة */
+  .compact-tabs button svg,
+  .compact-tabs button div {
+    display: none !important;
+  }
+
+  /* تحسينات إضافية للعنوان */
+  .auction-header-controls {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+  }
+
+  .auction-header-controls h2 {
+    font-size: 1rem !important;
+    justify-content: center;
+  }
+
+  .view-controls-wrapper {
+    justify-content: center;
+  }
+}
+
+/* تحسينات للشاشات الصغيرة جداً جداً جداً - أقل من 200px */
+@media (max-width: 200px) {
+  .compact-tabs {
+    flex-direction: column !important;
+    gap: 0.125rem !important;
+  }
+
+  .compact-tabs button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.375rem 0.25rem !important;
+    min-height: 2rem !important; /* ضمان حد أدنى للارتفاع للنقر */
+    touch-action: manipulation !important;
+    font-weight: 700 !important;
+  }
+
+  .compact-tabs button span {
+    font-size: 0.625rem !important;
+    text-align: center;
+  }
+
+  /* تحسين أزرار العرض للشاشات الصغيرة جداً */
+  .view-controls-wrapper > div {
+    flex-direction: column !important;
+    gap: 0.125rem !important;
+    padding: 0.25rem !important;
+  }
+
+  .view-controls-wrapper button {
+    padding: 0.25rem !important;
+  }
+
+  .view-mode-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  /* تحسين العنوان للشاشات الصغيرة جداً */
+  .auction-header-controls h2 {
+    font-size: 0.875rem !important;
+    gap: 0.25rem !important;
+  }
+
+  .auction-header-controls h2 span:last-child {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* تحسينات خاصة لأزرار البطاقات في العرض الشبكي */
+@media (max-width: 800px) {
+  /* تحسين أزرار البطاقات في الشاشات الصغيرة */
+  .auction-action-buttons {
+    gap: 0.25rem !important;
+  }
+
+  .auction-action-buttons button {
+    padding: 0.375rem 0.25rem !important;
+    font-size: 0.625rem !important;
+    line-height: 0.875rem !important;
+    min-height: 2rem !important;
+    border-radius: 0.375rem !important;
+    font-weight: 600 !important;
+    gap: 0.25rem !important;
+  }
+
+  .auction-action-buttons button svg {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+    flex-shrink: 0;
+  }
+
+  .auction-button-text {
+    display: inline !important;
+    font-size: 0.625rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 3rem;
+    font-weight: 600 !important;
+    letter-spacing: -0.025em;
+  }
+}
+
+@media (max-width: 480px) {
+  .auction-action-buttons {
+    gap: 0.125rem !important;
+  }
+
+  .auction-action-buttons button {
+    padding: 0.25rem 0.125rem !important;
+    font-size: 0.5rem !important;
+    line-height: 0.75rem !important;
+    gap: 0.125rem !important;
+    min-height: 1.75rem !important;
+  }
+
+  .auction-action-buttons button svg {
+    width: 0.625rem !important;
+    height: 0.625rem !important;
+  }
+
+  .auction-button-text {
+    font-size: 0.5rem !important;
+    max-width: 2.5rem !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .auction-action-buttons button {
+    padding: 0.25rem 0.125rem !important;
+    gap: 0.125rem !important;
+    min-height: 1.5rem !important;
+  }
+
+  .auction-button-text {
+    font-size: 0.5rem !important;
+    max-width: 2rem !important;
+  }
+}
+
+/* تحسينات للشاشات الصغيرة جداً جداً */
+@media (max-width: 200px) {
+  .auction-action-buttons {
+    gap: 0.125rem !important;
+  }
+
+  .auction-action-buttons button {
+    padding: 0.25rem 0.125rem !important;
+    gap: 0.125rem !important;
+    min-height: 1.5rem !important;
+    font-size: 0.5rem !important;
+  }
+
+  .auction-action-buttons button svg {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+  }
+
+  .auction-button-text {
+    font-size: 0.5rem !important;
+    max-width: 1.5rem !important;
+  }
+}
+
+/* تحسينات عامة لأزرار البطاقات */
+.auction-action-buttons {
+  margin-top: auto;
+  display: flex;
+  width: 100%;
+}
+
+.auction-action-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.auction-action-buttons button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auction-action-buttons button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auction-button-text {
+  font-family: inherit;
+  direction: rtl;
+  text-align: center;
+}
+
+/* للشاشات الصغيرة - 640px إلى 767px */
+@media (min-width: 640px) and (max-width: 767px) {
+  .auction-timer-responsive {
+    transform: scale(0.85); /* توحيد مع mobile controls */
+  }
+}
+
+/* للشاشات المتوسطة الصغيرة - 768px إلى 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .auction-timer-responsive {
+    transform: scale(0.8);
+  }
+}
+
+/* للشاشات المتوسطة - 1024px إلى 1141px */
+@media (min-width: 1024px) and (max-width: 1141px) {
+  .auction-timer-responsive {
+    transform: scale(0.85);
+  }
+}
+
+/* للشاشات الكبيرة - 1142px إلى 1279px */
+@media (min-width: 1142px) and (max-width: 1279px) {
+  .auction-timer-responsive {
+    transform: scale(0.95);
+  }
+}
+
+/* للشاشات الكبيرة جداً - 1280px وأكثر */
+@media (min-width: 1280px) {
+  .auction-timer-responsive {
+    transform: scale(1);
+  }
+}
+
+/* تحسينات خاصة للبطاقات الشبكية */
+.auction-card-grid .auction-timer-responsive {
+  /* تصغير إضافي للبطاقات الشبكية */
+  transform-origin: center;
+}
+
+/* تحسينات خاصة لبطاقات القائمة */
+.auction-card-list .auction-timer-responsive {
+  /* تصغير مختلف لبطاقات القائمة */
+  transform-origin: center;
+}
+
+/* تحسين للعداد في الشاشات العريضة جداً */
+@media (min-width: 1536px) {
+  .auction-timer-responsive {
+    transform: scale(1.05);
+  }
+}
+
+/* تحسينات للعداد عند التحويم */
+.auction-timer-responsive:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* تحسينات للعداد النشط */
+.auction-timer-responsive.active {
+  animation: pulse-scale 2s infinite;
+}
+
+@keyframes pulse-scale {
+  0%,
+  100% {
+    transform: scale(var(--base-scale, 1));
+  }
+  50% {
+    transform: scale(calc(var(--base-scale, 1) * 1.02));
+  }
+}
+
+/* متغيرات CSS للتحكم في الحجم الأساسي */
+:root {
+  --auction-timer-scale-xs: 0.7;
+  --auction-timer-scale-sm: 0.75;
+  --auction-timer-scale-md: 0.8;
+  --auction-timer-scale-lg: 0.85;
+  --auction-timer-scale-xl: 0.95;
+  --auction-timer-scale-2xl: 1;
+}
+
+/* فئات مساعدة للتحكم السريع */
+.timer-scale-xs {
+  transform: scale(var(--auction-timer-scale-xs));
+}
+.timer-scale-sm {
+  transform: scale(var(--auction-timer-scale-sm));
+}
+.timer-scale-md {
+  transform: scale(var(--auction-timer-scale-md));
+}
+.timer-scale-lg {
+  transform: scale(var(--auction-timer-scale-lg));
+}
+.timer-scale-xl {
+  transform: scale(var(--auction-timer-scale-xl));
+}
+.timer-scale-2xl {
+  transform: scale(var(--auction-timer-scale-2xl));
+}

@@ -1,0 +1,29 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- خلفية رمادية -->
+  <rect width="400" height="300" fill="#f8fafc"/>
+  
+  <!-- إطار -->
+  <rect x="1" y="1" width="398" height="298" stroke="#e2e8f0" stroke-width="2" fill="none"/>
+  
+  <!-- أيقونة شاحنة -->
+  <g transform="translate(150, 100)">
+    <!-- جسم الشاحنة -->
+    <rect x="0" y="30" width="80" height="40" rx="4" fill="#cbd5e1"/>
+    <!-- مقدمة الشاحنة -->
+    <rect x="80" y="20" width="20" height="50" rx="4" fill="#94a3b8"/>
+    <!-- العجلات -->
+    <circle cx="15" cy="80" r="8" fill="#475569"/>
+    <circle cx="65" cy="80" r="8" fill="#475569"/>
+    <circle cx="85" cy="80" r="8" fill="#475569"/>
+    <!-- نوافذ -->
+    <rect x="82" y="25" width="16" height="12" rx="2" fill="#e2e8f0"/>
+  </g>
+  
+  <!-- نص -->
+  <text x="200" y="220" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="16" font-weight="500">
+    صورة خدمة النقل
+  </text>
+  <text x="200" y="240" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">
+    جاري التحميل...
+  </text>
+</svg>

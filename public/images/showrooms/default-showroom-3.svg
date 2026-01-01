@@ -1,0 +1,53 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a29bfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6c5ce7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="car3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fdcb6e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e17055;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg3)"/>
+  
+  <!-- Floor with pattern -->
+  <rect x="0" y="450" width="800" height="150" fill="#ecf0f1" opacity="0.9"/>
+  <rect x="0" y="470" width="800" height="5" fill="#bdc3c7" opacity="0.5"/>
+  <rect x="0" y="490" width="800" height="5" fill="#bdc3c7" opacity="0.5"/>
+  
+  <!-- Luxury Car -->
+  <ellipse cx="400" cy="370" rx="200" ry="70" fill="url(#car3)"/>
+  <rect x="230" y="300" width="340" height="90" rx="45" fill="url(#car3)"/>
+  
+  <!-- Car Details -->
+  <rect x="260" y="315" width="280" height="60" rx="30" fill="#2d3436" opacity="0.8"/>
+  <rect x="280" y="325" width="240" height="40" rx="20" fill="#74b9ff" opacity="0.6"/>
+  
+  <!-- Wheels -->
+  <circle cx="300" cy="420" r="30" fill="#2c3e50"/>
+  <circle cx="500" cy="420" r="30" fill="#2c3e50"/>
+  <circle cx="300" cy="420" r="20" fill="#95a5a6"/>
+  <circle cx="500" cy="420" r="20" fill="#95a5a6"/>
+  <circle cx="300" cy="420" r="10" fill="#34495e"/>
+  <circle cx="500" cy="420" r="10" fill="#34495e"/>
+  
+  <!-- Showroom Glass Walls -->
+  <rect x="50" y="80" width="700" height="280" fill="#ffffff" opacity="0.1" rx="20"/>
+  <rect x="70" y="100" width="660" height="240" fill="#ffffff" opacity="0.05" rx="15"/>
+  
+  <!-- Glass Reflections -->
+  <rect x="100" y="120" width="150" height="200" fill="#ffffff" opacity="0.1" rx="10"/>
+  <rect x="550" y="120" width="150" height="200" fill="#ffffff" opacity="0.1" rx="10"/>
+  
+  <!-- Modern Lighting -->
+  <ellipse cx="200" cy="40" rx="60" ry="15" fill="#f39c12" opacity="0.7"/>
+  <ellipse cx="400" cy="30" rx="80" ry="20" fill="#f39c12" opacity="0.7"/>
+  <ellipse cx="600" cy="40" rx="60" ry="15" fill="#f39c12" opacity="0.7"/>
+  
+  <!-- Title -->
+  <text x="400" y="520" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">معرض السيارات الحديثة</text>
+  <text x="400" y="550" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" opacity="0.8">تجربة فريدة لعرض السيارات</text>
+</svg>

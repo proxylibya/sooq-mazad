@@ -1,0 +1,40 @@
+/**
+ * ملف CSS موحد - يجمع جميع الاستيرادات
+ * يحافظ على كل التصاميم - فقط يحسّن التحميل
+ */
+
+/* Tailwind Base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* استيراد الملفات الأساسية بالترتيب الصحيح */
+@import './globals.css';
+@import './forms.css';
+@import './components.css';
+@import './auth.css';
+@import './auction-cards.css';
+@import './car-specifications.css';
+@import './auction-unified-layout.css';
+@import './navigation-arrows-fix.css';
+@import './toast-animations.css';
+@import './advanced-filters.css';
+@import './bank-cards.css';
+@import './clean-select.css';
+@import './arabic-numbers.css';
+@import './input-icons-fix.css';
+@import './bidders-enhanced.css';
+@import './auction-responsive.css';
+@import './car-details-typography.css';
+@import './car-features-responsive.css';
+@import './compact-favorites.css';
+@import './enhanced-favorites.css';
+@import './marketplace-ui.css';
+@import './modern-auction-card.css';
+@import './navigation-arrows.css';
+@import './numbers.css';
+@import './rtl-icons.css';
+@import './avatars.css';
+@import './transport-cards.css';
+@import './utilities.css';
+@import './content-visibility.css'; /* منع وميض المحتوى FOUC */

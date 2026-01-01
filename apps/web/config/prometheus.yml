@@ -1,0 +1,70 @@
+# إعدادات Prometheus لموقع مزاد السيارات
+# Prometheus Configuration for Car Auction Website
+
+global:
+  scrape_interval: 15s # جمع البيانات كل 15 ثانية
+  evaluation_interval: 15s # تقييم القواعد كل 15 ثانية
+
+# قواعد التنبيهات
+rule_files:
+  - 'alert_rules.yml'
+
+# إعدادات Alertmanager
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+# مصادر البيانات
+scrape_configs:
+  # Prometheus نفسه
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # تطبيق Next.js
+  - job_name: 'nextjs-app'
+    static_configs:
+      - targets: ['host.docker.internal:3000']
+    metrics_path: '/api/metrics'
+    scrape_interval: 10s
+
+  # KeyDB
+  - job_name: 'keydb'
+    static_configs:
+      - targets: ['keydb:6379']
+    metrics_path: '/metrics'
+
+  # PostgreSQL
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:5432']
+
+  # Node Exporter (إحصائيات النظام)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['host.docker.internal:9100']
+
+  # مراقبة الشبكة
+  - job_name: 'blackbox'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+          - http://localhost:3000
+          - http://localhost:3000/api/health
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115
+
+# إعدادات التخزين
+storage:
+  tsdb:
+    retention.time: 30d
+    retention.size: 10GB

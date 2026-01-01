@@ -1,0 +1,201 @@
+/* تحسينات بصرية للبطاقات المربعة في صفحة المفضلة */
+
+/* تأثيرات الحركة المتقدمة للبطاقات */
+.compact-favorite-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.compact-favorite-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
+/* تأثير التدرج للصور */
+.compact-image-gradient {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 70%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+/* تأثير الصورة عند التمرير */
+.compact-favorite-card:hover .compact-image {
+  transform: scale(1.15);
+  filter: brightness(1.1) contrast(1.05);
+}
+
+.compact-image {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* تأثيرات الشارات */
+.compact-badge {
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease-in-out;
+}
+
+.compact-badge:hover {
+  transform: scale(1.05);
+}
+
+/* تأثير زر الحذف */
+.compact-delete-btn {
+  transition: all 0.2s ease-in-out;
+  backdrop-filter: blur(8px);
+}
+
+.compact-delete-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* تأثير النص عند التمرير */
+.compact-favorite-card:hover .compact-title {
+  color: rgb(37, 99, 235);
+}
+
+.compact-title {
+  transition: color 0.2s ease-in-out;
+}
+
+/* تأثير منطقة السعر */
+.compact-price-area {
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.compact-favorite-card:hover .compact-price-area {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  transform: scale(1.02);
+}
+
+/* تأثير الحدود السفلية */
+.compact-bottom-border {
+  position: relative;
+}
+
+.compact-bottom-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgb(59, 130, 246), transparent);
+  transition: width 0.3s ease-in-out;
+}
+
+.compact-favorite-card:hover .compact-bottom-border::before {
+  width: 80%;
+}
+
+/* تحسين الشبكة للشاشات المختلفة */
+@media (max-width: 640px) {
+  .compact-favorites-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .compact-favorites-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .compact-favorites-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .compact-favorites-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1281px) {
+  .compact-favorites-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* تأثيرات إضافية للتفاعل */
+.compact-favorite-card:active {
+  transform: translateY(-4px) scale(0.98);
+}
+
+/* تحسين الأداء */
+.compact-favorite-card * {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* تأثير التحميل */
+.compact-loading-shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* تحسين إمكانية الوصول */
+.compact-favorite-card:focus {
+  outline: 2px solid rgb(59, 130, 246);
+  outline-offset: 2px;
+}
+
+.compact-favorite-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* تأثير النبضة للمزادات المباشرة */
+.compact-live-pulse {
+  animation: live-pulse 2s infinite;
+}
+
+@keyframes live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* تحسين الطباعة */
+@media print {
+  .compact-favorite-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+  }
+
+  .compact-favorite-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,43 @@
+name: Automated Backups
+
+on:
+  schedule:
+    # كل يوم في الساعة 2 صباحاً
+    - cron: '0 2 * * *'
+  workflow_dispatch: # السماح بالتشغيل اليدوي
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run backup script
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/auto-backup.js
+
+      - name: Upload backup artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-${{ github.run_number }}
+          path: backups/
+          retention-days: 30
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ فشل النسخ الاحتياطي التلقائي"
+          # يمكن إضافة إشعار عبر Slack أو Discord هنا

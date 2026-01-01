@@ -1,0 +1,24 @@
+﻿{
+  "projectType": "monorepo",
+  "mainLanguage": "ar",
+  "framework": "Next.js",
+  "database": "PostgreSQL",
+  "cache": "KeyDB",
+  "structure": {
+    "web": 3021,
+    "admin": 3022,
+    "api": 3023,
+    "realtime": 3024
+  },
+  "primaryCommands": [
+    "npm run dev:concurrent",
+    ".\\start-without-redis.ps1"
+  ],
+  "restrictions": {
+    "noEmojis": true,
+    "useHeroiconsOnly": true,
+    "noRedis": "KeyDB only",
+    "arabicRTL": true,
+    "noSQLite": true
+  }
+}

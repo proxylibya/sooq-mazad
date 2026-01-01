@@ -1,0 +1,10 @@
+;; PgBouncer User List
+;; Format: "username" "password"
+;; Password can be md5 hash: "md5" + md5(password + username)
+
+"postgres" "md5password_here"
+"sooq_mazad_app" "md5app_password_here"
+"sooq_mazad_readonly" "md5readonly_password_here"
+"admin" "md5admin_password_here"
+"stats" "md5stats_password_here"
+"monitoring" "md5monitoring_password_here"

@@ -1,0 +1,28 @@
+{
+  "name": "@sooq-mazad/web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3021",
+    "build": "next build --no-lint",
+    "start": "next start -p 3021",
+    "lint": "echo \"Linting disabled\"",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sooq-mazad/config": "*",
+    "@sooq-mazad/database": "*",
+    "@sooq-mazad/types": "*",
+    "@sooq-mazad/ui": "*",
+    "@sooq-mazad/utils": "*",
+    "next": "14.2.33",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.2",
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.24",
+    "typescript": "^5.4.3"
+  }
+}

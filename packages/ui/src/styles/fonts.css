@@ -1,0 +1,106 @@
+/**
+ * ===================================
+ * نظام الخطوط الموحد - سوق المزاد
+ * Unified Font System - Sooq Mazad
+ * ===================================
+ * 
+ * هذا الملف يحتوي على تحميل خط Cairo بشكل موحد
+ * يُستخدم في كل من:
+ * - apps/web (موقع الويب)
+ * - apps/admin (لوحة التحكم)
+ * 
+ * ⚠️ تحذير: لا تعدل هذا الملف بدون مراجعة
+ */
+
+/* ===================================
+   تحميل خط Cairo
+   يتم التحميل من _document.tsx في كل تطبيق
+   مع روابط احتياطية متعددة:
+   - Google Fonts (أساسي)
+   - cdnfonts (احتياطي)
+   =================================== */
+
+/* ⚠️ @import معطّل - الخط يُحمّل من _document.tsx */
+/* @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&display=swap'); */
+
+/* ===================================
+   تعريف الخط للاستخدام العالمي
+   =================================== */
+
+:root {
+  /* متغير الخط الأساسي */
+  --font-primary: 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-arabic: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* ===================================
+   تطبيق الخط على العناصر الأساسية
+   =================================== */
+
+html {
+  font-family: var(--font-primary);
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* العناوين */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+}
+
+/* النصوص العربية */
+[lang='ar'],
+[dir='rtl'] {
+  font-family: var(--font-arabic);
+}
+
+/* ===================================
+   أوزان الخط المتاحة
+   =================================== */
+
+.font-normal {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-black {
+  font-weight: 900;
+}
+
+/* ===================================
+   تحسينات الأداء
+   =================================== */
+
+/* منع وميض الخط (FOUT) */
+.fonts-loading {
+  visibility: hidden;
+}
+
+.fonts-loaded {
+  visibility: visible;
+}
+
+/* تحسين عرض النص */
+* {
+  text-rendering: optimizeLegibility;
+}

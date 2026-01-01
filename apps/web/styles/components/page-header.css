@@ -1,0 +1,161 @@
+/**
+ * أنماط مخصصة لمكون PageHeader
+ * تضمن التناسق والأداء الجيد
+ */
+
+/* تحسين الأداء للهيدر الثابت */
+.page-header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  will-change: transform;
+}
+
+/* تأثيرات سلسة للشعار */
+.page-header-logo {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.page-header-logo:hover {
+  opacity: 0.8;
+}
+
+.page-header-logo:active {
+  opacity: 0.6;
+}
+
+/* تحسين زر الرجوع */
+.back-button-enhanced {
+  position: relative;
+  overflow: hidden;
+}
+
+.back-button-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.1);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.3s ease,
+    height 0.3s ease;
+}
+
+.back-button-enhanced:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.back-button-enhanced:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* تحسين الأيقونات للـ RTL */
+.rtl-icon {
+  transform: scaleX(1);
+  transition: transform 0.2s ease;
+}
+
+[dir='rtl'] .rtl-icon {
+  transform: scaleX(-1);
+}
+
+/* تأثيرات hover للأيقونات */
+.icon-hover-effect {
+  transition: all 0.2s ease;
+}
+
+.icon-hover-effect:hover {
+  transform: scale(1.1);
+}
+
+/* تحسين الظلال */
+.shadow-subtle {
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow-elevated {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* تأثيرات الضبابية للخلفية */
+.backdrop-blur-light {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* تحسين الانتقالات */
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* دعم الوضع الداكن (اختياري) */
+@media (prefers-color-scheme: dark) {
+  .page-header-dark {
+    background-color: rgba(17, 24, 39, 0.95);
+    border-color: rgba(55, 65, 81, 0.5);
+  }
+
+  .page-header-dark .text-gray-900 {
+    color: rgba(243, 244, 246, 1);
+  }
+
+  .page-header-dark .text-gray-600 {
+    color: rgba(209, 213, 219, 1);
+  }
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 640px) {
+  .page-header-mobile {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .page-header-logo-text {
+    font-size: 1rem;
+  }
+}
+
+/* تحسينات للطباعة */
+@media print {
+  .page-header-sticky {
+    position: relative;
+    box-shadow: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .back-button-enhanced {
+    display: none;
+  }
+}
+
+/* تحسين إمكانية الوصول */
+.back-button-enhanced:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* تحسين الأداء للرسوم المتحركة */
+@media (prefers-reduced-motion: reduce) {
+  .page-header-logo,
+  .back-button-enhanced,
+  .transition-smooth {
+    transition: none;
+  }
+
+  .back-button-enhanced::before {
+    display: none;
+  }
+}

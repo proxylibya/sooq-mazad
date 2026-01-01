@@ -1,0 +1,185 @@
+/* قوائم منسدلة نظيفة ومتسقة */
+
+/* تصميم القائمة المنسدلة الأساسية */
+.clean-select {
+  @apply relative w-full;
+}
+
+.clean-select-trigger {
+  @apply w-full cursor-pointer rounded-lg border border-gray-200 bg-white px-4 py-3 text-right transition-all duration-200 hover:border-gray-300 focus:border-opensooq-blue focus:outline-none focus:ring-2 focus:ring-opensooq-blue;
+}
+
+.clean-select-trigger:disabled {
+  @apply cursor-not-allowed bg-gray-50 opacity-60;
+}
+
+/* أيقونة السهم */
+.clean-select-arrow {
+  @apply pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 transform text-gray-400 transition-transform duration-200;
+}
+
+.clean-select-trigger[aria-expanded='true'] .clean-select-arrow {
+  @apply rotate-180;
+}
+
+/* قائمة الخيارات */
+.clean-select-dropdown {
+  @apply absolute left-0 right-0 top-full z-50 mt-1 max-h-60 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg;
+}
+
+.clean-select-dropdown.hidden {
+  display: none;
+}
+
+/* عنصر البحث */
+.clean-select-search {
+  @apply w-full border-b border-gray-100 px-4 py-2 text-right focus:outline-none focus:ring-0;
+}
+
+/* خيارات القائمة */
+.clean-select-option {
+  @apply cursor-pointer border-b border-gray-50 px-4 py-3 text-right transition-colors duration-150 last:border-b-0 hover:bg-gray-50;
+}
+
+.clean-select-option:hover {
+  @apply bg-opensooq-blue/5;
+}
+
+.clean-select-option.selected {
+  @apply bg-opensooq-blue text-white;
+}
+
+.clean-select-option.selected:hover {
+  @apply bg-opensooq-blue/90;
+}
+
+.clean-select-option.disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+/* رسالة عدم وجود نتائج */
+.clean-select-no-results {
+  @apply px-4 py-3 text-center italic text-gray-500;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 640px) {
+  .clean-select-dropdown {
+    @apply max-h-48;
+  }
+
+  .clean-select-trigger {
+    @apply px-3 py-2.5 text-sm;
+  }
+
+  .clean-select-option {
+    @apply px-3 py-2.5 text-sm;
+  }
+}
+
+/* تحسينات للوضع المظلم */
+@media (prefers-color-scheme: dark) {
+  .clean-select-trigger {
+    @apply border-gray-600 bg-gray-800 text-white;
+  }
+
+  .clean-select-dropdown {
+    @apply border-gray-600 bg-gray-800;
+  }
+
+  .clean-select-option {
+    @apply border-gray-700 text-white;
+  }
+
+  .clean-select-option:hover {
+    @apply bg-gray-700;
+  }
+
+  .clean-select-search {
+    @apply border-gray-700 bg-gray-800 text-white;
+  }
+}
+
+/* تأثيرات التحميل */
+.clean-select-loading {
+  @apply pointer-events-none opacity-60;
+}
+
+.clean-select-loading .clean-select-arrow {
+  @apply animate-spin;
+}
+
+/* تصميم خاص للقوائم الكبيرة (أكثر من 7 عناصر) */
+.clean-select-large .clean-select-dropdown {
+  @apply max-h-72;
+}
+
+.clean-select-large .clean-select-search {
+  @apply sticky top-0 z-10 bg-white;
+}
+
+/* تحسينات إضافية للتفاعل */
+.clean-select-trigger:focus-within {
+  @apply border-opensooq-blue ring-2 ring-opensooq-blue/20;
+}
+
+/* تصميم للحالات الخاصة */
+.clean-select-error .clean-select-trigger {
+  @apply border-red-300 focus:border-red-500 focus:ring-red-200;
+}
+
+.clean-select-success .clean-select-trigger {
+  @apply border-green-300 focus:border-green-500 focus:ring-green-200;
+}
+
+/* تحسين النص المحدد */
+.clean-select-trigger .selected-text {
+  @apply truncate;
+}
+
+.clean-select-trigger .placeholder-text {
+  @apply text-gray-400;
+}
+
+/* تأثيرات الانتقال للقائمة */
+.clean-select-dropdown {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* تحسينات للوصولية */
+.clean-select-option:focus {
+  @apply bg-opensooq-blue/10 outline-none;
+}
+
+.clean-select-trigger:focus {
+  @apply outline-none;
+}
+
+/* تصميم للمجموعات */
+.clean-select-group {
+  @apply border-t border-gray-200 first:border-t-0;
+}
+
+.clean-select-group-label {
+  @apply sticky top-0 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600;
+}
+
+/* تحسينات للأداء */
+.clean-select-dropdown {
+  will-change: transform, opacity;
+}
+
+.clean-select-option {
+  will-change: background-color;
+}

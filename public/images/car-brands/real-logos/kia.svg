@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      .kia-red { fill: #cc0000; }
+      .kia-silver { fill: #c0c0c0; }
+    </style>
+  </defs>
+  
+  <!-- KIA Logo Background -->
+  <ellipse cx="50" cy="50" rx="45" ry="25" fill="white" stroke="#cc0000" stroke-width="2"/>
+  
+  <!-- KIA Letters -->
+  <g fill="#cc0000" font-family="Arial, sans-serif" font-weight="bold" font-size="20" text-anchor="middle">
+    <text x="50" y="58">KIA</text>
+  </g>
+  
+  <!-- Decorative elements -->
+  <g fill="none" stroke="#cc0000" stroke-width="2">
+    <path d="M 15 40 Q 50 25 85 40"/>
+    <path d="M 15 60 Q 50 75 85 60"/>
+  </g>
+</svg>

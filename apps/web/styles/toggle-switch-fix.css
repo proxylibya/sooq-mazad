@@ -1,0 +1,70 @@
+/* 
+ * ✅ إصلاح أزرار Toggle Switch
+ * المشكلة: الدائرة تخرج خارج حدود الزر عند استخدام translate-x-5
+ * الحل: استخدام translate-x-4 للحفاظ على الدائرة داخل الزر
+ */
+
+/* قاعدة عامة لجميع أزرار Toggle */
+button[role="switch"] {
+  /* التأكد من احتواء العناصر الداخلية */
+  position: relative;
+  overflow: hidden;
+}
+
+/* إصلاح الدائرة المنزلقة */
+button[role="switch"] span[aria-hidden="true"] {
+  /* منع الخروج من حدود الزر */
+  max-width: calc(100% - 4px);
+}
+
+/* 
+ * الحسابات:
+ * - عرض الزر: w-11 = 44px
+ * - عرض الدائرة: w-5 = 20px
+ * - حدود الزر: border-2 = 4px (2px من كل جانب)
+ * - المساحة المتاحة للحركة: 44px - 4px (borders) - 20px (circle) = 20px
+ * - translate-x-4 = 16px ✅ (مناسب)
+ * - translate-x-5 = 20px ❌ (يخرج خارج الزر)
+ */
+
+/* حالة التفعيل - إصلاح التنسيق */
+.translate-x-4 {
+  transform: translateX(1rem) !important; /* 16px */
+}
+
+/* تحسين الانتقال */
+button[role="switch"] span {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* تحسين الظل */
+button[role="switch"] span {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* حالة التركيز */
+button[role="switch"]:focus span {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* حالة التعطيل */
+button[role="switch"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* تحسين للوضع الداكن */
+@media (prefers-color-scheme: dark) {
+  button[role="switch"] span {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* تحسين للشاشات الصغيرة */
+@media (max-width: 640px) {
+  button[role="switch"] {
+    /* حجم أكبر قليلاً للمس الأسهل */
+    min-height: 28px;
+    min-width: 52px;
+  }
+}

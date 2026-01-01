@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <style>
+      .vw-blue { fill: #1e3a8a; }
+      .vw-white { fill: #ffffff; }
+    </style>
+  </defs>
+  
+  <!-- Volkswagen Logo Background -->
+  <rect width="100" height="100" fill="white" rx="10"/>
+  
+  <!-- Volkswagen VW Logo -->
+  <g transform="translate(50,50)">
+    <!-- Outer circle -->
+    <circle cx="0" cy="0" r="40" fill="#1e3a8a"/>
+    
+    <!-- Inner circle -->
+    <circle cx="0" cy="0" r="35" fill="#ffffff"/>
+    
+    <!-- VW Letters -->
+    <g fill="#1e3a8a">
+      <!-- V -->
+      <polygon points="-20,-15 -15,15 -10,15 -5,-15 -10,-15 -12.5,5 -17.5,5"/>
+      
+      <!-- W -->
+      <polygon points="5,-15 10,15 15,15 20,-15 15,-15 12.5,5 10,5 7.5,-5 5,-5 2.5,5 0,5 5,-15"/>
+    </g>
+    
+    <!-- Horizontal line -->
+    <rect x="-35" y="-2" width="70" height="4" fill="#1e3a8a"/>
+  </g>
+</svg>
