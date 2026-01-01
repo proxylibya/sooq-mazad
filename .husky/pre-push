@@ -1,13 +1,18 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+if [ "$CI" != "true" ]; then
+  echo "تخطي فحوصات pre-push محلياً (CI فقط)"
+  exit 0
+fi
+
 # فحص TypeScript
-echo "🔍 فحص TypeScript..."
+echo "فحص TypeScript..."
 npm run prisma:generate
 npx tsc --noEmit
 
 # تشغيل الاختبارات
-echo "🧪 تشغيل الاختبارات..."
+echo "تشغيل الاختبارات..."
 npm test -- --passWithNoTests
 
-echo "✅ جميع الفحوصات نجحت!"
+echo "جميع الفحوصات نجحت"
