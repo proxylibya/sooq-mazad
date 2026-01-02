@@ -12,9 +12,16 @@ import { Server } from 'socket.io';
 
 const app = express();
 const httpServer = createServer(app);
+
+const corsOrigins = (
+    process.env.CORS_ORIGINS?.split(',').map((s) => s.trim()).filter(Boolean) || [
+        'http://localhost:3021',
+        'http://localhost:3022',
+    ]
+);
 const io = new Server(httpServer, {
     cors: {
-        origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3021', 'http://localhost:3022'],
+        origin: corsOrigins,
         methods: ['GET', 'POST'],
     },
 });
@@ -22,7 +29,7 @@ const io = new Server(httpServer, {
 // Middleware
 app.use(helmet());
 app.use(cors({
-    origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3021', 'http://localhost:3022'],
+    origin: corsOrigins,
 }));
 app.use(morgan('dev'));
 
