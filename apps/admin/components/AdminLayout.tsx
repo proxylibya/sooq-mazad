@@ -1,5 +1,6 @@
 'use client';
 
+import { Bars3Icon } from '@heroicons/react/24/outline';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -22,6 +23,7 @@ export default function AdminLayout({ children, title = 'لوحة التحكم' 
   const router = useRouter();
   const [admin, setAdmin] = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     checkAuth();
@@ -80,19 +82,30 @@ export default function AdminLayout({ children, title = 'لوحة التحكم' 
           adminRole={admin.role}
           adminPermissions={admin.permissions || []}
           onLogout={handleLogout}
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
         />
 
         {/* Main Content */}
-        <main className="mr-64 min-h-screen">
+        <main className="min-h-screen transition-all duration-300 lg:mr-64">
           {/* Top Bar */}
-          <header className="sticky top-0 z-40 border-b border-slate-700 bg-slate-800/80 px-6 py-4 backdrop-blur-sm">
-            <div className="flex items-center justify-between">
-              <h1 className="text-xl font-bold text-white">{title}</h1>
+          <header className="sticky top-0 z-40 border-b border-slate-700 bg-slate-800/80 px-4 py-4 backdrop-blur-sm sm:px-6">
+            <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setSidebarOpen(true)}
+                  className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-700 hover:text-white lg:hidden"
+                >
+                  <Bars3Icon className="h-6 w-6" />
+                </button>
+                <h1 className="text-xl font-bold text-white">{title}</h1>
+              </div>
+
+              <div className="flex items-center gap-2 sm:gap-4">
                 {/* نظام الإشعارات */}
                 <NotificationDropdown />
 
-                <span className="text-sm text-slate-400">
+                <span className="hidden text-sm text-slate-400 sm:inline-block">
                   مرحباً، <span className="text-white">{admin.name}</span>
                 </span>
               </div>
@@ -100,7 +113,7 @@ export default function AdminLayout({ children, title = 'لوحة التحكم' 
           </header>
 
           {/* Page Content */}
-          <div className="p-6">{children}</div>
+          <div className="p-4 sm:p-6">{children}</div>
         </main>
       </div>
     </>

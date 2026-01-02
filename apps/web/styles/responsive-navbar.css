@@ -485,6 +485,15 @@
   }
 }
 
+/* زر إضافة إعلان يبقى دائماً بالنص الكامل في كل المقاسات */
+.add-listing-button .full-text {
+  display: inline !important;
+}
+
+.add-listing-button .short-text {
+  display: none !important;
+}
+
 /* تحسينات خاصة للعرض المتوسط - حل مشكلة التصاق أزرار العرض */
 @media (max-width: 1280px) {
   /* تحسين تخطيط أزرار العرض في صفحة المزادات */

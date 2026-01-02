@@ -19,6 +19,7 @@ import {
   UserGroupIcon,
   UsersIcon,
   WalletIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -221,6 +222,8 @@ interface AdminSidebarProps {
   adminRole?: string;
   adminPermissions?: string[];
   onLogout?: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 export default function AdminSidebar({
@@ -228,6 +231,8 @@ export default function AdminSidebar({
   adminRole = 'ADMIN',
   adminPermissions = [],
   onLogout,
+  isOpen = true,
+  onClose,
 }: AdminSidebarProps) {
   const router = useRouter();
   const pathname = router.pathname;
@@ -441,60 +446,73 @@ export default function AdminSidebar({
   };
 
   return (
-    <aside className="fixed right-0 top-0 z-50 flex h-full w-64 flex-col border-l border-slate-700 bg-slate-900">
-      {/* Logo */}
-      <div className="border-b border-slate-700 p-5">
-        <h1 className="text-xl font-bold text-white">لوحة التحكم</h1>
-        <p className="mt-1 text-sm text-slate-400">سوق المزاد</p>
-      </div>
+    <div>
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm lg:hidden"
+          onClick={onClose}
+        />
+      )}
 
-      {/* Menu Items */}
-      <nav className="flex-1 overflow-y-auto py-2">
-        {filteredMenuItems.map((item) => renderMenuItem(item))}
-      </nav>
+      <aside
+        className={`fixed right-0 top-0 z-50 flex h-full w-64 flex-col border-l border-slate-700 bg-slate-900 transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'
+        }`}
+      >
+        <div className="flex items-center justify-between border-b border-slate-700 p-5">
+          <div>
+            <h1 className="text-xl font-bold text-white">لوحة التحكم</h1>
+            <p className="mt-1 text-sm text-slate-400">سوق المزاد</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="rounded-lg p-1 text-slate-400 hover:bg-slate-800 hover:text-white lg:hidden"
+          >
+            <XMarkIcon className="h-6 w-6" />
+          </button>
+        </div>
 
-      {/* Admin Info */}
-      <div className="border-t border-slate-700/50 bg-gradient-to-t from-slate-950/50 to-transparent p-4">
-        {/* بطاقة معلومات المدير */}
-        <div className="mb-3 rounded-xl bg-slate-800/60 p-3 ring-1 ring-slate-700/50 backdrop-blur-sm transition-all duration-300 hover:bg-slate-800/80 hover:ring-slate-600/50">
-          <div className="flex items-center gap-3">
-            {/* الصورة الرمزية */}
-            <div className="relative">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25 ring-2 ring-blue-400/20">
-                <span className="text-base font-bold text-white drop-shadow-sm">
-                  {adminName.charAt(0)}
-                </span>
+        <nav className="flex-1 overflow-y-auto py-2">
+          {filteredMenuItems.map((item) => renderMenuItem(item))}
+        </nav>
+
+        <div className="border-t border-slate-700/50 bg-gradient-to-t from-slate-950/50 to-transparent p-4">
+          <div className="mb-3 rounded-xl bg-slate-800/60 p-3 ring-1 ring-slate-700/50 backdrop-blur-sm transition-all duration-300 hover:bg-slate-800/80 hover:ring-slate-600/50">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25 ring-2 ring-blue-400/20">
+                  <span className="text-base font-bold text-white drop-shadow-sm">
+                    {adminName.charAt(0)}
+                  </span>
+                </div>
+                <span className="absolute -bottom-0.5 -left-0.5 h-3 w-3 rounded-full border-2 border-slate-800 bg-emerald-500 shadow-sm shadow-emerald-500/50" />
               </div>
-              {/* نقطة الحالة */}
-              <span className="absolute -bottom-0.5 -left-0.5 h-3 w-3 rounded-full border-2 border-slate-800 bg-emerald-500 shadow-sm shadow-emerald-500/50" />
-            </div>
-            {/* معلومات المدير */}
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-white">{adminName}</p>
-              <div className="mt-0.5 flex items-center gap-1.5">
-                <span className="inline-flex items-center rounded-md bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">
-                  {adminRole === 'SUPER_ADMIN'
-                    ? 'مدير عام'
-                    : adminRole === 'ADMIN'
-                      ? 'مدير'
-                      : 'مشرف'}
-                </span>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-semibold text-white">{adminName}</p>
+                <div className="mt-0.5 flex items-center gap-1.5">
+                  <span className="inline-flex items-center rounded-md bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">
+                    {adminRole === 'SUPER_ADMIN'
+                      ? 'مدير عام'
+                      : adminRole === 'ADMIN'
+                        ? 'مدير'
+                        : 'مشرف'}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* زر تسجيل الخروج */}
-        {onLogout && (
-          <button
-            onClick={onLogout}
-            className="group flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-2.5 text-sm font-medium text-red-400 transition-all duration-300 hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-300 hover:shadow-lg hover:shadow-red-500/10"
-          >
-            <ArrowRightOnRectangleIcon className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
-            <span>تسجيل الخروج</span>
-          </button>
-        )}
-      </div>
-    </aside>
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-2.5 text-sm font-medium text-red-400 transition-all duration-300 hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-300 hover:shadow-lg hover:shadow-red-500/10"
+            >
+              <ArrowRightOnRectangleIcon className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              <span>تسجيل الخروج</span>
+            </button>
+          )}
+        </div>
+      </aside>
+    </div>
   );
 }

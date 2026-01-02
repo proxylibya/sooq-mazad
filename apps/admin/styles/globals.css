@@ -15,7 +15,7 @@
   --admin-danger: #ef4444;
   --admin-warning: #f59e0b;
   --admin-info: #3b82f6;
-  --font-family: 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-family: var(--font-cairo), 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* إعدادات أساسية */
@@ -145,7 +145,11 @@ aside::-webkit-scrollbar-thumb:hover {
 
 /* Admin sidebar */
 .admin-sidebar {
-  @apply fixed right-0 top-0 h-full w-64 bg-slate-900 text-white shadow-xl;
+  @apply fixed right-0 top-0 h-full w-64 translate-x-full bg-slate-900 text-white shadow-xl transition-transform lg:translate-x-0;
+}
+
+.admin-sidebar.open {
+  @apply translate-x-0;
 }
 
 .admin-sidebar-link {
@@ -158,7 +162,7 @@ aside::-webkit-scrollbar-thumb:hover {
 
 /* Admin content */
 .admin-content {
-  @apply mr-64 min-h-screen bg-slate-100 p-6;
+  @apply min-h-screen bg-slate-100 p-6 lg:mr-64;
 }
 
 /* Admin cards */

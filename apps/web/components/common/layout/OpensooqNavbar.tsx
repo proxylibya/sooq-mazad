@@ -953,7 +953,7 @@ const OpensooqNavbar = memo(function OpensooqNavbarComponent() {
               onClick={() => {
                 safeNavigate('/add-listing');
               }}
-              className="navbar-transition flex items-center justify-center gap-2 rounded-lg bg-orange-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-orange-600 hover:shadow-md"
+              className="navbar-transition add-listing-button flex items-center justify-center gap-2 rounded-lg bg-orange-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-orange-600 hover:shadow-md"
               title="إضافة إعلان جديد"
             >
               <PlusIcon className="h-4 w-4" />

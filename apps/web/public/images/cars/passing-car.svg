@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" fill="none">
+  <defs>
+    <linearGradient id="carBodyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e0e7ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Car Body Shape -->
+  <path d="M50,150 L80,100 C100,70 150,60 200,60 H350 C400,60 450,80 480,100 L550,130 C560,135 570,145 570,160 V190 C570,200 560,210 550,210 H530 L500,210 H120 L90,210 H50 C30,210 20,200 20,180 V160 C20,150 30,140 50,150 Z" 
+        fill="url(#carBodyGradient)" stroke="#93c5fd" stroke-width="2"/>
+
+  <!-- Windows -->
+  <path d="M120,100 L150,70 H270 V100 H120 Z" fill="#1e3a8a" fill-opacity="0.8"/>
+  <path d="M280,100 V70 H350 C380,70 410,80 430,100 H280 Z" fill="#1e3a8a" fill-opacity="0.8"/>
+
+  <!-- Headlights -->
+  <path d="M550,140 L560,145 V160 L550,165 Z" fill="#fcd34d" />
+  <path d="M20,145 L30,140 V165 L20,160 Z" fill="#ef4444" />
+
+  <!-- Wheels (Static, will be rotated by CSS if needed, but here just part of car) -->
+  <circle cx="120" cy="210" r="35" fill="#1f2937" stroke="#4b5563" stroke-width="4"/>
+  <circle cx="120" cy="210" r="15" fill="#d1d5db" />
+  
+  <circle cx="480" cy="210" r="35" fill="#1f2937" stroke="#4b5563" stroke-width="4"/>
+  <circle cx="480" cy="210" r="15" fill="#d1d5db" />
+  
+  <!-- Speed lines effect integrated -->
+  <path d="M10,100 H-50" stroke="white" stroke-width="2" stroke-opacity="0.5" />
+  <path d="M0,150 H-80" stroke="white" stroke-width="2" stroke-opacity="0.5" />
+  <path d="M20,200 H-40" stroke="white" stroke-width="2" stroke-opacity="0.5" />
+</svg>

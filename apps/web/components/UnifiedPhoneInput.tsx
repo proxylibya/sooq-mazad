@@ -541,7 +541,7 @@ const UnifiedPhoneInput: React.FC<UnifiedPhoneInputProps> = ({
           }}
           disabled={disabled}
           autoFocus={autoFocus}
-          className={`h-full flex-1 bg-transparent px-4 text-left text-base outline-none ${styles.input}`}
+          className={`h-full min-w-0 flex-1 bg-transparent px-4 text-left text-base outline-none ${styles.input}`}
           dir="ltr"
         />
       </div>

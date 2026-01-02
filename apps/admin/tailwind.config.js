@@ -18,8 +18,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        // خط واحد موحد - Cairo محمّل من Google Fonts
-        sans: ['Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        // خط واحد موحد - Cairo محمّل من Google Fonts via next/font
+        sans: ['var(--font-cairo)', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
     },
   },

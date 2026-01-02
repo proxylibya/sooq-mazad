@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import AdvancedFooter from '../components/common/Footer/AdvancedFooter';
+import AdvancedHeroBackground from '../components/sections/AdvancedHeroBackground';
 import OpensooqNavbar from '../components/common/layout/OpensooqNavbar';
 import { useContent } from '../contexts/SimpleLocalizationContext';
 import { useSiteSections } from '../contexts/SiteSectionsContext';
@@ -326,14 +327,8 @@ const Home = () => {
 
         {/* Simplified Hero + Search Section */}
         {isElementVisible('hero_banner') && (
-          <div className="animated-hero-bg relative isolate overflow-hidden text-white">
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-              <div className="hero-grid-overlay"></div>
-              <div className="hero-blob hero-blob-1"></div>
-              <div className="hero-blob hero-blob-2"></div>
-              <div className="hero-blob hero-blob-3"></div>
-              <div className="hero-vignette"></div>
-            </div>
+          <div className="relative isolate overflow-hidden text-white">
+            <AdvancedHeroBackground />
             <div className="relative z-10 mx-auto max-w-7xl px-4 py-12">
               <div className="text-center">
                 <h1 className="mb-4 text-3xl font-bold md:text-5xl">
@@ -373,7 +368,7 @@ const Home = () => {
                   <div className="mx-auto grid max-w-4xl grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5">
                     <Link
                       href="/auctions"
-                      className="group relative overflow-hidden rounded-lg border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-2 shadow-sm transition-all hover:border-amber-400 hover:shadow-md"
+                      className="group relative overflow-hidden rounded-lg border border-amber-200 bg-gradient-to-br from-amber-50/85 to-white/85 p-2 shadow-sm transition-all hover:border-amber-400 hover:shadow-md"
                     >
                       <div className="relative mb-3 flex justify-center">
                         <div className="rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 p-2 shadow-sm transition-all group-hover:rotate-12 group-hover:scale-105 group-hover:from-amber-600 group-hover:to-amber-700">
@@ -403,7 +398,7 @@ const Home = () => {
 
                     <Link
                       href="/marketplace"
-                      className="group relative overflow-hidden rounded-lg border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-2 shadow-sm transition-all hover:border-blue-400 hover:shadow-md"
+                      className="group relative overflow-hidden rounded-lg border border-blue-200 bg-gradient-to-br from-blue-50/85 to-white/85 p-2 shadow-sm transition-all hover:border-blue-400 hover:shadow-md"
                     >
                       <div className="relative mb-3 flex justify-center">
                         <div className="rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 p-2 shadow-sm transition-all group-hover:rotate-12 group-hover:scale-105 group-hover:from-blue-600 group-hover:to-blue-700">
@@ -433,7 +428,7 @@ const Home = () => {
 
                     <Link
                       href="/yards"
-                      className="group relative overflow-hidden rounded-lg border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-2 shadow-sm transition-all hover:border-emerald-400 hover:shadow-md"
+                      className="group relative overflow-hidden rounded-lg border border-emerald-200 bg-gradient-to-br from-emerald-50/85 to-white/85 p-2 shadow-sm transition-all hover:border-emerald-400 hover:shadow-md"
                     >
                       <div className="relative mb-3 flex justify-center">
                         <div className="rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 p-2 shadow-sm transition-all group-hover:rotate-12 group-hover:scale-105 group-hover:from-emerald-600 group-hover:to-emerald-700">
@@ -463,7 +458,7 @@ const Home = () => {
 
                     <Link
                       href="/showrooms"
-                      className="group relative overflow-hidden rounded-lg border border-teal-200 bg-gradient-to-br from-teal-50 to-white p-2 shadow-sm transition-all hover:border-teal-400 hover:shadow-md"
+                      className="group relative overflow-hidden rounded-lg border border-teal-200 bg-gradient-to-br from-teal-50/85 to-white/85 p-2 shadow-sm transition-all hover:border-teal-400 hover:shadow-md"
                     >
                       <div className="relative mb-3 flex justify-center">
                         <div className="rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 p-2 shadow-sm transition-all group-hover:rotate-12 group-hover:scale-105 group-hover:from-teal-600 group-hover:to-teal-700">
@@ -493,7 +488,7 @@ const Home = () => {
 
                     <Link
                       href="/transport"
-                      className="group relative overflow-hidden rounded-lg border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-2 shadow-sm transition-all hover:border-orange-400 hover:shadow-md"
+                      className="group relative overflow-hidden rounded-lg border border-orange-200 bg-gradient-to-br from-orange-50/85 to-white/85 p-2 shadow-sm transition-all hover:border-orange-400 hover:shadow-md"
                     >
                       <div className="relative mb-3 flex justify-center">
                         <div className="rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 p-2 shadow-sm transition-all group-hover:rotate-12 group-hover:scale-105 group-hover:from-orange-600 group-hover:to-orange-700">

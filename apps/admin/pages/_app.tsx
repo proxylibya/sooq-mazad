@@ -1,9 +1,21 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import { Cairo } from 'next/font/google';
 
-// الخط محمّل مركزياً من _document.tsx
-// لا حاجة لـ next/font/google - يتم تحميل Cairo من Google Fonts مباشرة
+const cairo = Cairo({
+  subsets: ['latin', 'arabic'],
+  display: 'swap',
+});
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <style jsx global>{`
+        :root {
+          --font-cairo: ${cairo.style.fontFamily};
+        }
+      `}</style>
+      <Component {...pageProps} />
+    </>
+  );
 }
