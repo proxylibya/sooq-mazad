@@ -1,0 +1,2188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model activity_logs {
+  id           String           @id
+  userId       String?
+  sessionId    String?
+  action       ActivityAction
+  entityType   String
+  entityId     String?
+  oldValues    Json?
+  newValues    Json?
+  description  String?
+  ipAddress    String?
+  userAgent    String?
+  metadata     Json?
+  severity     ActivitySeverity @default(INFO)
+  status       ActivityStatus   @default(SUCCESS)
+  errorMessage String?
+  duration     Int?
+  createdAt    DateTime         @default(now())
+  users        users?           @relation(fields: [userId], references: [id])
+
+  @@index([action])
+  @@index([createdAt])
+  @@index([entityType])
+  @@index([severity])
+  @@index([userId])
+}
+
+model admin_activities {
+  id            String   @id
+  admin_id      String
+  action        String
+  resource_type String?
+  resource_id   String?
+  details       Json?
+  ip_address    String?
+  user_agent    String?
+  created_at    DateTime @default(now())
+  success       Boolean  @default(true)
+  error_message String?
+  admins        admins   @relation(fields: [admin_id], references: [id])
+
+  @@index([action])
+  @@index([admin_id])
+  @@index([created_at])
+}
+
+model admin_permissions {
+  id         String    @id
+  admin_id   String
+  permission String
+  granted_by String?
+  granted_at DateTime  @default(now())
+  expires_at DateTime?
+  admins     admins    @relation(fields: [admin_id], references: [id], onDelete: Cascade)
+
+  @@unique([admin_id, permission])
+  @@index([admin_id])
+}
+
+model admin_sessions {
+  id                 String    @id
+  session_token      String    @unique
+  admin_id           String
+  ip_address         String?
+  user_agent         String?
+  device_fingerprint String?
+  login_at           DateTime  @default(now())
+  last_activity      DateTime  @default(now())
+  logout_at          DateTime?
+  expires_at         DateTime
+  is_active          Boolean   @default(true)
+  admins             admins    @relation(fields: [admin_id], references: [id], onDelete: Cascade)
+
+  @@index([admin_id])
+  @@index([is_active])
+  @@index([session_token])
+}
+
+model admins {
+  id                  String                 @id
+  username            String                 @unique // اسم المستخدم - مطلوب وفريد
+  firstName           String // الاسم الأول
+  lastName            String // اللقب
+  password_hash       String
+  role                AdminRole              @default(MODERATOR)
+  avatar              String?
+  two_factor_secret   String?
+  two_factor_enabled  Boolean                @default(false)
+  last_login          DateTime?
+  created_at          DateTime               @default(now())
+  updated_at          DateTime
+  deleted_at          DateTime?
+  is_active           Boolean                @default(true)
+  created_by          String?
+  admin_activities    admin_activities[]
+  admin_permissions   admin_permissions[]
+  admin_sessions      admin_sessions[]
+  admins              admins?                @relation("adminsToadmins", fields: [created_by], references: [id])
+  other_admins        admins[]               @relation("adminsToadmins")
+  advertisingRequests advertising_requests[] @relation("AssignedAdvertisingRequests")
+
+  @@index([username])
+  @@index([is_active])
+  @@index([role])
+}
+
+model analytics_events {
+  id         String    @id
+  userId     String?
+  sessionId  String?
+  eventType  EventType
+  eventName  String
+  category   String?
+  label      String?
+  value      Float?
+  properties Json?
+  page       String?
+  referrer   String?
+  browser    String?
+  os         String?
+  device     String?
+  country    String?
+  city       String?
+  createdAt  DateTime  @default(now())
+  users      users?    @relation(fields: [userId], references: [id])
+
+  @@index([createdAt])
+  @@index([eventName])
+  @@index([eventType])
+  @@index([page])
+  @@index([userId])
+}
+
+model announcements {
+  id          String             @id
+  title       String
+  content     String
+  type        AnnouncementType   @default(INFO)
+  status      AnnouncementStatus @default(ACTIVE)
+  priority    Int                @default(1)
+  isActive    Boolean            @default(true)
+  expiresAt   DateTime?
+  targetRoles String?
+  targetUsers String?
+  imageUrl    String?
+  linkUrl     String?
+  linkText    String?
+  viewCount   Int                @default(0)
+  clickCount  Int                @default(0)
+  createdBy   String
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime
+  users       users              @relation(fields: [createdBy], references: [id])
+}
+
+model auctions {
+  id                 String          @id
+  title              String
+  description        String?
+  carId              String?
+  sellerId           String
+  yardId             String? // ربط بالساحة (اختياري - null يعني مزاد أونلاين فقط)
+  currentPrice       Float
+  status             AuctionStatus   @default(PENDING)
+  featured           Boolean         @default(false)
+  views              Int             @default(0)
+  totalBids          Int             @default(0)
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime
+  endDate            DateTime
+  location           String?
+  maxBidders         Int?
+  minimumBid         Float           @default(500)
+  startDate          DateTime
+  startPrice         Float
+  type               AuctionType     @default(PUBLIC)
+  promotionPackage   String?         @default("free")
+  promotionDays      Int             @default(0)
+  promotionStartDate DateTime?
+  promotionEndDate   DateTime?
+  promotionPriority  Int             @default(0)
+  cars               cars?           @relation(fields: [carId], references: [id])
+  users              users           @relation(fields: [sellerId], references: [id])
+  yard               yards?          @relation("YardAuctions", fields: [yardId], references: [id])
+  bids               bids[]
+  conversations      conversations[]
+  deposits           deposits[]
+  favorites          favorites[]
+  notifications      notifications[]
+  reviews            reviews[]
+  transactions       transactions[]
+
+  @@index([carId])
+  @@index([createdAt])
+  @@index([endDate])
+  @@index([featured])
+  @@index([featured, promotionPriority])
+  @@index([promotionPackage])
+  @@index([promotionEndDate])
+  @@index([sellerId])
+  @@index([yardId])
+  @@index([status, createdAt])
+  @@index([status, endDate])
+  @@index([status])
+}
+
+model audit_logs {
+  id         String      @id
+  userId     String?
+  action     AuditAction
+  entityType String
+  entityId   String?
+  changes    Json?
+  reason     String?
+  approved   Boolean?
+  approvedBy String?
+  approvedAt DateTime?
+  metadata   Json?
+  createdAt  DateTime    @default(now())
+  users      users?      @relation(fields: [userId], references: [id])
+
+  @@index([action])
+  @@index([createdAt])
+  @@index([entityType])
+  @@index([userId])
+}
+
+model auth_logs {
+  id        String   @id
+  userId    String
+  action    String
+  success   Boolean
+  ip        String?
+  userAgent String?
+  location  Json?
+  metadata  Json?
+  createdAt DateTime @default(now())
+  users     users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([action])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model backup_logs {
+  id               String            @id
+  type             BackupType
+  status           BackupStatus      @default(PENDING)
+  filename         String
+  filepath         String?
+  size             BigInt?
+  compressionType  String?
+  startedAt        DateTime          @default(now())
+  completedAt      DateTime?
+  failedAt         DateTime?
+  errorMessage     String?
+  metadata         Json?
+  isScheduled      Boolean           @default(false)
+  retentionDays    Int               @default(30)
+  scheduleId       String?
+  backup_schedules backup_schedules? @relation(fields: [scheduleId], references: [id])
+
+  @@index([scheduleId])
+  @@index([startedAt])
+  @@index([status])
+  @@index([type])
+}
+
+model backup_schedules {
+  id             String        @id
+  name           String
+  description    String?
+  cronExpression String
+  backupType     BackupType    @default(FULL)
+  isActive       Boolean       @default(true)
+  compression    Boolean       @default(true)
+  retention      Int           @default(30)
+  includeUploads Boolean       @default(false)
+  excludeTables  String[]      @default([])
+  lastRunAt      DateTime?
+  nextRunAt      DateTime?
+  lastBackupId   String?
+  metadata       Json?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime
+  backup_logs    backup_logs[]
+
+  @@index([backupType])
+  @@index([isActive])
+  @@index([nextRunAt])
+}
+
+model bids {
+  id        String    @id
+  amount    Float
+  carId     String?
+  auctionId String?
+  bidderId  String
+  createdAt DateTime  @default(now())
+  auctions  auctions? @relation(fields: [auctionId], references: [id], onDelete: Cascade)
+  users     users     @relation(fields: [bidderId], references: [id])
+  cars      cars?     @relation(fields: [carId], references: [id])
+
+  @@index([amount])
+  @@index([auctionId, amount])
+  @@index([auctionId])
+  @@index([bidderId, createdAt])
+  @@index([bidderId])
+  @@index([carId])
+  @@index([createdAt])
+}
+
+model blocked_numbers {
+  id           String   @id
+  phone_number String   @unique
+  reason       String?
+  blocked_by   String?
+  blocked_at   DateTime @default(now())
+  is_active    Boolean  @default(true)
+  notes        String?
+
+  @@index([is_active])
+}
+
+model car_images {
+  id         String   @id
+  carId      String?
+  fileName   String
+  fileUrl    String
+  fileSize   Int
+  isPrimary  Boolean  @default(false)
+  uploadedBy String
+  category   String   @default("listings")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime
+  cars       cars?    @relation(fields: [carId], references: [id], onDelete: Cascade)
+  users      users    @relation(fields: [uploadedBy], references: [id])
+}
+
+model cars {
+  id                        String              @id
+  title                     String
+  brand                     String
+  model                     String
+  year                      Int
+  price                     Float
+  images                    String
+  condition                 CarCondition        @default(USED)
+  mileage                   Int?
+  location                  String
+  locationLat               Float?
+  locationLng               Float?
+  locationAddress           String?
+  description               String?
+  features                  String
+  interiorFeatures          String?
+  exteriorFeatures          String?
+  technicalFeatures         String?
+  fuelType                  String?
+  transmission              String?
+  bodyType                  String?
+  color                     String?
+  interiorColor             String?
+  seatCount                 String?
+  regionalSpecs             String?
+  vehicleType               String?
+  manufacturingCountry      String?
+  chassisNumber             String?
+  engineNumber              String?
+  customsStatus             String?
+  licenseStatus             String?
+  insuranceStatus           String?
+  paymentMethod             String?
+  contactPhone              String?
+  sellerId                  String
+  status                    CarStatus           @default(AVAILABLE)
+  createdAt                 DateTime            @default(now())
+  updatedAt                 DateTime
+  hasInspectionReport       Boolean             @default(false)
+  inspectionReportFile      String?
+  inspectionReportType      InspectionType?
+  inspectionReportFileUrl   String?
+  inspectionReportFileName  String?
+  inspectionReportUploadId  String?
+  hasManualInspectionReport Boolean             @default(false)
+  manualInspectionData      Json?
+  showroomId                String?
+  featured                  Boolean             @default(false)
+  views                     Int                 @default(0)
+  isAuction                 Boolean             @default(false)
+  area                      String?
+  isDeleted                 Boolean             @default(false)
+  deletedAt                 DateTime?
+  deletedBy                 String?
+  promotionPackage          String?             @default("free")
+  promotionDays             Int                 @default(0)
+  promotionStartDate        DateTime?
+  promotionEndDate          DateTime?
+  promotionPriority         Int                 @default(0)
+  auctions                  auctions[]
+  bids                      bids[]
+  car_images                car_images[]
+  users                     users               @relation(fields: [sellerId], references: [id])
+  showrooms                 showrooms?          @relation(fields: [showroomId], references: [id])
+  conversations             conversations[]
+  favorites                 favorites[]
+  inspection_reports        inspection_reports?
+  reviews                   reviews[]
+
+  @@index([brand])
+  @@index([brand, model])
+  @@index([brand, model, year])
+  @@index([condition])
+  @@index([createdAt])
+  @@index([description])
+  @@index([featured])
+  @@index([featured, status])
+  @@index([fuelType])
+  @@index([isAuction])
+  @@index([isAuction, status])
+  @@index([location])
+  @@index([location, status])
+  @@index([model])
+  @@index([price, createdAt])
+  @@index([price])
+  @@index([sellerId])
+  @@index([sellerId, status])
+  @@index([showroomId])
+  @@index([showroomId, status])
+  @@index([status, createdAt])
+  @@index([status])
+  @@index([title])
+  @@index([transmission])
+  @@index([views])
+  @@index([year])
+  @@index([isDeleted])
+  @@index([isDeleted, status])
+}
+
+model companies {
+  id              String        @id
+  ownerId         String
+  name            String
+  description     String?
+  logo            String?
+  phone           String?
+  email           String?
+  website         String?
+  city            String
+  area            String?
+  address         String?
+  verified        Boolean       @default(false)
+  featured        Boolean       @default(false)
+  status          CompanyStatus @default(ACTIVE)
+  rating          Float?        @default(0)
+  reviewsCount    Int           @default(0)
+  totalEmployees  Int           @default(0)
+  activeProjects  Int           @default(0)
+  businessType    String[]
+  specialties     String[]
+  openingHours    String?
+  establishedYear Int?
+  licenseNumber   String?
+  taxNumber       String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime
+  users           users         @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+model conversation_participants {
+  id             String          @id
+  conversationId String
+  userId         String
+  joinedAt       DateTime        @default(now())
+  lastReadAt     DateTime?
+  role           ParticipantRole @default(MEMBER)
+  conversations  conversations   @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  users          users           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId])
+}
+
+model conversations {
+  id                        String                      @id
+  title                     String?
+  type                      ConversationType            @default(DIRECT)
+  carId                     String?
+  auctionId                 String?
+  transportServiceId        String?
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime
+  lastMessageAt             DateTime                    @default(now())
+  conversation_participants conversation_participants[]
+  auctions                  auctions?                   @relation(fields: [auctionId], references: [id])
+  cars                      cars?                       @relation(fields: [carId], references: [id])
+  transport_services        transport_services?         @relation(fields: [transportServiceId], references: [id])
+  messages                  messages[]
+
+  @@index([auctionId])
+  @@index([carId])
+  @@index([transportServiceId])
+  @@index([lastMessageAt(sort: Desc)])
+  @@index([type])
+}
+
+model courts {
+  id                            String      @id
+  name                          String
+  nameAr                        String?
+  nameEn                        String?
+  type                          CourtType   @default(CIVIL)
+  status                        CourtStatus @default(ACTIVE)
+  description                   String?
+  location                      String
+  city                          String
+  address                       String
+  coordinates                   String?
+  phone                         String?
+  fax                           String?
+  email                         String?
+  website                       String?
+  workingHours                  String?
+  services                      String?
+  departments                   String?
+  judges                        String?
+  capacity                      Int?
+  establishedYear               Int?
+  licenseNumber                 String?     @unique
+  parentCourtId                 String?
+  isMainBranch                  Boolean     @default(true)
+  contactPerson                 String?
+  contactPersonRole             String?
+  operationalSince              DateTime?
+  lastInspection                DateTime?
+  nextInspection                DateTime?
+  rating                        Float?      @default(0)
+  reviewsCount                  Int         @default(0)
+  caseCount                     Int         @default(0)
+  resolvedCases                 Int         @default(0)
+  pendingCases                  Int         @default(0)
+  isPublic                      Boolean     @default(true)
+  isActive                      Boolean     @default(true)
+  metadata                      Json?
+  createdAt                     DateTime    @default(now())
+  updatedAt                     DateTime
+  createdBy                     String?
+  updatedBy                     String?
+  users_courts_createdByTousers users?      @relation("courts_createdByTousers", fields: [createdBy], references: [id])
+  courts                        courts?     @relation("courtsTocourts", fields: [parentCourtId], references: [id])
+  other_courts                  courts[]    @relation("courtsTocourts")
+  users_courts_updatedByTousers users?      @relation("courts_updatedByTousers", fields: [updatedBy], references: [id])
+}
+
+model crypto_wallets {
+  id                  String   @id
+  walletId            String   @unique
+  balance             Float    @default(0.0)
+  currency            String   @default("USDT-TRC20")
+  address             String?
+  encryptedPrivateKey String?
+  privateKeyHash      String?
+  publicKey           String?
+  network             String   @default("TRC20")
+  isActive            Boolean  @default(true)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime
+  publicId            Int      @unique @default(autoincrement())
+  wallets             wallets  @relation(fields: [walletId], references: [id], onDelete: Cascade)
+
+  @@index([address])
+  @@index([privateKeyHash])
+  @@index([publicId])
+}
+
+model daily_stats {
+  id                 String   @id
+  date               DateTime @unique
+  totalUsers         Int      @default(0)
+  activeUsers        Int      @default(0)
+  newUsers           Int      @default(0)
+  totalAuctions      Int      @default(0)
+  activeAuctions     Int      @default(0)
+  completedAuctions  Int      @default(0)
+  totalBids          Int      @default(0)
+  totalRevenue       Float    @default(0)
+  totalTransactions  Int      @default(0)
+  pageViews          Int      @default(0)
+  uniqueVisitors     Int      @default(0)
+  bounceRate         Float    @default(0)
+  avgSessionDuration Float    @default(0)
+  errorCount         Int      @default(0)
+  performanceScore   Float    @default(0)
+  metadata           Json?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime
+
+  @@index([date])
+}
+
+model deposits {
+  id                     String                 @id
+  userId                 String
+  transactionId          String?
+  paymentMethodId        String
+  amount                 Float
+  currency               String                 @default("LYD")
+  walletType             WalletType             @default(LOCAL)
+  status                 DepositStatus          @default(INITIATED)
+  reference              String                 @unique
+  paymentReference       String?
+  qrCode                 String?
+  walletAddress          String?
+  blockchainTxHash       String?
+  confirmations          Int?
+  expiresAt              DateTime?
+  confirmedAt            DateTime?
+  failedAt               DateTime?
+  failureReason          String?
+  fees                   Float                  @default(0)
+  netAmount              Float
+  exchangeRate           Float?
+  originalAmount         Float?
+  originalCurrency       String?
+  metadata               Json?
+  createdAt              DateTime               @default(now())
+  updatedAt              DateTime
+  publicId               Int                    @unique @default(autoincrement())
+  auctionId              String?
+  auctions               auctions?              @relation(fields: [auctionId], references: [id])
+  payment_method_configs payment_method_configs @relation(fields: [paymentMethodId], references: [id])
+  transactions           transactions?          @relation(fields: [transactionId], references: [id])
+  users                  users                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notifications          notifications[]
+
+  @@index([publicId])
+}
+
+model favorites {
+  id                 String              @id @default(cuid())
+  userId             String
+  carId              String?
+  auctionId          String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  showroomId         String?
+  transportServiceId String?
+  auctions           auctions?           @relation(fields: [auctionId], references: [id], onDelete: Cascade)
+  cars               cars?               @relation(fields: [carId], references: [id], onDelete: Cascade)
+  showrooms          showrooms?          @relation(fields: [showroomId], references: [id], onDelete: Cascade)
+  transport_services transport_services? @relation(fields: [transportServiceId], references: [id], onDelete: Cascade)
+  users              users               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, auctionId])
+  @@unique([userId, carId])
+  @@unique([userId, showroomId])
+  @@unique([userId, transportServiceId])
+}
+
+model featured_ads {
+  id             String         @id
+  title          String
+  description    String?
+  imageUrl       String?
+  linkUrl        String?
+  adType         FeaturedAdType @default(CAR_LISTING)
+  sourceId       String?
+  sourceType     String?
+  position       Int            @default(1)
+  isActive       Boolean        @default(true)
+  priority       Int            @default(1)
+  startDate      DateTime       @default(now())
+  endDate        DateTime?
+  views          Int            @default(0)
+  clicks         Int            @default(0)
+  budget         Float?
+  costPerClick   Float?
+  targetAudience String?
+  location       String?
+  createdBy      String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime
+  users          users          @relation(fields: [createdBy], references: [id])
+
+  @@index([adType])
+  @@index([createdBy])
+  @@index([isActive, adType])
+  @@index([isActive])
+  @@index([isActive, position])
+  @@index([position])
+  @@index([sourceId, sourceType])
+  @@index([startDate, endDate])
+}
+
+model global_wallets {
+  id        String   @id
+  walletId  String   @unique
+  balance   Float    @default(0.0)
+  currency  String   @default("USD")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  wallets   wallets  @relation(fields: [walletId], references: [id], onDelete: Cascade)
+}
+
+model inspection_reports {
+  id                       String   @id
+  carId                    String   @unique
+  inspectorName            String?
+  inspectionDate           DateTime @default(now())
+  overallCondition         String?
+  engineCondition          String?
+  bodyCondition            String?
+  interiorCondition        String?
+  tiresCondition           String?
+  brakesCondition          String?
+  electricalSystem         String?
+  transmissionCondition    String?
+  suspensionCondition      String?
+  airConditioningCondition String?
+  notes                    String?
+  rating                   Float?
+  recommendedPrice         Float?
+  fileUrl                  String?
+  fileName                 String?
+  fileType                 String?
+  reportType               String?  @default("manual")
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime
+  cars                     cars     @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
+
+model inventory {
+  id                  String                @id
+  showroomId          String
+  name                String
+  description         String?
+  category            InventoryCategory
+  sku                 String?               @unique
+  barcode             String?
+  brand               String?
+  model               String?
+  year                Int?
+  condition           InventoryCondition    @default(NEW)
+  quantity            Int                   @default(0)
+  minQuantity         Int                   @default(0)
+  maxQuantity         Int?
+  unitPrice           Float                 @default(0)
+  totalValue          Float                 @default(0)
+  location            String?
+  supplier            String?
+  notes               String?
+  tags                String?
+  images              String?
+  isActive            Boolean               @default(true)
+  lastStockCheck      DateTime?
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime
+  showrooms           showrooms             @relation(fields: [showroomId], references: [id], onDelete: Cascade)
+  inventory_movements inventory_movements[]
+
+  @@index([category])
+  @@index([quantity])
+  @@index([showroomId])
+  @@index([sku])
+}
+
+model inventory_movements {
+  id            String                @id
+  inventoryId   String
+  type          InventoryMovementType
+  quantity      Int
+  reason        String?
+  reference     String?
+  notes         String?
+  performedBy   String?
+  unitPrice     Float?
+  totalValue    Float?
+  balanceBefore Int
+  balanceAfter  Int
+  createdAt     DateTime              @default(now())
+  inventory     inventory             @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
+  @@index([createdAt])
+  @@index([inventoryId])
+  @@index([type])
+}
+
+model local_wallets {
+  id        String   @id
+  walletId  String   @unique
+  balance   Float    @default(0.0)
+  currency  String   @default("LYD")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  wallets   wallets  @relation(fields: [walletId], references: [id], onDelete: Cascade)
+}
+
+model message_reads {
+  id        String   @id
+  messageId String
+  userId    String
+  readAt    DateTime @default(now())
+  messages  messages @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  users     users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([messageId, userId])
+}
+
+model messages {
+  id             String          @id
+  content        String
+  senderId       String
+  type           MessageType     @default(TEXT)
+  createdAt      DateTime        @default(now())
+  status         MessageStatus   @default(SENT)
+  updatedAt      DateTime        @default(now())
+  conversationId String
+  metadata       String?
+  message_reads  message_reads[]
+  conversations  conversations   @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  users          users           @relation(fields: [senderId], references: [id])
+
+  @@index([conversationId])
+  @@index([createdAt])
+  @@index([senderId])
+}
+
+model notifications {
+  id            String           @id
+  userId        String
+  transactionId String?
+  depositId     String?
+  type          NotificationType
+  title         String
+  message       String
+  isRead        Boolean          @default(false)
+  metadata      Json?
+  createdAt     DateTime         @default(now())
+  readAt        DateTime?
+  auctionId     String?
+  bidderId      String?
+  carId         String?
+  auctions      auctions?        @relation(fields: [auctionId], references: [id])
+  deposits      deposits?        @relation(fields: [depositId], references: [id])
+  transactions  transactions?    @relation(fields: [transactionId], references: [id])
+  users         users            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([auctionId])
+  @@index([createdAt])
+  @@index([userId, isRead])
+}
+
+model payment_method_configs {
+  id                  String            @id
+  name                String
+  nameEn              String
+  nameAr              String
+  type                PaymentMethodType
+  category            String
+  icon                String?
+  logo                String?
+  description         String?
+  isActive            Boolean           @default(true)
+  isPopular           Boolean           @default(false)
+  minAmount           Float             @default(0)
+  maxAmount           Float?
+  dailyLimit          Float?
+  monthlyLimit        Float?
+  processingTime      String?
+  baseFee             Float             @default(0)
+  percentageFee       Float             @default(0)
+  fixedFee            Float             @default(0)
+  supportedCurrencies String?
+  requiredFields      Json?
+  metadata            Json?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime
+  deposits            deposits[]
+  transactions        transactions[]
+}
+
+model reviews {
+  id                                String              @id
+  rating                            Int
+  comment                           String?
+  reviewerId                        String
+  targetUserId                      String?
+  carId                             String?
+  auctionId                         String?
+  serviceType                       String?
+  isVerified                        Boolean             @default(false)
+  isHelpful                         Int                 @default(0)
+  isNotHelpful                      Int                 @default(0)
+  createdAt                         DateTime            @default(now())
+  updatedAt                         DateTime
+  parentId                          String?
+  transportServiceId                String?
+  auctions                          auctions?           @relation(fields: [auctionId], references: [id])
+  cars                              cars?               @relation(fields: [carId], references: [id])
+  reviews                           reviews?            @relation("reviewsToreviews", fields: [parentId], references: [id], onDelete: Cascade)
+  other_reviews                     reviews[]           @relation("reviewsToreviews")
+  users_reviews_reviewerIdTousers   users               @relation("reviews_reviewerIdTousers", fields: [reviewerId], references: [id], onDelete: Cascade)
+  users_reviews_targetUserIdTousers users?              @relation("reviews_targetUserIdTousers", fields: [targetUserId], references: [id], onDelete: Cascade)
+  transport_services                transport_services? @relation(fields: [transportServiceId], references: [id])
+
+  @@index([parentId])
+  @@index([transportServiceId])
+}
+
+model roles {
+  id          String       @id
+  name        String       @unique
+  displayName String
+  description String?
+  permissions String[]
+  status      String       @default("ACTIVE")
+  isSystem    Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime
+  createdBy   String?
+  updatedBy   String?
+  user_roles  user_roles[]
+}
+
+model security_logs {
+  id          String         @id
+  userId      String?
+  sessionId   String?
+  action      SecurityAction
+  riskLevel   RiskLevel      @default(LOW)
+  description String
+  ipAddress   String?
+  userAgent   String?
+  location    String?
+  blocked     Boolean        @default(false)
+  metadata    Json?
+  createdAt   DateTime       @default(now())
+  users       users?         @relation(fields: [userId], references: [id])
+
+  @@index([action])
+  @@index([createdAt])
+  @@index([ipAddress])
+  @@index([riskLevel])
+  @@index([userId])
+}
+
+model showrooms {
+  id                 String         @id
+  name               String
+  description        String
+  vehicleTypes       String
+  vehicleCount       String
+  city               String
+  area               String
+  address            String
+  coordinates        String?
+  detailedAddress    String?
+  images             String
+  phone              String?
+  email              String?
+  website            String?
+  openingHours       String?
+  specialties        String?
+  establishedYear    Int?
+  verified           Boolean        @default(false)
+  featured           Boolean        @default(false)
+  views              Int            @default(0)
+  status             ShowroomStatus @default(ACTIVE)
+  rating             Float?         @default(0)
+  reviewsCount       Int            @default(0)
+  totalCars          Int            @default(0)
+  activeCars         Int            @default(0)
+  soldCars           Int            @default(0)
+  ownerId            String
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime
+  promotionPackage   String?        @default("free")
+  promotionDays      Int            @default(0)
+  promotionStartDate DateTime?
+  promotionEndDate   DateTime?
+  promotionPriority  Int            @default(0)
+  cars               cars[]
+  favorites          favorites[]
+  inventory          inventory[]
+  users              users          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([city])
+  @@index([featured])
+  @@index([featured, status])
+  @@index([featured, promotionPriority])
+  @@index([ownerId])
+  @@index([promotionPackage])
+  @@index([status, city])
+  @@index([status])
+  @@index([verified])
+  @@index([verified, status])
+}
+
+model sms_logs {
+  id           String    @id
+  phone        String
+  message      String
+  userId       String?
+  status       SMSStatus @default(PENDING)
+  provider     String?
+  sentAt       DateTime  @default(now())
+  deliveredAt  DateTime?
+  failedAt     DateTime?
+  errorMessage String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime
+  users        users?    @relation(fields: [userId], references: [id])
+}
+
+model support_responses {
+  id              String          @id
+  ticketId        String
+  userId          String?
+  message         String
+  isFromUser      Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  support_tickets support_tickets @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  users           users?          @relation(fields: [userId], references: [id])
+}
+
+model support_tickets {
+  id                String              @id
+  userId            String
+  subject           String
+  message           String
+  category          String
+  priority          String              @default("medium")
+  status            String              @default("open")
+  attachments       String?
+  metadata          Json?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime
+  resolvedAt        DateTime?
+  support_responses support_responses[]
+  users             users               @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model system_activity_logs {
+  id            String           @id
+  action        SystemActivity
+  component     String
+  severity      ActivitySeverity @default(INFO)
+  message       String
+  metadata      Json?
+  ipAddress     String?
+  userAgent     String?
+  executionTime Int?
+  memoryUsage   Float?
+  cpuUsage      Float?
+  errorStack    String?
+  createdAt     DateTime         @default(now())
+
+  @@index([action])
+  @@index([component])
+  @@index([createdAt])
+  @@index([severity])
+}
+
+model system_settings {
+  key        String    @id
+  value      Json
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_by String?
+}
+
+model transactions {
+  id                                            String                  @id
+  walletId                                      String
+  amount                                        Float
+  type                                          TransactionType
+  status                                        TransactionStatus       @default(PENDING)
+  currency                                      String                  @default("LYD")
+  walletType                                    WalletType              @default(LOCAL)
+  description                                   String?
+  reference                                     String?                 @unique
+  metadata                                      Json?
+  relatedWalletId                               String?
+  createdAt                                     DateTime                @default(now())
+  updatedAt                                     DateTime
+  completedAt                                   DateTime?
+  exchangeRate                                  Float?
+  fees                                          Float                   @default(0.0)
+  originalAmount                                Float?
+  originalCurrency                              String?
+  paymentMethodId                               String?
+  blockchainTxHash                              String?
+  confirmations                                 Int?
+  networkFee                                    Float?
+  publicId                                      Int                     @unique @default(autoincrement())
+  auctionId                                     String?
+  deposits                                      deposits[]
+  notifications                                 notifications[]
+  auctions                                      auctions?               @relation(fields: [auctionId], references: [id])
+  payment_method_configs                        payment_method_configs? @relation(fields: [paymentMethodId], references: [id])
+  wallets_transactions_relatedWalletIdTowallets wallets?                @relation("transactions_relatedWalletIdTowallets", fields: [relatedWalletId], references: [id])
+  wallets_transactions_walletIdTowallets        wallets                 @relation("transactions_walletIdTowallets", fields: [walletId], references: [id], onDelete: Cascade)
+
+  @@index([publicId])
+}
+
+model transport_profiles {
+  id            String   @id
+  userId        String   @unique
+  truckNumber   String   @unique
+  licenseCode   String   @unique
+  truckType     String
+  capacity      Int
+  serviceArea   String
+  pricePerKm    Float?
+  priceType     String   @default("fixed")
+  isAvailable   Boolean  @default(true)
+  verified      Boolean  @default(false)
+  frontImage    String?
+  backImage     String?
+  sideImage     String?
+  interiorImage String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime
+  users         users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model transport_services {
+  id                 String               @id
+  userId             String
+  title              String
+  description        String
+  truckType          String
+  capacity           Int
+  serviceArea        String
+  pricePerKm         Float?
+  availableDays      String
+  contactPhone       String
+  images             String
+  features           String
+  commission         Float                @default(1)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime
+  status             String               @default("ACTIVE")
+  featured           Boolean              @default(false)
+  promotionPackage   String?              @default("free")
+  promotionDays      Int                  @default(0)
+  promotionStartDate DateTime?
+  promotionEndDate   DateTime?
+  promotionPriority  Int                  @default(0)
+  // حقول التوفر الجديدة
+  isAvailable        Boolean              @default(true)
+  availabilityNote   String?
+  // العلاقات
+  favorites          favorites[]
+  reviews            reviews[]
+  bookings           transport_bookings[]
+  users              users                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversations      conversations[]
+
+  @@index([userId])
+  @@index([featured])
+  @@index([featured, promotionPriority])
+  @@index([promotionPackage])
+  @@index([isAvailable])
+}
+
+// جدول حجوزات خدمات النقل
+model transport_bookings {
+  id         String @id @default(cuid())
+  serviceId  String
+  customerId String
+  providerId String
+
+  // معلومات العميل
+  customerName  String
+  customerPhone String
+  customerEmail String?
+
+  // معلومات النقل
+  fromCity        String
+  toCity          String
+  pickupAddress   String
+  deliveryAddress String
+
+  // معلومات السيارة
+  carMake        String?
+  carModel       String?
+  carYear        String?
+  carColor       String?
+  carPlateNumber String?
+
+  // تفاصيل الخدمة
+  serviceType         String   @default("standard")
+  preferredDate       DateTime
+  preferredTime       String?
+  specialInstructions String?
+
+  // الحالة والأسعار
+  status         String @default("PENDING")
+  estimatedPrice Float?
+  finalPrice     Float?
+  distance       Float?
+
+  // خيارات إضافية
+  insurance      Boolean @default(false)
+  tracking       Boolean @default(false)
+  expressService Boolean @default(false)
+
+  // ملاحظات
+  providerNotes      String?
+  customerNotes      String?
+  cancellationReason String?
+
+  // التواريخ
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  acceptedAt  DateTime?
+  startedAt   DateTime?
+  completedAt DateTime?
+  cancelledAt DateTime?
+
+  // العلاقات
+  service  transport_services @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  customer users              @relation("CustomerTransportBookings", fields: [customerId], references: [id], onDelete: Cascade)
+  provider users              @relation("ProviderTransportBookings", fields: [providerId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId])
+  @@index([customerId])
+  @@index([providerId])
+  @@index([status])
+  @@index([preferredDate])
+  @@index([createdAt])
+}
+
+model trusted_devices {
+  id             String   @id
+  userId         String
+  fingerprint    String
+  name           String
+  browser        String?
+  os             String?
+  lastUsed       DateTime @default(now())
+  trustExpiresAt DateTime
+  location       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime
+  users          users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([fingerprint])
+  @@index([userId])
+}
+
+model user_backup_codes {
+  id        String    @id
+  userId    String
+  code      String    @unique
+  used      Boolean   @default(false)
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  users     users     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([code])
+  @@index([userId])
+}
+
+model user_passwords {
+  id             String @id
+  userId         String @unique
+  hashedPassword String
+  users          users  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model user_roles {
+  id         String   @id
+  userId     String
+  roleId     String
+  assignedAt DateTime @default(now())
+  assignedBy String?
+  isActive   Boolean  @default(true)
+  roles      roles    @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  users      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleId])
+}
+
+model user_settings {
+  id                 String   @id
+  userId             String   @unique
+  profileName        String?
+  profileBio         String?
+  profileCity        String?
+  profileAvatar      String?
+  truckFrontImage    String?
+  truckBackImage     String?
+  truckSideImage     String?
+  truckInteriorImage String?
+  truckNumber        String?
+  truckLicenseCode   String?
+  truckType          String?
+  truckCapacity      Int?
+  truckServiceArea   String?
+  smsNotifications   Boolean  @default(true)
+  pushNotifications  Boolean  @default(true)
+  auctionAlerts      Boolean  @default(true)
+  bidUpdates         Boolean  @default(true)
+  messageAlerts      Boolean  @default(true)
+  profileVisibility  String   @default("public")
+  showPhone          Boolean  @default(false)
+  showLocation       Boolean  @default(true)
+  allowMessages      Boolean  @default(true)
+  showOnlineStatus   Boolean  @default(true)
+  theme              String   @default("light")
+  timezone           String   @default("Africa/Tripoli")
+  dateFormat         String   @default("DD/MM/YYYY")
+  numberFormat       String   @default("western")
+  twoFactorEnabled   Boolean  @default(false)
+  loginAlerts        Boolean  @default(true)
+  sessionTimeout     Int      @default(0)
+  trustedDevices     String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime
+  users              users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model users {
+  id                                  String                      @id
+  name                                String
+  phone                               String                      @unique
+  loginIdentifier                     String?                     @unique
+  email                               String?
+  role                                Role                        @default(USER)
+  accountType                         AccountType                 @default(REGULAR_USER)
+  verified                            Boolean                     @default(false)
+  profileImage                        String?
+  createdAt                           DateTime                    @default(now())
+  updatedAt                           DateTime
+  status                              UserStatus                  @default(ACTIVE)
+  rating                              Float?                      @default(0)
+  totalReviews                        Int                         @default(0)
+  lastLogin                           DateTime?
+  uiRole                              String?
+  publicId                            Int                         @unique @default(autoincrement())
+  deletedAt                           DateTime?
+  deletedBy                           String?
+  isDeleted                           Boolean                     @default(false)
+  scheduledDeletionAt                 DateTime?
+  deletionRequestedAt                 DateTime?
+  appleId                             String?                     @unique
+  deviceTrustRequired                 Boolean                     @default(false)
+  facebookId                          String?                     @unique
+  googleId                            String?                     @unique
+  isActive                            Boolean                     @default(true)
+  lastLoginAt                         DateTime?
+  libya_idId                          String?                     @unique
+  profilePicture                      String?
+  twoFactorEnabled                    Boolean                     @default(false)
+  twoFactorSecret                     String?
+  activity_logs                       activity_logs[]
+  analytics_events                    analytics_events[]
+  announcements                       announcements[]
+  auctions                            auctions[]
+  audit_logs                          audit_logs[]
+  auth_logs                           auth_logs[]
+  bids                                bids[]
+  car_images                          car_images[]
+  cars                                cars[]
+  companies                           companies[]
+  conversation_participants           conversation_participants[]
+  courts_courts_createdByTousers      courts[]                    @relation("courts_createdByTousers")
+  courts_courts_updatedByTousers      courts[]                    @relation("courts_updatedByTousers")
+  deposits                            deposits[]
+  favorites                           favorites[]
+  featured_ads                        featured_ads[]
+  message_reads                       message_reads[]
+  messages                            messages[]
+  notifications                       notifications[]
+  reviews_reviews_reviewerIdTousers   reviews[]                   @relation("reviews_reviewerIdTousers")
+  reviews_reviews_targetUserIdTousers reviews[]                   @relation("reviews_targetUserIdTousers")
+  security_logs                       security_logs[]
+  showrooms                           showrooms[]
+  sms_logs                            sms_logs[]
+  support_responses                   support_responses[]
+  support_tickets                     support_tickets[]
+  transport_profiles                  transport_profiles?
+  transport_services                  transport_services[]
+  trusted_devices                     trusted_devices[]
+  user_backup_codes                   user_backup_codes[]
+  user_passwords                      user_passwords?
+  user_roles                          user_roles[]
+  user_settings                       user_settings?
+  wallets                             wallets?
+  promotionTransactions               promotion_transactions[]
+  managedYards                        yards[]                     @relation("YardManager")
+  yards                               yards[]
+  advertisingRequests                 advertising_requests[]
+  customerTransportBookings           transport_bookings[]        @relation("CustomerTransportBookings")
+  providerTransportBookings           transport_bookings[]        @relation("ProviderTransportBookings")
+  cardDepositRequests                 card_deposit_requests[]
+
+  @@index([createdAt])
+  @@index([email])
+  @@index([phone])
+  @@index([publicId])
+  @@index([role])
+  @@index([status])
+  @@index([verified])
+}
+
+model verification_codes {
+  id        String    @id
+  phone     String
+  code      String
+  type      String
+  used      Boolean   @default(false)
+  usedAt    DateTime?
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+  updatedAt DateTime
+}
+
+model wallets {
+  id                                                 String          @id
+  userId                                             String          @unique
+  isActive                                           Boolean         @default(true)
+  createdAt                                          DateTime        @default(now())
+  updatedAt                                          DateTime        @default(now())
+  publicId                                           Int             @unique @default(autoincrement())
+  crypto_wallets                                     crypto_wallets?
+  global_wallets                                     global_wallets?
+  local_wallets                                      local_wallets?
+  transactions_transactions_relatedWalletIdTowallets transactions[]  @relation("transactions_relatedWalletIdTowallets")
+  transactions_transactions_walletIdTowallets        transactions[]  @relation("transactions_walletIdTowallets")
+  users                                              users           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([publicId])
+}
+
+model promotion_transactions {
+  id            String    @id @default(cuid())
+  userId        String
+  entityType    String
+  entityId      String
+  packageType   String
+  amount        Float
+  currency      String    @default("LYD")
+  paymentMethod String
+  days          Int
+  startDate     DateTime? // nullable للطلبات المعلقة
+  endDate       DateTime? // nullable للطلبات المعلقة
+  status        String    @default("PENDING") // PENDING, ACTIVE, EXPIRED, CANCELLED
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  users         users     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([entityType, entityId])
+  @@index([status])
+  @@index([endDate])
+}
+
+// جدول كروت الشحن - لإدارة كروت ليبيانا ومدار
+model recharge_cards {
+  id           String             @id @default(cuid())
+  cardNumber   String             @unique // رقم الكرت (مشفر)
+  cardHash     String             @unique // hash لرقم الكرت للبحث السريع
+  provider     CardProvider       // ليبيانا أو مدار
+  denomination Float              // فئة الكرت (10, 20, 30, 50, 100)
+  value        Float              // القيمة الفعلية بالدينار
+  status       CardStatus         @default(AVAILABLE)
+  batchId      String?            // رقم الدفعة
+  serialNumber String?            // الرقم التسلسلي
+  addedBy      String             // من أضاف الكرت (admin id)
+  usedBy       String?            // من استخدم الكرت (user id)
+  usedAt       DateTime?          // تاريخ الاستخدام
+  expiresAt    DateTime?          // تاريخ انتهاء الصلاحية
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  metadata     Json?
+
+  @@index([provider])
+  @@index([status])
+  @@index([batchId])
+  @@index([usedBy])
+  @@index([createdAt])
+}
+
+// جدول دفعات كروت الشحن
+model card_batches {
+  id          String       @id @default(cuid())
+  batchNumber String       @unique
+  provider    CardProvider
+  totalCards  Int
+  usedCards   Int          @default(0)
+  totalValue  Float
+  usedValue   Float        @default(0)
+  status      BatchStatus  @default(ACTIVE)
+  addedBy     String
+  notes       String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([provider])
+  @@index([status])
+}
+
+// جدول طلبات الإيداع بالكروت
+model card_deposit_requests {
+  id            String              @id @default(cuid())
+  userId        String
+  cardNumber    String              // آخر 4 أرقام فقط للعرض
+  provider      CardProvider
+  amount        Float
+  status        CardDepositStatus   @default(PENDING)
+  processedBy   String?             // admin الذي عالج الطلب
+  processedAt   DateTime?
+  rejectReason  String?
+  transactionId String?             // معاملة المحفظة
+  depositId     String?             // ربط بجدول deposits
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  users         users               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([provider])
+  @@index([createdAt])
+}
+
+enum AccountType {
+  REGULAR_USER
+  TRANSPORT_OWNER
+  COMPANY
+  SHOWROOM
+}
+
+enum ActivityAction {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  LOGIN
+  LOGOUT
+  REGISTER
+  BID
+  PURCHASE
+  SELL
+  UPLOAD
+  DOWNLOAD
+  SEARCH
+  FILTER
+  EXPORT
+  IMPORT
+  APPROVE
+  REJECT
+  SUSPEND
+  ACTIVATE
+  DEACTIVATE
+}
+
+enum ActivitySeverity {
+  LOW
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+enum ActivityStatus {
+  SUCCESS
+  FAILED
+  PARTIAL
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  MODERATOR
+  SUPPORT
+  FINANCE
+  VIEWER
+}
+
+enum AnnouncementStatus {
+  ACTIVE
+  INACTIVE
+  EXPIRED
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum AnnouncementType {
+  INFO
+  WARNING
+  SUCCESS
+  URGENT
+  MAINTENANCE
+  UPDATE
+}
+
+enum AuctionStatus {
+  PENDING
+  UPCOMING
+  ACTIVE
+  ENDED
+  CANCELLED
+  SUSPENDED
+}
+
+enum AuctionType {
+  PUBLIC
+  PRIVATE
+  INVITATION_ONLY
+}
+
+enum AuditAction {
+  USER_CREATED
+  USER_UPDATED
+  USER_DELETED
+  USER_SUSPENDED
+  AUCTION_CREATED
+  AUCTION_UPDATED
+  AUCTION_DELETED
+  PAYMENT_PROCESSED
+  SETTINGS_CHANGED
+  PERMISSION_GRANTED
+  PERMISSION_REVOKED
+  DATA_EXPORTED
+  BULK_OPERATION
+}
+
+enum BackupStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum BackupType {
+  FULL
+  INCREMENTAL
+  DIFFERENTIAL
+  SCHEMA_ONLY
+  DATA_ONLY
+}
+
+enum CarCondition {
+  NEW
+  USED
+  NEEDS_REPAIR
+}
+
+enum CarStatus {
+  AVAILABLE
+  SOLD
+  PENDING
+  DRAFT
+}
+
+enum CompanyStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum ConversationType {
+  DIRECT
+  GROUP
+  CAR_INQUIRY
+  AUCTION_INQUIRY
+  SUPPORT
+  AUCTION_SALE
+}
+
+enum CourtStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  UNDER_MAINTENANCE
+}
+
+enum CourtType {
+  CIVIL
+  COMMERCIAL
+  CRIMINAL
+  ADMINISTRATIVE
+  FAMILY
+  TRAFFIC
+  SPECIALIZED
+}
+
+enum DepositStatus {
+  INITIATED
+  PENDING_PAYMENT
+  PAYMENT_RECEIVED
+  VERIFYING
+  COMPLETED
+  FAILED
+  EXPIRED
+  CANCELLED
+}
+
+enum EventType {
+  PAGE_VIEW
+  USER_ACTION
+  CONVERSION
+  ERROR
+  PERFORMANCE
+  CUSTOM
+}
+
+enum FeaturedAdType {
+  CAR_LISTING
+  AUCTION_LISTING
+  SHOWROOM_AD
+  TRANSPORT_SERVICE
+  GENERIC_AD
+}
+
+enum InspectionType {
+  NONE
+  MANUAL
+  FILE_UPLOAD
+}
+
+enum InventoryCategory {
+  VEHICLES
+  PARTS
+  ACCESSORIES
+  TOOLS
+  SUPPLIES
+  EQUIPMENT
+  OTHER
+}
+
+enum InventoryCondition {
+  NEW
+  USED
+  REFURBISHED
+  DAMAGED
+  OBSOLETE
+}
+
+enum InventoryMovementType {
+  IN_PURCHASE
+  IN_RETURN
+  IN_TRANSFER
+  IN_ADJUSTMENT
+  OUT_SALE
+  OUT_RETURN
+  OUT_TRANSFER
+  OUT_DAMAGE
+  OUT_ADJUSTMENT
+}
+
+enum MessageStatus {
+  SENT
+  DELIVERED
+  READ
+  FAILED
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  FILE
+  LOCATION
+  VOICE
+  BID
+}
+
+enum NotificationType {
+  DEPOSIT_INITIATED
+  DEPOSIT_COMPLETED
+  DEPOSIT_FAILED
+  PAYMENT_RECEIVED
+  VERIFICATION_REQUIRED
+  SYSTEM_MAINTENANCE
+  INFO
+  WARNING
+  SUCCESS
+  ADMIN_MESSAGE
+  AUCTION_WON
+  BID_OUTBID
+  AUCTION_ENDING
+  PAYMENT_REMINDER
+  SALE_CONFIRMED
+  BID_ACCEPTED
+  NEW_BID_ON_YOUR_AUCTION
+  AUCTION_STARTED
+  AUCTION_ENDED
+  PAYMENT_OVERDUE
+  AUCTION_CANCELLED
+  MESSAGE
+}
+
+enum ParticipantRole {
+  MEMBER
+  ADMIN
+  MODERATOR
+}
+
+enum PaymentMethodType {
+  LOCAL_CARD
+  BANK_TRANSFER
+  INTERNATIONAL_WALLET
+  CRYPTOCURRENCY
+  MOBILE_PAYMENT
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum Role {
+  USER
+  ADMIN
+  MODERATOR
+  SUPER_ADMIN
+}
+
+enum SMSStatus {
+  PENDING
+  SENT
+  DELIVERED
+  FAILED
+}
+
+enum SecurityAction {
+  LOGIN_SUCCESS
+  LOGIN_FAILED
+  PASSWORD_CHANGED
+  ACCOUNT_LOCKED
+  SUSPICIOUS_ACTIVITY
+  IP_BLOCKED
+  TOKEN_EXPIRED
+  UNAUTHORIZED_ACCESS
+  DATA_BREACH_ATTEMPT
+  PRIVILEGE_ESCALATION
+}
+
+enum ShowroomStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum SystemActivity {
+  STARTUP
+  SHUTDOWN
+  DATABASE_CONNECT
+  DATABASE_DISCONNECT
+  API_REQUEST
+  API_RESPONSE
+  CACHE_HIT
+  CACHE_MISS
+  EMAIL_SENT
+  SMS_SENT
+  PAYMENT_PROCESSED
+  BACKUP_CREATED
+  MIGRATION_RUN
+  ERROR_OCCURRED
+  PERFORMANCE_ALERT
+}
+
+enum TransactionStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+  EXPIRED
+  REVIEWING
+  CONFIRMED
+}
+
+enum TransactionType {
+  DEPOSIT
+  WITHDRAWAL
+  TRANSFER
+  REFUND
+  FEE
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  SUSPENDED
+}
+
+enum WalletType {
+  LOCAL
+  GLOBAL
+  CRYPTO
+}
+
+enum YardStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  PENDING
+}
+
+// ===== نموذج الساحات =====
+// الساحات هي أماكن فعلية على أرض الواقع لعرض السيارات والمزايدة
+model yards {
+  id          String  @id @default(cuid())
+  slug        String  @unique // مثل: tripoli-yard
+  name        String // اسم الساحة
+  description String? // وصف الساحة
+
+  // الصور
+  image  String? // الصورة الرئيسية
+  images String[] // معرض الصور
+
+  // الموقع
+  city      String // المدينة
+  area      String? // المنطقة
+  address   String? // العنوان التفصيلي
+  latitude  Float? // خط العرض
+  longitude Float? // خط الطول
+
+  // معلومات الاتصال
+  phone  String? // رقم الهاتف الرئيسي
+  phones String[] // أرقام إضافية
+  email  String? // البريد الإلكتروني
+
+  // أوقات العمل والمزادات
+  auctionDays     String[] // أيام المزاد: ["SAT", "MON", "WED"]
+  auctionTimeFrom String? // بداية وقت المزاد: "10:00"
+  auctionTimeTo   String? // نهاية وقت المزاد: "14:00"
+  workingHours    String? // ساعات العمل العامة
+
+  // السعة والإحصائيات
+  capacity Int? // سعة السيارات
+
+  // الحالة والتميز
+  status    YardStatus @default(PENDING)
+  verified  Boolean    @default(false)
+  featured  Boolean    @default(false)
+  sortOrder Int        @default(0) // ترتيب العرض في الموقع
+
+  // التقييم
+  rating       Float? // متوسط التقييم
+  reviewsCount Int    @default(0)
+
+  // المدير/المسؤول
+  managerId    String? // معرف المدير (من جدول users)
+  managerName  String? // اسم المدير
+  managerPhone String? // هاتف المدير
+
+  // الخدمات والأنواع
+  services     String[] // الخدمات المتاحة: ["حراسة", "تنظيم", "إنارة"]
+  vehicleTypes String[] // أنواع المركبات: ["CARS", "TRUCKS"]
+
+  // التواريخ
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // العلاقات
+  manager  users?     @relation("YardManager", fields: [managerId], references: [id])
+  auctions auctions[] @relation("YardAuctions")
+  users    users?     @relation(fields: [usersId], references: [id])
+  usersId  String?
+
+  @@index([city])
+  @@index([status])
+  @@index([featured])
+  @@index([slug])
+  @@index([sortOrder])
+}
+
+// ===== نظام طلبات الإعلانات والأعمال =====
+// لإدارة طلبات الخدمات الإعلانية ومراسلات فريق الموقع
+
+enum AdvertisingRequestType {
+  ADVERTISING_SERVICE // طلب خدمة إعلانية
+  TEAM_CONTACT // مراسلة فريق الموقع
+}
+
+enum AdvertisingRequestStatus {
+  NEW // جديد - لم يتم مراجعته
+  IN_REVIEW // قيد المراجعة
+  CONTACTED // تم التواصل
+  IN_PROGRESS // قيد التنفيذ
+  COMPLETED // مكتمل
+  REJECTED // مرفوض
+  CANCELLED // ملغي
+}
+
+enum AdvertisingRequestPriority {
+  LOW // منخفض
+  NORMAL // عادي
+  HIGH // عالي
+  URGENT // عاجل
+}
+
+model advertising_requests {
+  id String @id @default(cuid())
+
+  // نوع الطلب
+  requestType AdvertisingRequestType @default(ADVERTISING_SERVICE)
+
+  // بيانات مقدم الطلب
+  name        String // الاسم الكامل
+  phone       String // رقم الهاتف
+  dialCode    String  @default("+218") // رمز الدولة
+  city        String // المدينة
+  companyName String? // اسم الشركة (اختياري)
+  email       String? // البريد الإلكتروني (اختياري)
+
+  // تفاصيل الطلب
+  serviceType   String // نوع الخدمة المطلوبة
+  packageType   String? // نوع الباقة (إن وجد)
+  message       String?   @db.Text // الرسالة/التفاصيل
+  budget        Float? // الميزانية المقترحة
+  preferredDate DateTime? // التاريخ المفضل للتواصل
+
+  // الحالة والمتابعة
+  status     AdvertisingRequestStatus   @default(NEW)
+  priority   AdvertisingRequestPriority @default(NORMAL)
+  assignedTo String? // معرف المدير المسؤول
+  adminNotes String?                    @db.Text // ملاحظات داخلية للمديرين
+
+  // سجل المتابعة
+  contactedAt     DateTime? // تاريخ أول تواصل
+  contactMethod   String? // طريقة التواصل (هاتف، واتساب، بريد)
+  contactNotes    String?   @db.Text // ملاحظات التواصل
+  completedAt     DateTime? // تاريخ الإكمال
+  rejectedAt      DateTime? // تاريخ الرفض
+  rejectionReason String? // سبب الرفض
+
+  // معلومات إضافية
+  source    String? // مصدر الطلب (الصفحة الرئيسية، حزمة معينة، إلخ)
+  ipAddress String? // عنوان IP
+  userAgent String? // معلومات المتصفح
+  referrer  String? // الصفحة المرجعية
+
+  // المستخدم المسجل (إن وجد)
+  userId String?
+  user   users?  @relation(fields: [userId], references: [id])
+
+  // المدير المسؤول
+  assignedAdmin admins? @relation("AssignedAdvertisingRequests", fields: [assignedTo], references: [id])
+
+  // التواريخ
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // الفهارس للبحث السريع
+  @@index([status])
+  @@index([requestType])
+  @@index([priority])
+  @@index([city])
+  @@index([createdAt])
+  @@index([assignedTo])
+  @@index([phone])
+}
+
+// ===== نظام التحكم بالمحتوى والأقسام =====
+// للتحكم في إظهار/إخفاء الصفحات والعناصر من لوحة التحكم
+
+enum SectionStatus {
+  ACTIVE // مفعل - يعمل بشكل طبيعي
+  DISABLED // معطل - مخفي تماماً
+  MAINTENANCE // قيد الصيانة
+  COMING_SOON // قريباً
+  MEMBERS_ONLY // للأعضاء فقط
+}
+
+model site_sections {
+  id          String  @id @default(cuid())
+  slug        String  @unique // auctions, marketplace, showrooms, etc
+  name        String // اسم القسم بالعربي
+  description String? // وصف القسم
+  icon        String? // أيقونة القسم
+
+  // الحالة والتحكم
+  status  SectionStatus @default(ACTIVE)
+  message String? // رسالة مخصصة (للصيانة أو قريباً)
+
+  // تحكم العناصر المرتبطة
+  showInNavbar     Boolean @default(true)
+  showInMobileMenu Boolean @default(true)
+  showInFooter     Boolean @default(true)
+  showInHomepage   Boolean @default(true)
+  showHomeButton   Boolean @default(true) // زر الوصول السريع
+  showHomeCard     Boolean @default(true) // بطاقة الخدمات
+
+  // الترتيب
+  navbarOrder   Int @default(0)
+  footerOrder   Int @default(0)
+  homepageOrder Int @default(0)
+
+  // الروابط
+  pageUrl String // /auctions, /marketplace, etc
+
+  // الألوان والتصميم
+  primaryColor   String? // اللون الأساسي
+  secondaryColor String? // اللون الثانوي
+
+  // التتبع
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  updatedBy String? // معرف المدير الذي قام بالتحديث
+
+  // العلاقات
+  elements site_elements[]
+
+  @@index([status])
+  @@index([slug])
+}
+
+model site_elements {
+  id        String  @id @default(cuid())
+  sectionId String? // القسم المرتبط (اختياري)
+
+  // معلومات العنصر
+  key         String  @unique // hero_banner, search_bar, etc
+  name        String // اسم العنصر بالعربي
+  description String? // وصف العنصر
+  pageType    String // homepage, auctions-list, etc
+  elementType String // section, button, component, etc
+  category    String? // navigation, content, advertisement, etc
+
+  // الحالة والتحكم
+  isVisible     Boolean @default(true)
+  isInteractive Boolean @default(true)
+
+  // الترتيب
+  displayOrder Int @default(0)
+
+  // التتبع
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  updatedBy String?
+
+  // العلاقات
+  section site_sections? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  @@index([pageType])
+  @@index([key])
+  @@index([sectionId])
+}
+
+// ===== Enums لنظام كروت الشحن =====
+
+enum CardProvider {
+  LIBYANA // ليبيانا
+  MADAR   // مدار
+}
+
+enum CardStatus {
+  AVAILABLE  // متاح للاستخدام
+  USED       // مستخدم
+  RESERVED   // محجوز (قيد المعالجة)
+  EXPIRED    // منتهي الصلاحية
+  DISABLED   // معطل
+}
+
+enum BatchStatus {
+  ACTIVE   // نشط
+  DEPLETED // نفذت الكروت
+  EXPIRED  // منتهي
+  DISABLED // معطل
+}
+
+enum CardDepositStatus {
+  PENDING    // قيد الانتظار
+  PROCESSING // قيد المعالجة
+  APPROVED   // مقبول
+  REJECTED   // مرفوض
+  FAILED     // فشل
+}
