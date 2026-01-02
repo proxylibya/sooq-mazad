@@ -14,14 +14,16 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: ['http://localhost:3021', 'http://localhost:3022'],
+        origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3021', 'http://localhost:3022'],
         methods: ['GET', 'POST'],
     },
 });
 
 // Middleware
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+    origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3021', 'http://localhost:3022'],
+}));
 app.use(morgan('dev'));
 
 // ------------------------------------------------------------
@@ -110,3 +112,4 @@ httpServer.listen(PORT, () => {
 });
 
 export { app, io };
+
