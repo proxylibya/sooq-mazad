@@ -37,10 +37,13 @@ const nextConfig = {
 
   // Fix: بعض إصدارات Next/Vercel قد تفشل في تتبع require داخلي لـ amp-context
   // مما يؤدي إلى MODULE_NOT_FOUND في بيئة serverless على Vercel
+  // نستخدم مفتاح '/*' ليتم تطبيق include على جميع الصفحات والـ API routes
   outputFileTracingIncludes: {
-    '*': [
-      'node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/amp-context.js',
-      'node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/module.compiled.js',
+    '/*': [
+      // في إعداد monorepo يتم تثبيت next في node_modules على جذر المستودع،
+      // لذلك نعود بخطوتين من apps/web للوصول إلى المسار الصحيح
+      '../../node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/amp-context.js',
+      '../../node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/module.compiled.js',
     ],
   },
 
