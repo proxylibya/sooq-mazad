@@ -41,12 +41,10 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/*': [
       // في إعداد monorepo يتم تثبيت next في node_modules على جذر المستودع،
-      // لذلك نشير مباشرة إلى المسار النسبي من جذر المستودع (outputFileTracingRoot)
-      'node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/amp-context.js',
-      'node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/module.compiled.js',
-      // دعم المسار المكافئ في بيئة app router في بعض إصدارات Next
-      'node_modules/next/dist/server/future/route-modules/app-page/vendored/contexts/amp-context.js',
-      'node_modules/next/dist/server/future/route-modules/app-page/vendored/contexts/module.compiled.js',
+      // وتشير أنماط include دائماً لمسارات نسبية من مجلد المشروع (apps/web)
+      // لذلك نعود بخطوتين للوصول إلى node_modules في جذر المستودع،
+      // ثم ندرج مجلد route-modules بالكامل لتغطية amp-context وجميع المتغيّرات ذات الصلة
+      '../../node_modules/next/dist/server/future/route-modules/**/*',
     ],
   },
 
