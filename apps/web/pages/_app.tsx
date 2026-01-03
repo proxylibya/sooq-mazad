@@ -21,6 +21,15 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
+if (typeof window === 'undefined') {
+  try {
+    require('next/dist/server/future/route-modules/pages/vendored/contexts/amp-context');
+  } catch {}
+  try {
+    require('next/dist/server/future/route-modules/app-page/vendored/contexts/amp-context');
+  } catch {}
+}
+
 // import { SessionProvider } from 'next-auth/react'; // تم تعطيل نظام next-auth مؤقتاً
 import ErrorBoundary from '../components/ErrorBoundary';
 import { PageVisibilityProvider } from '../contexts/PageVisibilityContext';
